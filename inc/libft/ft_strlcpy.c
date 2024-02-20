@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmonpeat <mmonpeat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/28 12:58:06 by mmonpeat          #+#    #+#             */
-/*   Updated: 2022/10/01 19:12:56 by mmonpeat         ###   ########.fr       */
+/*   Created: 2022/09/29 11:12:49 by ncastell          #+#    #+#             */
+/*   Updated: 2022/12/30 23:58:23 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,16 @@
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	size_t	size;
-	size_t	i;
+	size_t	c;
 
-	size = 0;
-	while (src[size] != '\0')
-		size++;
-	if (dstsize == 0)
-		return (size);
-	i = 0;
-	while (((char *)src)[i] && i < dstsize - 1)
+	c = 0;
+	if (dstsize == '\0')
+		return (ft_strlen(src));
+	while (src[c] != '\0' && c < (dstsize - 1))
 	{
-		dst[i] = ((char *)src)[i];
-		i++;
+		dst[c] = src[c];
+		c++;
 	}
-	dst[i] = '\0';
-	return (size);
+	dst[c] = '\0';
+	return (ft_strlen(src));
 }

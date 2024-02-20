@@ -15,17 +15,19 @@ HEADER		= lib/cub3D.h
 INCLUDE		= -I./ -I inc/libft -I inc/ft_printf -I inc/mlx
 
 CC			= gcc
-C_FLAGS		= -Wall -Werror -Wextra -03
-MLX_FLAGS	= -Lmlx -lmlx -framework OpenGL -framework AppKit
+C_FLAGS		= -Wall -Werror -Wextra -O3
+MLX_FLAGS	= -Linc/mlx -lmlx -framework OpenGL -framework AppKit
 
 SRC_DIR		= src
 OBJ_DIR		= obj
 
+SILENCE =  --no-print-directory
+
 SRCS		= $(SRC_DIR)/main.c
 
-OBJ			= $(addprefix ${OBJ_DIR}/,$(SRCS:.c=.o))
+OBJ			= $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 DEPS		= $(addsuffix .d,$(basename ${OBJS}))
-RUTAS		= inc/libft/libft.a inc/minilibx/libmlx.a inc/ft_printf/libftprintf.a
+RUTAS		= inc/libft/libft.a inc/mlx/libmlx.a inc/ft_printf/libftprintf.a
 
 ######## COLORS #########
 GREEN		= \033[1;92m
@@ -35,28 +37,30 @@ NC			= \033[0m
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) -MT $@ $(C_FLAGS) -MDD -MP $(INCLUDE) -c $< -o $@
+	@echo "Compiling $<..."
+	@$(CC) -MT $@ $(C_FLAGS) -MMD -MP $(INCLUDE) -c $< -o $@
 
 all:
-	@$(MAKE) -sC inc/libft
-	@$(MAKE) -sC inc/minilibx
-	@$(MAKE) -sC inc/ft_printf
+	@$(MAKE) -sC inc/libft $(SILENCE)
+	@$(MAKE) -sC inc/mlx $(SILENCE)
+	@$(MAKE) -sC inc/ft_printf $(SILENCE)
+	@$(MAKE) $(NAME) $(SILENCE)
 
-$(NAME): $(OBJ)
-	$(CC) $(C_FLAGS) $(OBJ) $(RUTAS) $(MLX_FLAGS) -o $@
-	@echo "$(GREEN)  cub3D compiled $(NC)"
+$(NAME): $(OBJ) $(RUTAS)
+	@$(CC) $(C_FLAGS) $(OBJ) $(RUTAS) $(MLX_FLAGS) -o $@
+	@echo "$(GREEN)  \n    🐉🧚  cub3D compiled  🐉🧚\n$(NC)"
 
 -include $(DEPS)
 
 clean:
-	@$(MAKE) clean -sC lib/libft
-	@$(MAKE) clean -sC lib/minilibx
-	rm -rf $(OBJ_DIR)
+	@$(MAKE) clean -sC inc/libft $(SILENCE)
+	@$(MAKE) clean -sC inc/mlx $(SILENCE)
+	@rm -rf $(OBJ_DIR)
 	@echo "$(RED) \nDestruction successful\n$(NC)"
 
 fclean: clean
-	@$(MAKE) fclean -sC lib/libft
-	rm -rf $(NAME)
+	@$(MAKE) fclean -sC inc/libft $(SILENCE)
+	@rm -rf $(NAME)
 
 re: fclean all
 

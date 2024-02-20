@@ -3,36 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmonpeat <mmonpeat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/29 16:53:46 by mmonpeat          #+#    #+#             */
-/*   Updated: 2023/06/16 12:22:12 by mmonpeat         ###   ########.fr       */
+/*   Created: 2022/10/19 16:09:15 by ncastell          #+#    #+#             */
+/*   Updated: 2022/10/25 11:32:02 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+//#include <stdio.h>
+//#include <string.h>
 
-char	*ft_strnstr(char *haystack, char *needle, size_t len)
+char	*ft_strnstr(const char *s1, const char *s2, size_t n)
 {
 	size_t	i;
 	size_t	j;
 
 	i = 0;
-	if (!*needle)
-		return ((char *)haystack);
-	while (i < len && haystack[i])
+	if (s2[i] == '\0')
+		return ((char *)s1);
+	while (s1[i] && i < n)
 	{
-		if (needle[0] == haystack[i])
+		j = 0;
+		if (s1[i] == s2[j])
 		{
-			j = 0;
-			while (needle[j] == haystack[i + j] && (i + j) < len)
+			while (s1 [i + j] == s2[j] && i + j < n)
 			{
 				j++;
-				if (!needle[j])
-					return ((char *)haystack + i);
+				if (!s2[j])
+					return ((char *)&s1[i]);
 			}
 		}
 		i++;
 	}
-	return (NULL);
+	return (0);
 }
+/*
+int	main()
+{
+	char s1[50] = "Hola gente guapa de todo el mundo entero.";
+	char s2[20] = "gente";
+
+	printf("s1 = %s s2 = %s\n  %s\n\n", s1, s2, strnstr(s1,s2,20));
+	printf("s1 = %s s2 = %s\n %s", s1, s2, ft_strnstr(s1, s2, 20));
+
+	return 0;
+}*/

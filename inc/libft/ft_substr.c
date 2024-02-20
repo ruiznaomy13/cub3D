@@ -3,38 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmonpeat <mmonpeat@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/03 18:18:23 by mmonpeat          #+#    #+#             */
-/*   Updated: 2022/10/13 15:54:33 by mmonpeat         ###   ########.fr       */
+/*   Created: 2022/11/08 11:00:35 by ncastell          #+#    #+#             */
+/*   Updated: 2024/01/24 16:54:11 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+//#include <stdio.h>
+//#include <string.h>
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*save;
-	size_t	len_s;
+	char	*s2;
+	size_t	i;
 
-	if (!s)
+	i = 0;
+	if (start > ft_strlen(s))
+		return (ft_strdup(""));
+	if (len > (ft_strlen(s) - start))
+		len = ft_strlen(s) - start;
+	s2 = (char *)malloc(sizeof(char) * (len + 1));
+	if (!s2)
 		return (NULL);
-	len_s = ft_strlen(s);
-	if (len > len_s - start)
-		len = len_s - start;
-	if (start >= len_s)
+	while (s[start] != '\0' && i < len)
 	{
-		save = (char *)malloc(1);
-		if (!save)
-			return (NULL);
-		save[0] = '\0';
-		return (save);
+		s2[i] = s[start];
+		start++;
+		i++;
 	}
-	save = (char *)malloc(sizeof(char) * (len + 1));
-	if (!save)
-		return (NULL);
-	while (start--)
-		s++;
-	ft_strlcpy(save, s, len + 1);
-	return (save);
+	s2[i] = '\0';
+	return (s2);
 }

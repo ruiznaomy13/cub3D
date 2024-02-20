@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmonpeat <mmonpeat@student.42barcel>       +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/27 18:26:40 by mmonpeat          #+#    #+#             */
-/*   Updated: 2022/10/27 18:52:47 by mmonpeat         ###   ########.fr       */
+/*   Created: 2024/01/23 19:28:10 by ncastell          #+#    #+#             */
+/*   Updated: 2024/01/24 17:00:52 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

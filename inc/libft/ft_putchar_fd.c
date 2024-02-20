@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmonpeat <mmonpeat@student.42barcel>       +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42barcel>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/01 17:24:53 by mmonpeat          #+#    #+#             */
-/*   Updated: 2022/10/01 17:27:55 by mmonpeat         ###   ########.fr       */
+/*   Created: 2022/11/23 13:22:12 by ncastell          #+#    #+#             */
+/*   Updated: 2022/12/03 13:03:57 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
