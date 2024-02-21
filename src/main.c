@@ -1,8 +1,5 @@
 #include "lib/cub3D.h"
 
-#define SCR_W 640
-#define SCR_H 480
-
 static int	ft_error(int error)
 {
 	if (error == EXIT_FAILURE)
@@ -10,14 +7,25 @@ static int	ft_error(int error)
 	return (error);
 }
 
-int	check_input_map(char **av)
+int	check_input_map(char **av, t_game *game)
 {
+	save_map(av, game->map);
 	ft_printf("%s\n", av[1]);
-	return (0);
+	return (EXIT_SUCCESS);
 }
 
+int	init_game(char **av, t_game *game)
+{
+	game = ft_calloc(1, sizeof(t_game));
+
+	check_input_map(av, game);
+	// store_map();
+	return (EXIT_SUCCESS);
+}
 int	main(int ac, char *av[])
 {
+	t_game	game;
+
 	/* void	*mlx;
 	void	*mlx_win;
 
@@ -26,6 +34,5 @@ int	main(int ac, char *av[])
 	mlx_loop(mlx);*/
 	if (ac != 2)
 		return (ft_error(EXIT_FAILURE));
-	check_input_map(av);
-	// store_map();
+	init_game(av, &game);
 }

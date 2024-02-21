@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/21 20:00:58 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/02/21 20:13:42 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 # define WALL	1
 # define SPACE	0
 # define PLAYER	2
+
+#define SCR_W 640
+#define SCR_H 480
 
 typedef struct s_player
 {
