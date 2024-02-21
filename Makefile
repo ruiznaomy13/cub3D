@@ -35,7 +35,7 @@ RED			= \033[1;91m
 NC			= \033[0m
 
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile $(HEADER)
 	@mkdir -p $(OBJ_DIR)
 	@echo "Compiling $<..."
 	@$(CC) -MT $@ $(C_FLAGS) -MMD -MP $(INCLUDE) -c $< -o $@

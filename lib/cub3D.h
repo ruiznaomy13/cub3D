@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/20 00:51:26 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/02/21 20:00:58 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,37 @@
 # include "libft.h"
 # include "ft_printf.h"
 
-int		main(void);
+# define CYAN	"\x1b[36m"
+
+# define WALL	1
+# define SPACE	0
+# define PLAYER	2
+
+typedef struct s_player
+{
+	int		pos_x;
+	int		pos_y;
+	int		card_p;
+}			t_player;
+
+typedef struct s_map
+{
+	int		**map_guide;
+	char	*texture_no;
+	char	*texture_so;
+	char	*texture_we;
+	char	*texture_ea;
+	int		ceiling_c[3];
+	int		floor_c[3];
+}			t_map;
+
+
+typedef struct s_game
+{
+	t_map		*map;
+	t_player	*player;
+}				t_game;
+
+int		main(int ac, char *av[]);
 
 #endif
