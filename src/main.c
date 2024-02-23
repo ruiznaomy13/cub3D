@@ -6,19 +6,21 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/23 20:01:31 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/02/23 20:40:14 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib/cub3D.h"
 
-static int	ft_error(int error)
+void	ft_error(t_game *game, int error)
 {
+	(void)game;
 	if (error == EXIT_FAILURE)
-		ft_printf(CYAN"\nSomething went wrong!\n\n");
-	else if(error == E_SYNTAX)
-		ft_printf("Bad map structure\nTry with a different map 😛");
-	return (error);
+		ft_printf(MAGENTA"\nSomething went wrong!\n\n"WHITE);
+	else if (error == E_SYNTAX)
+		ft_printf(MAGENTA"Bad map structure\nTry with a different map 😛"WHITE);
+	// free_game(game);
+	exit(error);
 }
 
 int	init_game(char *map_file, t_game *game)
@@ -41,6 +43,7 @@ int	main(int ac, char *av[])
 	mlx_new_window(mlx, SCR_W, SCR_H, "cubu3D");
 	mlx_loop(mlx);*/
 	if (ac != 2)
-		return (ft_error(EXIT_FAILURE));
+		ft_error(NULL, EXIT_FAILURE);
 	init_game(av[1], &game);
+	return (0);
 }

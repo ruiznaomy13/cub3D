@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/02/23 20:10:36 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/02/23 20:38:54 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@
 # include "ft_printf.h"
 
 int		main(int ac, char *av[]);
+void	ft_error(t_game *game, int error);
 
 /* CHECKER */
 int		check_input_map(char *map_file, t_game *game);
 int		check_map_name(char *map_file);
+
 #endif
