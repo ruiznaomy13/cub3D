@@ -23,7 +23,7 @@ OBJ_DIR		= obj
 
 SILENCE =  --no-print-directory
 
-SRCS		= $(SRC_DIR)/main.c $(SRC_DIR)/checker.c $(SRC_DIR)/checker_aux.c
+SRCS		= $(SRC_DIR)/main.c $(SRC_DIR)/checker.c $(SRC_DIR)/checker_aux.c $(SRC_DIR)/auxiliar_functions.c
 
 OBJ			= $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 DEPS		= $(addsuffix .d,$(basename ${OBJS}))
