@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/23 20:01:31 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/02/23 20:41:30 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib/cub3D.h"
 
-static int	ft_error(int error)
+int	ft_error(int error)
 {
 	if (error == EXIT_FAILURE)
 		ft_printf(CYAN"\nSomething went wrong!\n\n");
@@ -24,6 +24,8 @@ static int	ft_error(int error)
 int	init_game(char *map_file, t_game *game)
 {
 	game = ft_calloc(1, sizeof(t_game));
+	game->map = ft_calloc(1, sizeof(t_map));
+	game->map->rows = 0;
 
 	check_input_map(map_file, game);
 		// save_map(map_file, game->map);

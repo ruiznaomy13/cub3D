@@ -15,7 +15,7 @@ HEADER		= lib/cub3D.h
 INCLUDE		= -I./ -I inc/libft -I inc/ft_printf -I inc/mlx
 
 CC			= gcc
-C_FLAGS		= -Wall -Werror -Wextra -O3
+C_FLAGS		= -Wall -Werror -Wextra -O3 -g
 MLX_FLAGS	= -Linc/mlx -lmlx -framework OpenGL -framework AppKit
 
 SRC_DIR		= src
@@ -23,7 +23,7 @@ OBJ_DIR		= obj
 
 SILENCE =  --no-print-directory
 
-SRCS		= $(SRC_DIR)/main.c
+SRCS		= $(SRC_DIR)/main.c $(SRC_DIR)/checker.c
 
 OBJ			= $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 DEPS		= $(addsuffix .d,$(basename ${OBJS}))
