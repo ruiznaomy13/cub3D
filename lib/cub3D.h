@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/02/23 22:33:26 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/02/23 22:39:56 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ int		ft_error(int error);
 int		check_input_map(char *map_file, t_game *game);
 int		check_map_name(char *map_file);
 char	get_first_char(char *line);
-int		read_dimension(int fd, t_map *map, char *map_file)
+int		read_dimension(int fd, t_map *map, char *map_file);
 
 /* CHECKER_AUX */
-int		check_line_info(line, game);
-
+int		check_line_info(char *line, t_game *game);
+int		check_paths(t_game *game);
 
 #endif
