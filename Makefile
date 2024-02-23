@@ -15,7 +15,7 @@ HEADER		= lib/cub3D.h
 INCLUDE		= -I./ -I inc/libft -I inc/ft_printf -I inc/mlx
 
 CC			= gcc
-C_FLAGS		= -Wall -Werror -Wextra -O3
+C_FLAGS		= -Wall -Werror -Wextra -O3 -g
 MLX_FLAGS	= -Linc/mlx -lmlx -framework OpenGL -framework AppKit
 
 SRC_DIR		= src

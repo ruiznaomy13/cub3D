@@ -6,13 +6,40 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:44 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/23 20:41:09 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/02/23 20:45:02 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib/cub3D.h"
 
-int	check_map_name(char *map_file)
+char	get_first_char(char *line)
+{
+	int i;
+
+	i = 0;
+	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
+		i++;
+	return (line[i]);
+}
+
+int	read_dimension(int fd, t_map *map, char *map_file)
+{
+	char *line;
+
+	line = get_next_line(fd);
+	while (line)
+	{
+		if (get_first_char(line) == '1')
+			map->rows += 1;
+		free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+	fd = open(map_file, O_RDONLY);
+	return (fd);
+}
+
+int check_map_name(char *map_file)
 {
 	int	len;
 
@@ -33,13 +60,14 @@ void	save_textures(char *line, t_game *game)
 
 int	check_input_map(char *map_file, t_game *game)
 {
-	char	*line;
+	// char	*line;
 	int		fd;
 
 	fd = open(map_file, O_RDONLY);
-	if (check_map_name(map_file) || fd < 0)
-		return (EXIT_FAILURE);
-	// fd = read_dimension(fd, game->map, map_file);
+	if (check_map_name(map_file) || fd < 0) // check if file input is ok
+		return (ft_error(EXIT_FAILURE));
+	fd = read_dimension(fd, game->map, map_file);
+	printf("%d\n", game->map->rows);
 	line = get_next_line(fd);
 	(void)game;
 	while (line)

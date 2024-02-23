@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/23 20:40:14 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/02/23 20:45:57 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	ft_error(t_game *game, int error)
 int	init_game(char *map_file, t_game *game)
 {
 	game = ft_calloc(1, sizeof(t_game));
+	game->map = ft_calloc(1, sizeof(t_map));
+	game->map->rows = 0;
 
 	check_input_map(map_file, game);
 		// save_map(map_file, game->map);

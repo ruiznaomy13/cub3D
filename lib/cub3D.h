@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/02/23 20:38:54 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/02/23 20:45:40 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,9 @@
 
 int		main(int ac, char *av[]);
 void	ft_error(t_game *game, int error);
+
+/* MAIN */
+int		ft_error(int error);
 
 /* CHECKER */
 int		check_input_map(char *map_file, t_game *game);
