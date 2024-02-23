@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 22:26:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/02/23 22:57:28 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/02/24 00:37:47 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,15 @@ int	check_paths(t_game *game)
 
 int	is_valid_path(char *line)
 {
-	int	fd;
+	int		fd;
+	char 	*file;
 
-	fd = open(line, O_RDONLY);
+	file = ft_substr(line, 0, ft_strlen(line) - 1);
+	fd = open(file, O_RDONLY);
 	if (fd == -1)
 		return (1);
 	close(fd);
+	free(file);
 	return (0);
 }
 
@@ -45,24 +48,25 @@ int	is_valid_color(char *line)
 	char	**aux;
 	int		i;
 	int		len;
+	char	*color;
 
+	color = ft_substr(line, 0, ft_strlen(line) - 1);
 	i = 0;
-	aux = ft_split(line, ',');
+	aux = ft_split(color, ',');
 	if (!aux)
 		return (1);
 	len = arg_counter(aux);
 	if (len != 3)
-		return (1);
+		return (free(color), free_char_array(aux), 1);
 	while (i < 3)
 	{
-		if (ft_atoi(aux[0]) < 0)
-			return (1);
-		if (ft_atoi(aux[1]) < 0)
-			return (1);
-		if (ft_atoi(aux[2]) < 0)
-			return (1);
+		if ((int)ft_atoi(aux[i]) < 0)
+		{
+			return (free(color), free_char_array(aux), 1);
+		}
+		i++;
 	}
-	return (0);
+	return (free(color), free_char_array(aux), 0);
 }
 
 int	check_line_info(char *line, t_game *game)
@@ -70,6 +74,8 @@ int	check_line_info(char *line, t_game *game)
 	char **aux;
 
 	aux = ft_split(line, ' ');
+	if (!aux)
+		return (1);
 	if (!ft_strncmp(aux[0], "NO", 3))
 		return (is_valid_path(aux[1]));
 	else if (!ft_strncmp(aux[0], "SO", 3))	

@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/02/23 22:57:54 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/02/24 00:37:52 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,14 @@
 # include "ft_printf.h"
 
 int		main(int ac, char *av[]);
-void	ft_error(t_game *game, int error);
 
 /* MAIN */
-// int		ft_error(int error);
+void	ft_error(t_game *game, int error);
+
+/* UTILS */
+void	free_char_array(char **str);
+char	get_first_char(char *line);
+int		first_char_pos(char *line);
 
 /* CHECKER */
 int		check_input_map(char *map_file, t_game *game);
@@ -41,5 +45,9 @@ int		check_paths(t_game *game);
 
 /* AUXILIAR FUNCTIONS */
 int		arg_counter(char **argv);
+
+/* MAP STRUCTURE */
+void	save_textures(char *line, t_game *game);
+int		save_rgb(char *line, int *color_array);
 
 #endif
