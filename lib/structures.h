@@ -3,21 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/23 20:13:02 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/02/23 20:45:35 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# define CYAN	"\x1b[36m"
+#define MAGENTA	"\033[95m"
+#define GREEN	"\x1b[32m"
+#define WHITE	"\e[1;37m"
 
-# define WALL	1
-# define SPACE	0
-# define PLAYER	2
+#define WALL	1
+#define SPACE	0
+#define PLAYER	2
 
 /* ERROR TYPE*/
-# define E_SYNTAX 2
+#define E_SYNTAX 2
 
 #define SCR_W 640
 #define SCR_H 480
@@ -48,4 +50,5 @@ typedef struct s_game
 	t_map		*map;
 	t_player	*player;
 	int			checker;
+	// int			error;
 }				t_game;

@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/02/23 20:25:01 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/02/23 22:33:26 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include "ft_printf.h"
 
 int		main(int ac, char *av[]);
+void	ft_error(t_game *game, int error);
 
 /* MAIN */
 int		ft_error(int error);
@@ -31,4 +32,11 @@ int		ft_error(int error);
 /* CHECKER */
 int		check_input_map(char *map_file, t_game *game);
 int		check_map_name(char *map_file);
+char	get_first_char(char *line);
+int		read_dimension(int fd, t_map *map, char *map_file)
+
+/* CHECKER_AUX */
+int		check_line_info(line, game);
+
+
 #endif

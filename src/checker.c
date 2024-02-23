@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:44 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/23 22:23:37 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/02/23 22:25:27 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,15 @@ int check_map_name(char *map_file)
 	return (0);
 }
 
+void	save_textures(char *line, t_game *game)
+{
+	if ()
+	{
+		/* code */
+	}
+	
+}
+
 int	check_input_map(char *map_file, t_game *game)
 {
 	char	*line;
@@ -62,13 +71,13 @@ int	check_input_map(char *map_file, t_game *game)
 	line = get_next_line(fd);
 	while (line) // read line by line of the file
 	{
-		game->checker = 
+		game->checker = check_line_info(line, game);
 		if (game->checker == 0)
-			save_textures(map_file, game);
-		else if (game->checker == 2)
-			save_map(map_file, game);
+			save_textures(line, game);
+		// else (game->checker == 2)
+		// 	save_map(map_file, game);
 		else
-			return (ft_error(E_SYNTAX));
+			ft_error(EXIT_FAILURE);
 	}
 	ft_printf("Game saved correctly!");
 	return (EXIT_SUCCESS);
