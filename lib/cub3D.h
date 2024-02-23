@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/21 20:13:42 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/02/23 20:03:29 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <fcntl.h>
 
 # include "mlx.h"
 # include "libft.h"
@@ -26,8 +27,10 @@
 # define SPACE	0
 # define PLAYER	2
 
-#define SCR_W 640
-#define SCR_H 480
+# define E_SYNTAX 2
+
+# define SCR_W 640
+# define SCR_H 480
 
 typedef struct s_player
 {
@@ -45,6 +48,8 @@ typedef struct s_map
 	char	*texture_ea;
 	int		ceiling_c[3];
 	int		floor_c[3];
+	int		cols;
+	int		rows;
 }			t_map;
 
 
@@ -52,8 +57,12 @@ typedef struct s_game
 {
 	t_map		*map;
 	t_player	*player;
+	int			checker;
 }				t_game;
 
 int		main(int ac, char *av[]);
 
+/* CHECKER */
+int		check_input_map(char *map_file, t_game *game);
+int		check_map_name(char *map_file);
 #endif
