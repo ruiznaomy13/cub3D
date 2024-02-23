@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/02/23 20:45:40 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/02/23 23:01:29 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,21 @@
 # include "ft_printf.h"
 
 int		main(int ac, char *av[]);
-void	ft_error(t_game *game, int error);
 
 /* MAIN */
-int		ft_error(int error);
+void	ft_error(t_game *game, int error);
+
+/* UTILS */
+void	free_char_array(char **str);
+char	get_first_char(char *line);
+int		first_char_pos(char *line);
 
 /* CHECKER */
 int		check_input_map(char *map_file, t_game *game);
 int		check_map_name(char *map_file);
+
+/* MAP STRUCTURE */
+void	save_textures(char *line, t_game *game);
+int		save_rgb(char *line, int *color_array);
 
 #endif
