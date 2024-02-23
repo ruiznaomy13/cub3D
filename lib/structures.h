@@ -1,24 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.h                                            :+:      :+:    :+:   */
+/*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/23 20:02:59 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/02/23 20:11:48 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#ifndef CUB3D_H
-# define CUB3D_H
-
-# include <unistd.h>
-# include <stdlib.h>
-
-# include "mlx.h"
-# include "libft.h"
-# include "ft_printf.h"
 
 # define CYAN	"\x1b[36m"
 
@@ -48,6 +38,9 @@ typedef struct s_map
 	char	*texture_ea;
 	int		ceiling_c[3];
 	int		floor_c[3];
+	int		checker;
+	int		cols;
+	int		rows;
 }			t_map;
 
 
@@ -56,7 +49,3 @@ typedef struct s_game
 	t_map		*map;
 	t_player	*player;
 }				t_game;
-
-int		main(int ac, char *av[]);
-
-#endif
