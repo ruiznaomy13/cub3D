@@ -41,11 +41,12 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile $(HEADER)
 	@echo "Compiling $<..."
 	@$(CC) -MT $@ $(C_FLAGS) -MMD -MP $(INCLUDE) -c $< -o $@
 
-all:
+all: sub_make $(NAME)	
+
+sub_make:
 	@$(MAKE) -sC inc/libft $(SILENCE)
 	@$(MAKE) -sC inc/mlx $(SILENCE)
 	@$(MAKE) -sC inc/ft_printf $(SILENCE)
-	@$(MAKE) $(NAME) $(SILENCE)
 
 $(NAME): $(OBJ) $(RUTAS)
 	@$(CC) $(C_FLAGS) $(OBJ) $(RUTAS) $(MLX_FLAGS) -o $@
@@ -65,4 +66,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all sub_make clean fclean re 
