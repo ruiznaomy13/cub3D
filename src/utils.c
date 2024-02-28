@@ -6,11 +6,11 @@
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 22:47:28 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/24 00:37:49 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/02/28 17:50:58 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib/cub3D.h"
+#include "cub3D.h"
 
 void	free_char_array(char **str)
 {

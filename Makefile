@@ -10,7 +10,7 @@
 # ************************************************************************ #
 
 NAME		= cub3D
-HEADER		= lib/
+HEADER		= lib/cub3D.h
 
 INCLUDE		= -I lib/ -I inc/libft -I inc/ft_printf -I inc/mlx
 
@@ -26,8 +26,8 @@ SILENCE =  --no-print-directory
 SRCS		= $(SRC_DIR)/main.c $(SRC_DIR)/checker.c $(SRC_DIR)/checker_aux.c $(SRC_DIR)/auxiliar_functions.c \
 			$(SRC_DIR)/utils.c 	$(SRC_DIR)/map_struct.c
 
-OBJ			= $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
-DEPS		= $(addsuffix .d,$(basename ${OBJS}))
+OBJ			= $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
+DEPS		= $(addsuffix .d,$(basename ${OBJ}))
 RUTAS		= inc/libft/libft.a inc/mlx/libmlx.a inc/ft_printf/libftprintf.a
 
 ######## COLORS #########
