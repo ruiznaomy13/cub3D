@@ -18,16 +18,16 @@ CC			= gcc
 C_FLAGS		= -Wall -Werror -Wextra -O3 -g
 MLX_FLAGS	= -Linc/mlx -lmlx -framework OpenGL -framework AppKit
 
-SRC_DIR		= src
-OBJ_DIR		= obj
+SRC_DIR		= ./src
+OBJ_DIR		= ./obj
 
 SILENCE =  --no-print-directory
 
-SRCS		= $(SRC_DIR)/main.c $(SRC_DIR)/checker.c $(SRC_DIR)/checker_aux.c $(SRC_DIR)/auxiliar_functions.c \
-			$(SRC_DIR)/utils.c 	$(SRC_DIR)/map_struct.c
+SRCS		= main.c checker.c checkerAux.c auxiliarFunctions.c \
+			utils.c mapStruct.c
 
-OBJ			= $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRCS))
-DEPS		= $(addsuffix .d,$(basename ${OBJ}))
+OBJ			= $(addprefix ${OBJ_DIR}/,  ${SRCS:.c=.o})
+DEPS		= $(addprefix ${OBJ_DIR}/,  ${SRCS:.c=.d})
 RUTAS		= inc/libft/libft.a inc/mlx/libmlx.a inc/ft_printf/libftprintf.a
 
 ######## COLORS #########
@@ -36,12 +36,12 @@ RED			= \033[1;91m
 NC			= \033[0m
 
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile $(HEADER)
+all: sub_make $(NAME)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER) Makefile
 	@mkdir -p $(OBJ_DIR)
 	@echo "Compiling $<..."
 	@$(CC) -MT $@ $(C_FLAGS) -MMD -MP $(INCLUDE) -c $< -o $@
-
-all: sub_make $(NAME)	
 
 sub_make:
 	@$(MAKE) -sC inc/libft $(SILENCE)
