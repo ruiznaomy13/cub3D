@@ -1,28 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   structures.h                                       :+:      :+:    :+:   */
+/*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/23 22:30:51 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/02/28 16:31:42 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define MAGENTA	"\033[95m"
-#define GREEN	"\x1b[32m"
-#define WHITE	"\e[1;37m"
+#ifndef STRUCTS_H
+# define STRUCTS_H
 
-#define WALL	1
-#define SPACE	0
-#define PLAYER	2
+# define MAGENTA	"\033[95m"
+# define GREEN		"\x1b[32m"
+# define WHITE		"\e[1;37m"
+
+# define WALL	1
+# define SPACE	0
+# define PLAYER	2
 
 /* ERROR TYPE*/
-#define E_SYNTAX 2
+# define E_SYNTAX 2
 
-#define SCR_W 640
-#define SCR_H 480
+# define SCR_W 640
+# define SCR_H 480
 
 typedef struct s_player
 {
@@ -52,3 +55,5 @@ typedef struct s_game
 	int			checker;
 	// int			error;
 }				t_game;
+
+#endif

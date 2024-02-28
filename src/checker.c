@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:44 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/23 23:07:22 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/02/28 16:06:18 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,18 +48,21 @@ int	check_input_map(char *map_file, t_game *game)
 	if (check_map_name(map_file) || fd < 0)
 		ft_error(game, E_SYNTAX);
 	fd = read_dimension(fd, game->map, map_file);
-	printf("%d\n", game->map->rows);
 	line = get_next_line(fd);
-	(void)game;
-	while (line)
+	while (line) // read line by line of the file
 	{
-		// game->checker = check_line_info();
-		if (game->checker == 0)
-			save_textures(line, game);
-		// else (game->checker == 2)
-		// 	save_map(map_file, game);
-		else
-			ft_error(game, EXIT_FAILURE);
+		if (ft_strncmp(line, "\n", 1))
+		{
+			game->checker = check_line_info(line, game);
+			if (game->checker == 0)
+				save_textures(line, game);
+			// else (game->checker == 2)
+			// 	save_map(map_file, game);
+			else
+				ft_error(game, EXIT_FAILURE);
+		}
+		free(line);
+		line = get_next_line(fd);
 	}
 	ft_printf("Game saved correctly!");
 	return (EXIT_SUCCESS);
