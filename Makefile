@@ -58,15 +58,14 @@ clean:
 	@$(MAKE) clean -sC inc/libft $(SILENCE)
 	@$(MAKE) clean -sC inc/mlx $(SILENCE)
 	@$(MAKE) clean -sC inc/ft_printf $(SILENCE)
-	@rm -rf $(OBJ)
+	@rm -rf $(OBJ_DIR)
 	@echo "$(RED) \nDestruction successful\n$(NC)"
 
 fclean: clean
 	@$(MAKE) fclean -sC inc/libft $(SILENCE)
 	@$(MAKE) fclean -sC inc/ft_printf $(SILENCE)
-	@rm -rf $(OBJ_DIR)
 	@rm -rf $(NAME)
 
-re: clean all
+re: fclean all
 
 .PHONY: all sub_make clean fclean re 
