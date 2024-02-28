@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/02/28 19:17:11 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/02/28 19:25:38 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int		main(int ac, char *av[]);
 void	ft_error(t_game *game, int error);
 
 /* FT_FREE_GAME */
-void	clean_memory(t_game *game);
+void	clean_memmory(t_game *game);
 
 /* UTILS */
 void	free_char_array(char **str);

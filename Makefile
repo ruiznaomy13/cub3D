@@ -23,7 +23,8 @@ OBJ_DIR		= ./obj
 
 SILENCE =  --no-print-directory
 
-SRCS		= auxChecker.c mapStructs.c auxiliarFunctions.c checker.c utils.c	main.c 
+SRCS		= auxChecker.c mapStructs.c auxiliarFunctions.c checker.c \
+			utils.c	main.c ft_free_game.c
 
 OBJ			= $(addprefix ${OBJ_DIR}/,  ${SRCS:.c=.o})
 DEPS		= $(addprefix ${OBJ_DIR}/,  ${SRCS:.c=.d})

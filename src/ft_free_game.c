@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fr_free_game                                       :+:      :+:    :+:   */
+/*   ft_free_game.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 19:16:27 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/28 19:16:48 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/02/28 19:25:39 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,11 @@ static void	clean_map(t_map *map)
 	}
 }
 
-void	clean_memory(t_game *game)
+void	clean_memmory(t_game *game)
 {
-	int	i;
-	
 	if (game)
 	{
-		free_map(game->map);
+		clean_map(game->map);
 		free(game->player);
 		free(game);
 	}

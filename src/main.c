@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/28 19:16:12 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/02/28 19:26:17 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void	ft_error(t_game *game, int error)
 		ft_printf(MAGENTA"\nSomething went wrong!\n\n"WHITE);
 	else if (error == E_SYNTAX)
 		ft_printf(MAGENTA"Bad map structure\nTry with a different map 😛\n\n"WHITE);
-	// free_game(game);
 	clean_memmory(game);
 	exit(error);
 }
@@ -48,5 +47,6 @@ int	main(int ac, char *av[])
 	if (ac != 2)
 		ft_error(NULL, EXIT_FAILURE);
 	init_game(av[1], &game);
+	clean_memmory(&game);
 	return (0);
 }
