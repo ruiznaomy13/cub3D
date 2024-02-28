@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/28 17:50:38 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/02/28 18:31:56 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "lib/cub3D.h"
 
 void	ft_error(t_game *game, int error)
 {

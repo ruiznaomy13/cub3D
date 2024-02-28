@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker_aux.c                                      :+:      :+:    :+:   */
+/*   auxChecker.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 22:26:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/02/28 17:50:46 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/02/28 18:32:15 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "lib/cub3D.h"
 
 int	check_paths(t_game *game)
 {

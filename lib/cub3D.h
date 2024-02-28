@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/02/28 16:08:35 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/02/28 18:32:42 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "structures.h"
+# include "lib/structures.h"
 
 # include <unistd.h>
 # include <stdlib.h>

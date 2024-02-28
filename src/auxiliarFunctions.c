@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   auxiliar_functions.c                               :+:      :+:    :+:   */
+/*   auxiliarFunctions.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 22:51:49 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/02/28 17:50:50 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/02/28 18:31:37 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "lib/cub3D.h"
 
 int	arg_counter(char **argv)
 {

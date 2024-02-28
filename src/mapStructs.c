@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_struct.c                                       :+:      :+:    :+:   */
+/*   mapStructs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 23:00:32 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/28 17:50:54 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/02/28 18:31:59 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "lib/cub3D.h"
 
 int	save_rgb(char *line, int *color_array)
 {

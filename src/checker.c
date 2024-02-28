@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:44 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/28 17:50:42 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/02/28 18:31:50 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "lib/cub3D.h"
 
 int	read_dimension(int fd, t_map *map, char *map_file)
 {
