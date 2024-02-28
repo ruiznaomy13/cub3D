@@ -6,14 +6,14 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/02/28 16:09:47 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/02/28 19:17:11 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "structs.h"
+# include "lib/structs.h"
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -27,6 +27,9 @@ int		main(int ac, char *av[]);
 
 /* MAIN */
 void	ft_error(t_game *game, int error);
+
+/* FT_FREE_GAME */
+void	clean_memory(t_game *game);
 
 /* UTILS */
 void	free_char_array(char **str);

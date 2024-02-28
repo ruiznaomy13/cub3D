@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:44 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/28 16:06:18 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/02/28 19:10:57 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,28 +41,27 @@ int check_map_name(char *map_file)
 
 int	check_input_map(char *map_file, t_game *game)
 {
-	char	*line;
 	int		fd;
 
 	fd = open(map_file, O_RDONLY);
 	if (check_map_name(map_file) || fd < 0)
 		ft_error(game, E_SYNTAX);
 	fd = read_dimension(fd, game->map, map_file);
-	line = get_next_line(fd);
-	while (line) // read line by line of the file
+	game->map->line = get_next_line(fd);
+	while (game->map->line) // read line by line of the file
 	{
-		if (ft_strncmp(line, "\n", 1))
+		if (ft_strncmp(game->map->line, "\n", 1))
 		{
-			game->checker = check_line_info(line, game);
+			game->checker = check_line_info(game->map->line, game);
 			if (game->checker == 0)
-				save_textures(line, game);
+				save_textures(game->map->line, game);
 			// else (game->checker == 2)
 			// 	save_map(map_file, game);
 			else
 				ft_error(game, EXIT_FAILURE);
 		}
-		free(line);
-		line = get_next_line(fd);
+		free(game->map->line);
+		game->map->line = get_next_line(fd);
 	}
 	ft_printf("Game saved correctly!");
 	return (EXIT_SUCCESS);

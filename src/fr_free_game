@@ -1,44 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   fr_free_game                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/23 22:47:28 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/28 18:32:03 by ncastell         ###   ########.fr       */
+/*   Created: 2024/02/28 19:16:27 by ncastell          #+#    #+#             */
+/*   Updated: 2024/02/28 19:16:48 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "lib/cub3D.h"
 
-void	free_char_array(char **str)
+static void	clean_map(t_map *map)
 {
 	int	i;
 
 	i = -1;
-	while (str[++i])
-		free(str[i]);
-	free(str);
-	// str = NULL;
+	if (map)
+	{
+		if (map->map_guide)
+		{
+			while (++i < map->rows)
+				free(map->map_guide[i]);
+			free(map->map_guide);
+		}
+		free(map->line);
+		free(map->texture_no);
+		free(map->texture_so);
+		free(map->texture_we);
+		free(map->texture_ea);
+		free(map);
+	}
 }
 
-char	get_first_char(char *line)
+void	clean_memory(t_game *game)
 {
 	int	i;
-
-	i = 0;
-	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
-		i++;
-	return (line[i]);
-}
-
-int	first_char_pos(char *line)
-{
-	int	i;
-
-	i = 0;
-	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
-		i++;
-	return (i);
+	
+	if (game)
+	{
+		free_map(game->map);
+		free(game->player);
+		free(game);
+	}
 }

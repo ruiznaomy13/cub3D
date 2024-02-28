@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_struct.c                                       :+:      :+:    :+:   */
+/*   mapStructs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 23:00:32 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/24 00:37:50 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/02/28 19:08:21 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,14 +18,11 @@ int	save_rgb(char *line, int *color_array)
 	int		i;
 
 	i = 0;
-	aux = ft_split(line, ',');
+	aux = ft_split(&line[first_char_pos(line)], ',');
 	if (!aux)
 		return (1);
-	while (aux[i])
-	{
+	while (aux[++i])
 		color_array[i] = ft_atoi(aux[i]);
-		i++;
-	}
 	free_char_array(aux);
 	return (0);
 }
@@ -45,9 +42,15 @@ int	is_map_texture(char *line, int *i, int *aux)
 		ret_value = 3;
 	else if (!ft_strncmp (&line[*i], "EA", 2))
 		ret_value = 4;
+	if (!ft_strncmp (&line[*i], "F",1))
+		ret_value = 5;
+	if (!ft_strncmp (&line[*i], "C",1))
+		ret_value = 6;
 	if (ret_value != 0)
 	{
 		*i += 2;
+		if (ret_value > 4)
+			*i -= 1;
 		*aux = first_char_pos(&line[*i]);
 	}
 	return (ret_value);
@@ -66,12 +69,12 @@ void	save_textures(char *line, t_game *game)
 		game->map->texture_we = ft_substr(&line[i], aux, ft_strlen(&line[aux + i]) - 1);
 	else if (is_map_texture(line, &i, &aux) == 4)
 		game->map->texture_ea = ft_substr(&line[i], aux, ft_strlen(&line[aux + i]) - 1);
-	if (ft_strncmp (&line[i], "F",1) == 0) // EN OBSERVACION -> (inocente hasta que se demuestre lo contrario)
+	if (is_map_texture(line, &i, &aux) == 5) // EN OBSERVACION -> (inocente hasta que se demuestre lo contrario)
 	{
-		if (save_rgb(&line[first_char_pos(&line[i++])], game->map->floor_c))
+		if (save_rgb(&line[first_char_pos(&line[i])], game->map->floor_c))
 			ft_error(game, EXIT_FAILURE);
 	}
-	else if (ft_strncmp (&line[i], "C",1) == 0)
+	else if (is_map_texture(line, &i, &aux) == 6)
 	{
 		if (save_rgb(&line[first_char_pos(&line[i++])], game->map->ceiling_c))
 			ft_error(game, EXIT_FAILURE);

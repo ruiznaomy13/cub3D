@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/28 16:31:42 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/02/28 19:10:02 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ typedef struct s_player
 typedef struct s_map
 {
 	int		**map_guide;
+	char	*line;
 	char	*texture_no;
 	char	*texture_so;
 	char	*texture_we;
