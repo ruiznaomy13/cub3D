@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 23:00:32 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/28 19:08:21 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/02/28 20:46:28 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	save_rgb(char *line, int *color_array)
 	char	**aux;
 	int		i;
 
-	i = 0;
+	i = -1;
 	aux = ft_split(&line[first_char_pos(line)], ',');
 	if (!aux)
 		return (1);

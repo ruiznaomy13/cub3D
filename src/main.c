@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/28 19:26:17 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/02/28 20:50:04 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ int	main(int ac, char *av[])
 	if (ac != 2)
 		ft_error(NULL, EXIT_FAILURE);
 	init_game(av[1], &game);
-	clean_memmory(&game);
+	// clean_memmory(&game);
 	return (0);
 }

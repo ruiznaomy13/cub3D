@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:44 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/28 19:10:57 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/02/28 20:50:11 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ int	check_input_map(char *map_file, t_game *game)
 			game->checker = check_line_info(game->map->line, game);
 			if (game->checker == 0)
 				save_textures(game->map->line, game);
-			// else (game->checker == 2)
-			// 	save_map(map_file, game);
+			else if (game->checker == 2)
+				return (EXIT_SUCCESS); //(map_file, game);
 			else
 				ft_error(game, EXIT_FAILURE);
 		}

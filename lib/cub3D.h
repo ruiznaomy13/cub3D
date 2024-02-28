@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/02/28 19:25:38 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/02/28 21:03:16 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ void	clean_memmory(t_game *game);
 void	free_char_array(char **str);
 char	get_first_char(char *line);
 int		first_char_pos(char *line);
+
+char	**ft_split_cub(char const *s);
 
 /* CHECKER */
 int		check_input_map(char *map_file, t_game *game);
