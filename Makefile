@@ -10,9 +10,9 @@
 # ************************************************************************ #
 
 NAME		= cub3D
-HEADER		= lib/cub3D.h
+HEADER		= lib/
 
-INCLUDE		= -I./ -I inc/libft -I inc/ft_printf -I inc/mlx
+INCLUDE		= -I lib/ -I inc/libft -I inc/ft_printf -I inc/mlx
 
 CC			= gcc
 C_FLAGS		= -Wall -Werror -Wextra -O3 -g
@@ -41,11 +41,12 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c Makefile $(HEADER)
 	@echo "Compiling $<..."
 	@$(CC) -MT $@ $(C_FLAGS) -MMD -MP $(INCLUDE) -c $< -o $@
 
-all:
+all: sub_make $(NAME)	
+
+sub_make:
 	@$(MAKE) -sC inc/libft $(SILENCE)
 	@$(MAKE) -sC inc/mlx $(SILENCE)
 	@$(MAKE) -sC inc/ft_printf $(SILENCE)
-	@$(MAKE) $(NAME) $(SILENCE)
 
 $(NAME): $(OBJ) $(RUTAS)
 	@$(CC) $(C_FLAGS) $(OBJ) $(RUTAS) $(MLX_FLAGS) -o $@
@@ -56,13 +57,16 @@ $(NAME): $(OBJ) $(RUTAS)
 clean:
 	@$(MAKE) clean -sC inc/libft $(SILENCE)
 	@$(MAKE) clean -sC inc/mlx $(SILENCE)
-	@rm -rf $(OBJ_DIR)
+	@$(MAKE) clean -sC inc/ft_printf $(SILENCE)
+	@rm -rf $(OBJ)
 	@echo "$(RED) \nDestruction successful\n$(NC)"
 
 fclean: clean
 	@$(MAKE) fclean -sC inc/libft $(SILENCE)
+	@$(MAKE) fclean -sC inc/ft_printf $(SILENCE)
+	@rm -rf $(OBJ_DIR)
 	@rm -rf $(NAME)
 
-re: fclean all
+re: clean all
 
-.PHONY: all clean fclean re
+.PHONY: all sub_make clean fclean re 
