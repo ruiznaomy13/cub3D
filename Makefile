@@ -24,7 +24,7 @@ OBJ_DIR		= ./obj
 SILENCE =  --no-print-directory
 
 SRCS		= main.c checker.c checkerAux.c auxiliarFunctions.c \
-			utils.c mapStruct.c
+			utils.c mapStruct.c utils_2.c
 
 OBJ			= $(addprefix ${OBJ_DIR}/,  ${SRCS:.c=.o})
 DEPS		= $(addprefix ${OBJ_DIR}/,  ${SRCS:.c=.d})

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:44 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/28 19:14:31 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:17:09 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,16 @@ int	check_input_map(char *map_file, t_game *game)
 		ft_error(game, E_SYNTAX);
 	fd = read_dimension(fd, game->map, map_file);
 	line = get_next_line(fd);
-	while (line) // read line by line of the file
+	while (line)
 	{
 		if (ft_strncmp(line, "\n", 1))
 		{
 			game->checker = check_line_info(line, game);
 			if (game->checker == 0)
 				save_textures(line, game);
-			// else (game->checker == 2)
+			 else if (game->checker == 2)
 			// 	save_map(map_file, game);
+				return (EXIT_SUCCESS);
 			else
 				ft_error(game, EXIT_FAILURE);
 		}

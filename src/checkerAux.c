@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkerAux.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 22:26:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/02/28 19:14:45 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:15:22 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	check_line_info(char *line, t_game *game)
 {
 	char **aux;
 
-	aux = ft_split(line, ' ');
+	aux = ft_split_cub(line);
 	if (!aux)
 		return (1);
 	if (!ft_strncmp(aux[0], "NO", 3))

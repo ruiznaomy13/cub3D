@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/28 19:03:55 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:17:44 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,6 @@ int	main(int ac, char *av[])
 	if (ac != 2)
 		ft_error(NULL, EXIT_FAILURE);
 	init_game(av[1], &game);
+	//clean_memmory(&game);
 	return (0);
 }

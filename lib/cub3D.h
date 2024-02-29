@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/02/28 19:11:53 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:21:29 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,16 @@ int		main(int ac, char *av[]);
 /* MAIN */
 void	ft_error(t_game *game, int error);
 
+/* FREE GAME */
+void	clean_memmory(t_game *game);
+
 /* UTILS */
 void	free_char_array(char **str);
 char	get_first_char(char *line);
 int		first_char_pos(char *line);
+
+/* UTILS 2 */
+char	**ft_split_cub(const char *str);
 
 /* CHECKER */
 int		check_input_map(char *map_file, t_game *game);
