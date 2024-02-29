@@ -6,15 +6,15 @@
 /*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:44 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/29 15:17:09 by elias            ###   ########.fr       */
+/*   Updated: 2024/02/29 16:35:48 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	read_dimension(int fd, t_map *map, char *map_file)
+int	read_dimension(int fd, t_map *map, char *map_file, int *map_row)
 {
-	char *line;
+	char	*line;
 
 	line = get_next_line(fd);
 	while (line)
@@ -25,11 +25,13 @@ int	read_dimension(int fd, t_map *map, char *map_file)
 		line = get_next_line(fd);
 	}
 	close(fd);
+	map->map_guide = ft_calloc(map->rows, sizeof(char *));
 	fd = open(map_file, O_RDONLY);
+	*map_row = 0;
 	return (fd);
 }
 
-int check_map_name(char *map_file)
+int	check_map_name(char *map_file)
 {
 	int	len;
 
@@ -41,29 +43,28 @@ int check_map_name(char *map_file)
 
 int	check_input_map(char *map_file, t_game *game)
 {
-	char	*line;
 	int		fd;
+	int		map_row;
 
 	fd = open(map_file, O_RDONLY);
 	if (check_map_name(map_file) || fd < 0)
 		ft_error(game, E_SYNTAX);
-	fd = read_dimension(fd, game->map, map_file);
-	line = get_next_line(fd);
-	while (line)
+	fd = read_dimension(fd, game->map, map_file, &map_row);
+	game->map->line = get_next_line(fd);
+	while (game->map->line)
 	{
-		if (ft_strncmp(line, "\n", 1))
+		if (ft_strncmp(game->map->line, "\n", 1))
 		{
-			game->checker = check_line_info(line, game);
+			game->checker = check_line_info(game->map->line, game);
 			if (game->checker == 0)
-				save_textures(line, game);
-			 else if (game->checker == 2)
-			// 	save_map(map_file, game);
-				return (EXIT_SUCCESS);
+				save_textures(game->map->line, game);
+			else if (game->checker == 2)
+				save_map(game->map->line, game, &map_row);
 			else
 				ft_error(game, EXIT_FAILURE);
 		}
-		free(line);
-		line = get_next_line(fd);
+		free(game->map->line);
+		game->map->line = get_next_line(fd);
 	}
 	ft_printf("Game saved correctly!");
 	return (EXIT_SUCCESS);

@@ -6,7 +6,7 @@
 /*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/29 15:17:44 by elias            ###   ########.fr       */
+/*   Updated: 2024/02/29 16:25:34 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	init_game(char *map_file, t_game *game)
 	game->map->rows = 0;
 
 	check_input_map(map_file, game);
-		// save_map(map_file, game->map);
+	//save_map(map_file, game->map);
 	// store_map();
 	return (EXIT_SUCCESS);
 }

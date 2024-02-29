@@ -6,7 +6,7 @@
 /*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/02/29 15:21:29 by elias            ###   ########.fr       */
+/*   Updated: 2024/02/29 16:35:56 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char	**ft_split_cub(const char *str);
 int		check_input_map(char *map_file, t_game *game);
 int		check_map_name(char *map_file);
 char	get_first_char(char *line);
-int		read_dimension(int fd, t_map *map, char *map_file);
+int		read_dimension(int fd, t_map *map, char *map_file, int *map_row);
 
 /* CHECKER_AUX */
 int		check_line_info(char *line, t_game *game);
@@ -55,5 +55,5 @@ int		arg_counter(char **argv);
 /* MAP STRUCTURE */
 void	save_textures(char *line, t_game *game);
 int		save_rgb(char *line, int *color_array);
-
+void	save_map(char *line, t_game *game, int *map_row);
 #endif

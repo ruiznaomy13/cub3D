@@ -6,11 +6,11 @@
 /*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 20:58:03 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/29 15:18:59 by elias            ###   ########.fr       */
+/*   Updated: 2024/02/29 16:08:54 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib/cub3D.h"
+#include "cub3D.h"
 
 static int	ft_countwords(char const *s)
 {

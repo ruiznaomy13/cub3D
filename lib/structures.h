@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/23 22:30:51 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/02/29 16:09:45 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	int		**map_guide;
+	char	**map_guide;
 	char	*texture_no;
 	char	*texture_so;
 	char	*texture_we;
@@ -42,6 +42,7 @@ typedef struct s_map
 	int		floor_c[3];
 	int		cols;
 	int		rows;
+	char	*line;
 }			t_map;
 
 
