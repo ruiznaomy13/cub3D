@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/29 16:09:45 by elias            ###   ########.fr       */
+/*   Updated: 2024/03/05 20:19:04 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,11 @@
 
 #define SCR_W 640
 #define SCR_H 480
+
+typedef struct	s_textures
+{
+	void	*wall;
+}			t_textures;
 
 typedef struct s_player
 {
@@ -45,11 +50,23 @@ typedef struct s_map
 	char	*line;
 }			t_map;
 
+typedef struct s_ray
+{
+	double	dirX;
+	double	dirY;
+	double	planeX;
+	double	planeY;
+}			t_ray;
 
 typedef struct s_game
 {
 	t_map		*map;
 	t_player	*player;
+	t_ray		*ray_cast;
+	t_textures	*texts;
+	void		*mlx;
+	void		*mlx_win;
 	int			checker;
+	int			end;
 	// int			error;
 }				t_game;

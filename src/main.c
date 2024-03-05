@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/29 16:25:34 by elias            ###   ########.fr       */
+/*   Updated: 2024/03/05 20:23:14 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,17 @@ void	ft_error(t_game *game, int error)
 	exit(error);
 }
 
+void	init_textures(t_game *game)
+{
+	int	wd_width;
+	int	wd_height;
+
+	game->texts = ft_calloc(1, sizeof(t_textures));
+
+	game->texts->wall = mlx_xpm_file_to_image(game->mlx, \
+	"textures/walls/wall.xpm", &wd_width, &wd_height);
+}
+
 int	init_game(char *map_file, t_game *game)
 {
 	game = ft_calloc(1, sizeof(t_game));
@@ -30,7 +41,8 @@ int	init_game(char *map_file, t_game *game)
 	game->map->rows = 0;
 
 	check_input_map(map_file, game);
-	//save_map(map_file, game->map);
+	init_textures(game);
+	init_ray(game);
 	// store_map();
 	return (EXIT_SUCCESS);
 }
@@ -38,15 +50,16 @@ int	main(int ac, char *av[])
 {
 	t_game	game;
 
-	/* void	*mlx;
-	void	*mlx_win;
-
-	mlx = mlx_init();
-	mlx_new_window(mlx, SCR_W, SCR_H, "cubu3D");
-	mlx_loop(mlx);*/
+	game.mlx = mlx_init();
+	mlx_new_window(game.mlx, SCR_W, SCR_H, "cub3D");
 	if (ac != 2)
 		ft_error(NULL, EXIT_FAILURE);
 	init_game(av[1], &game);
+	print_map(game);
+	while(game.end == 0)
+	{
+		
+	}
 	//clean_memmory(&game);
 	return (0);
 }
