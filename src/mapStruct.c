@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 23:00:32 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/06 16:33:51 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/03/06 19:37:53 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,3 +114,36 @@ void	save_map(char *line, t_game *game, int *map_row)
 	ft_strlen(line) - 1);
 	*map_row += 1;
 }
+
+// void	save_map(char *line, t_game *game, int *map_row)
+// {
+// 	int	i;
+
+// 	i = -1;
+// 	if (!is_valid_line(line))
+// 		return (ft_error(game, EXIT_FAILURE));
+// 	printf("Llego aqui 1\n");
+// 	game->map->map_array[*map_row] = ft_calloc(sizeof(int), ft_strlen(line) - i);
+// 	while (game->map->map_array[*map_row][++i])
+// 	{
+// 		printf("Llego aqui 2\n");
+// 		if (!game->map->map_array[*map_row])
+// 			return ft_error(game, 0);
+// 		if (line[i] == SPACE)
+// 			game->map->map_array[*map_row][i] = SPACE;
+// 		if (line[i] == WALL)
+// 			game->map->map_array[*map_row][i] = WALL;
+// 		if (line[i] == 'N')
+// 			game->map->map_array[*map_row][i] = P_N;
+// 		else if (line[i] == 'S')
+// 			game->map->map_array[*map_row][i] = P_S;
+// 		else if (line[i] == 'E')
+// 			game->map->map_array[*map_row][i] = P_E;
+// 		else if (line[i] == 'W')
+// 			game->map->map_array[*map_row][i] = P_W;
+// 		else
+// 			game->map->map_array[*map_row][i] = OUT_MAP;	
+// 	}
+// 	printf("Llego aqui 3\n");
+// 	*map_row += 1;
+// }

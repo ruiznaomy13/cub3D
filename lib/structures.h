@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/06 16:28:04 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/03/06 19:12:02 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,19 @@
 #define WALL	1
 #define SPACE	0
 #define PLAYER	2
+#define P_N		21
+#define P_S		22
+#define P_E		23
+#define P_W		24
+#define	OUT_MAP	-1
 
 /* ERROR TYPE*/
 #define E_SYNTAX 2
 
 #define SCR_W 1024
 #define SCR_H 768
+
+/* MAP PX TYPE */
 
 typedef struct	s_textures
 {
@@ -40,6 +47,7 @@ typedef struct s_player
 
 typedef struct s_map
 {
+	int		**map_array;
 	char	**map_guide;
 	char	*texture_no;
 	char	*texture_so;
