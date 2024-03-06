@@ -1,25 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   auxiliarFunctions.c                                :+:      :+:    :+:   */
+/*   ft_free_game.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/23 22:51:49 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/02/28 19:04:11 by eliagarc         ###   ########.fr       */
+/*   Created: 2024/02/28 19:16:27 by ncastell          #+#    #+#             */
+/*   Updated: 2024/03/06 16:19:05 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-int	arg_counter(char **argv)
+static void	clean_map(t_map *map)
 {
 	int	i;
 
-	i = 0;
-	if (!argv[0])
-		return (0);
-	while (argv[i])
-		i++;
-	return (i);
+	i = -1;
+	if (map)
+	{
+		if (map->map_guide)
+		{
+			while (++i < map->rows)
+				free(map->map_guide[i]);
+			free(map->map_guide);
+		}
+		free(map->line);
+		free(map->texture_no);
+		free(map->texture_so);
+		free(map->texture_we);
+		free(map->texture_ea);
+		free(map);
+	}
+}
+
+void	clean_memmory(t_game *game)
+{
+	if (game)
+	{
+		clean_map(game->map);
+		free(game->player);
+	}
 }

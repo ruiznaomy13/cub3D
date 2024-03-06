@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   auxChecker.c                                       :+:      :+:    :+:   */
+/*   checkerAux.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 22:26:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/02/28 18:32:15 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/02/29 15:15:22 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib/cub3D.h"
+#include "cub3D.h"
 
 int	check_paths(t_game *game)
 {
@@ -73,7 +73,7 @@ int	check_line_info(char *line, t_game *game)
 {
 	char **aux;
 
-	aux = ft_split(line, ' ');
+	aux = ft_split_cub(line);
 	if (!aux)
 		return (1);
 	if (!ft_strncmp(aux[0], "NO", 3))
