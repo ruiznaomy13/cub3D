@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_game.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 19:16:27 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/29 16:09:02 by elias            ###   ########.fr       */
+/*   Updated: 2024/03/06 16:19:05 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,5 @@ void	clean_memmory(t_game *game)
 	{
 		clean_map(game->map);
 		free(game->player);
-		free(game);
 	}
 }
