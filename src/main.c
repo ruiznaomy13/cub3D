@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/05 20:23:14 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/03/06 16:06:25 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,35 +28,35 @@ void	init_textures(t_game *game)
 	int	wd_width;
 	int	wd_height;
 
-	game->texts = ft_calloc(1, sizeof(t_textures));
-
-	game->texts->wall = mlx_xpm_file_to_image(game->mlx, \
-	"textures/walls/wall.xpm", &wd_width, &wd_height);
+	game->texts = (t_textures *)ft_calloc(1, sizeof(t_textures));
+	game->texts->wall = mlx_xpm_file_to_image(game->mlx,\
+	"textures/walls/wall_texture.xpm", &wd_width, &wd_height);
 }
 
-int	init_game(char *map_file, t_game *game)
+int	init_game(char *map_file, t_game **game)
 {
-	game = ft_calloc(1, sizeof(t_game));
-	game->map = ft_calloc(1, sizeof(t_map));
-	game->map->rows = 0;
+	*game = ft_calloc(1, sizeof(t_game));
+	(*game)->mlx = mlx_init();
+	(*game)->mlx_win = mlx_new_window((*game)->mlx, SCR_W, SCR_H, "cub3D");
+	(*game)->map = ft_calloc(1, sizeof(t_map));
+	(*game)->map->rows = 0;
 
-	check_input_map(map_file, game);
-	init_textures(game);
-	init_ray(game);
+	check_input_map(map_file, *game);
+	init_textures(*game);
+	//init_ray(game);
 	// store_map();
 	return (EXIT_SUCCESS);
 }
 int	main(int ac, char *av[])
 {
-	t_game	game;
+	t_game	*game;
 
-	game.mlx = mlx_init();
-	mlx_new_window(game.mlx, SCR_W, SCR_H, "cub3D");
 	if (ac != 2)
 		ft_error(NULL, EXIT_FAILURE);
 	init_game(av[1], &game);
 	print_map(game);
-	while(game.end == 0)
+	mlx_loop(game->mlx);
+	while(game->end == 0)
 	{
 		
 	}

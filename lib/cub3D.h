@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/03/05 20:21:51 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/03/06 15:32:37 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int		save_rgb(char *line, int *color_array);
 void	save_map(char *line, t_game *game, int *map_row);
 
 /* PRINT */
-void	print_map(t_game game);
+void	print_map(t_game *game);
 
 /* RAY */
 void	init_ray(t_game *game);

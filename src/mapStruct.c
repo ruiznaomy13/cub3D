@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapStruct.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 23:00:32 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/29 16:39:02 by elias            ###   ########.fr       */
+/*   Updated: 2024/03/06 15:41:14 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	save_map(char *line, t_game *game, int *map_row)
 	i = 0;
 	if (!is_valid_line(line, &i))
 		return (ft_error(game, EXIT_FAILURE));
-	game->map->map_guide[*map_row] = ft_substr(line, i, \
-	ft_strlen(line + i) - 1);
+	game->map->map_guide[*map_row] = ft_substr(line, 0, \
+	ft_strlen(line) - 1);
 	*map_row += 1;
 }

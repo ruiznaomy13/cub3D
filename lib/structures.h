@@ -6,13 +6,15 @@
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/05 20:19:04 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/03/06 16:06:45 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define MAGENTA	"\033[95m"
 #define GREEN	"\x1b[32m"
 #define WHITE	"\e[1;37m"
+
+#define SQSZ	20
 
 #define WALL	1
 #define SPACE	0
@@ -21,8 +23,8 @@
 /* ERROR TYPE*/
 #define E_SYNTAX 2
 
-#define SCR_W 640
-#define SCR_H 480
+#define SCR_W 1024
+#define SCR_H 768
 
 typedef struct	s_textures
 {
