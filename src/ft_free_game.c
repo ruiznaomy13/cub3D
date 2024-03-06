@@ -6,11 +6,11 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 19:16:27 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/28 19:25:39 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/03/06 16:33:38 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib/cub3D.h"
+#include "cub3D.h"
 
 static void	clean_map(t_map *map)
 {
@@ -40,6 +40,5 @@ void	clean_memmory(t_game *game)
 	{
 		clean_map(game->map);
 		free(game->player);
-		free(game);
 	}
 }

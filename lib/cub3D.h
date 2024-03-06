@@ -6,14 +6,14 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/02/28 21:03:16 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/03/06 16:34:58 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "lib/structs.h"
+# include "structures.h"
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -27,6 +27,11 @@ int		main(int ac, char *av[]);
 
 /* MAIN */
 void	ft_error(t_game *game, int error);
+void	init_textures(t_game *game);
+int     init_game(char *map_file, t_game *game);
+
+/* FREE GAME */
+void	clean_memmory(t_game *game);
 
 /* FT_FREE_GAME */
 void	clean_memmory(t_game *game);
@@ -36,13 +41,14 @@ void	free_char_array(char **str);
 char	get_first_char(char *line);
 int		first_char_pos(char *line);
 
-char	**ft_split_cub(char const *s);
+/* UTILS 2 */
+char	**ft_split_cub(const char *str);
 
 /* CHECKER */
 int		check_input_map(char *map_file, t_game *game);
 int		check_map_name(char *map_file);
 char	get_first_char(char *line);
-int		read_dimension(int fd, t_map *map, char *map_file);
+int		read_dimension(int fd, t_map *map, char *map_file, int *map_row);
 
 /* CHECKER_AUX */
 int		check_line_info(char *line, t_game *game);
@@ -54,5 +60,12 @@ int		arg_counter(char **argv);
 /* MAP STRUCTURE */
 void	save_textures(char *line, t_game *game);
 int		save_rgb(char *line, int *color_array);
+void	save_map(char *line, t_game *game, int *map_row);
+
+/* PRINT */
+void	print_map(t_game game);
+
+/* RAY */
+void	init_ray(t_game *game);
 
 #endif

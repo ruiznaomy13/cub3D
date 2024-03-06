@@ -12,7 +12,7 @@
 NAME		= cub3D
 HEADER		= lib/cub3D.h
 
-INCLUDE		= -I ./ -I inc/libft -I inc/ft_printf -I inc/mlx
+INCLUDE		= -I lib/ -I inc/libft -I inc/ft_printf -I inc/mlx
 
 CC			= gcc
 C_FLAGS		= -Wall -Werror -Wextra -O3 -g
@@ -23,8 +23,8 @@ OBJ_DIR		= ./obj
 
 SILENCE =  --no-print-directory
 
-SRCS		= auxChecker.c mapStructs.c auxiliarFunctions.c checker.c \
-			utils.c	utils_2.c main.c ft_free_game.c
+SRCS		= main.c checker.c checkerAux.c auxiliarFunctions.c \
+			utils.c mapStruct.c utils_2.c ray.c print.c ft_free_game.c
 
 OBJ			= $(addprefix ${OBJ_DIR}/,  ${SRCS:.c=.o})
 DEPS		= $(addprefix ${OBJ_DIR}/,  ${SRCS:.c=.d})
@@ -37,11 +37,12 @@ NC			= \033[0m
 
 all: sub_make $(NAME)	
 
-$(OBJ_DIR)/%.o: ${SRC_DIR}/%.c ${HEADER} Makefile
+all: sub_make $(NAME)
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c $(HEADER) Makefile
 	@mkdir -p $(OBJ_DIR)
 	@echo "Compiling $<..."
 	@$(CC) -MT $@ $(C_FLAGS) -MMD -MP $(INCLUDE) -c $< -o $@
-
 
 sub_make:
 	@$(MAKE) -sC inc/libft $(SILENCE)

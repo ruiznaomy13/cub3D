@@ -6,11 +6,11 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 20:58:03 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/28 21:09:17 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/03/06 16:34:09 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "lib/cub3D.h"
+#include "cub3D.h"
 
 static int	ft_countwords(char const *s)
 {
