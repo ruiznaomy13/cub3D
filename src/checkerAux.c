@@ -92,7 +92,6 @@ int	check_line_info(char *line, t_game *game)
 	{
 		if (get_first_char(aux[0]) == '1' && check_paths(game))
 			return (2);
-		else
-			return (1);
 	}
+	return (1);
 }
