@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapStruct.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 23:00:32 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/06 19:37:53 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/03/25 13:59:53 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,47 +103,45 @@ static int	is_valid_line(char *line, int *index)
 	return (1);
 }
 
-void	save_map(char *line, t_game *game, int *map_row)
-{
-	int		i;
-
-	i = 0;
-	if (!is_valid_line(line, &i))
-		return (ft_error(game, EXIT_FAILURE));
-	game->map->map_guide[*map_row] = ft_substr(line, 0, \
-	ft_strlen(line) - 1);
-	*map_row += 1;
-}
-
 // void	save_map(char *line, t_game *game, int *map_row)
 // {
-// 	int	i;
+// 	int		i;
 
-// 	i = -1;
-// 	if (!is_valid_line(line))
+// 	i = 0;
+// 	if (!is_valid_line(line, &i))
 // 		return (ft_error(game, EXIT_FAILURE));
-// 	printf("Llego aqui 1\n");
-// 	game->map->map_array[*map_row] = ft_calloc(sizeof(int), ft_strlen(line) - i);
-// 	while (game->map->map_array[*map_row][++i])
-// 	{
-// 		printf("Llego aqui 2\n");
-// 		if (!game->map->map_array[*map_row])
-// 			return ft_error(game, 0);
-// 		if (line[i] == SPACE)
-// 			game->map->map_array[*map_row][i] = SPACE;
-// 		if (line[i] == WALL)
-// 			game->map->map_array[*map_row][i] = WALL;
-// 		if (line[i] == 'N')
-// 			game->map->map_array[*map_row][i] = P_N;
-// 		else if (line[i] == 'S')
-// 			game->map->map_array[*map_row][i] = P_S;
-// 		else if (line[i] == 'E')
-// 			game->map->map_array[*map_row][i] = P_E;
-// 		else if (line[i] == 'W')
-// 			game->map->map_array[*map_row][i] = P_W;
-// 		else
-// 			game->map->map_array[*map_row][i] = OUT_MAP;	
-// 	}
-// 	printf("Llego aqui 3\n");
+// 	game->map->map_guide[*map_row] = ft_substr(line, 0, \
+// 	ft_strlen(line) - 1);
 // 	*map_row += 1;
 // }
+
+void	save_map(char *line, t_game *game, int *map_row)
+{
+	int	i;
+
+	i = -1;
+	if (!is_valid_line(line, &i))
+		return (ft_error(game, EXIT_FAILURE));
+	i = -1;
+	game->map->map_array[*map_row] = ft_calloc(sizeof(int), ft_strlen(line) - i);
+	while (game->map->map_array[*map_row][++i])
+	{
+		if (!game->map->map_array[*map_row])
+			return (ft_error(game, 0));
+		if (line[i] == SPACE)
+			game->map->map_array[*map_row][i] = SPACE;
+		if (line[i] == WALL)
+			game->map->map_array[*map_row][i] = WALL;
+		if (line[i] == 'N')
+			game->map->map_array[*map_row][i] = P_N;
+		else if (line[i] == 'S')
+			game->map->map_array[*map_row][i] = P_S;
+		else if (line[i] == 'E')
+			game->map->map_array[*map_row][i] = P_E;
+		else if (line[i] == 'W')
+			game->map->map_array[*map_row][i] = P_W;
+		else
+			game->map->map_array[*map_row][i] = OUT_MAP;
+	}
+	*map_row += 1;
+}

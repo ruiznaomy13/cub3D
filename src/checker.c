@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:44 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/06 19:41:38 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:01:32 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	read_dimension(int fd, t_map *map, char *map_file, int *map_row)
 		line = get_next_line(fd);
 	}
 	close(fd);
-	map->map_guide = ft_calloc(map->rows, sizeof(char *));
+	map->map_array = ft_calloc(map->rows, sizeof(char *));
 	fd = open(map_file, O_RDONLY);
 	*map_row = 0;
 	return (fd);
@@ -39,6 +39,25 @@ int	check_map_name(char *map_file)
 	if (len < 4 || ft_strncmp(map_file + len - 4, ".cub", 4) != 0)
 		return (1);
 	return (0);
+}
+
+void	show_map(int **map_array, int row, int col)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < row)
+	{
+		j = 0;
+		write(1, "\n", 1);
+		while (j < col)
+		{
+			write(1, &map_array[i][j], 1);
+			j++;
+		}
+		i++;
+	}
 }
 
 int	check_input_map(char *map_file, t_game *game)
@@ -67,5 +86,7 @@ int	check_input_map(char *map_file, t_game *game)
 		game->map->line = get_next_line(fd);
 	}
 	ft_printf("Game saved correctly!");
+	show_map(game->map->map_array, game->map->rows, game->map->cols);
+	printf("FIN DEL MAPA\n");
 	return (EXIT_SUCCESS);
 }

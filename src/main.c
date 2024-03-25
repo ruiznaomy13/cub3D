@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/06 19:38:18 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/03/25 14:02:12 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	init_game(char *map_file, t_game *game)
 	game->map->rows = 0;
 
 	check_input_map(map_file, game);
-	init_textures(game);
+	// init_textures(game);
 	//init_ray(game);
 	// store_map();
 	return (EXIT_SUCCESS);
@@ -53,12 +53,12 @@ int	main(int ac, char *av[])
 	if (ac != 2)
 		ft_error(NULL, EXIT_FAILURE);
 	init_game(av[1], &game);
-	print_map(game);
-	mlx_loop(game.mlx);
-	while(game.end == 0)
-	{
+	// print_map(game);
+	// mlx_loop(game.mlx);
+	// while(game.end == 0)
+	// {
 		
-	}
+	// }
 	//clean_memmory(&game);
 	return (0);
 }
