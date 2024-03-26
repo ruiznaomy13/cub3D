@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/25 14:02:12 by elias            ###   ########.fr       */
+/*   Updated: 2024/03/26 19:38:21 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int	init_game(char *map_file, t_game *game)
 	game->mlx = mlx_init();
 	game->mlx_win = mlx_new_window(game->mlx, SCR_W, SCR_H, "cub3D");
 	game->map = ft_calloc(1, sizeof(t_map));
-	game->map->rows = 0;
 
 	check_input_map(map_file, game);
 	// init_textures(game);

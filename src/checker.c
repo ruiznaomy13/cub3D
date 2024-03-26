@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:44 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/25 14:01:32 by elias            ###   ########.fr       */
+/*   Updated: 2024/03/26 20:44:17 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	read_dimension(int fd, t_map *map, char *map_file, int *map_row)
 		line = get_next_line(fd);
 	}
 	close(fd);
-	map->map_array = ft_calloc(map->rows, sizeof(char *));
+	map->map_array = ft_calloc(map->rows, sizeof(int *));
+	map->col_num = ft_calloc(map->rows, sizeof(int));
 	fd = open(map_file, O_RDONLY);
 	*map_row = 0;
 	return (fd);
@@ -41,23 +42,27 @@ int	check_map_name(char *map_file)
 	return (0);
 }
 
-void	show_map(int **map_array, int row, int col)
+void	show_map(t_map *map)
 {
 	int i;
 	int j;
+	int	last;
 
 	i = 0;
-	while (i < row)
+	last = 1;
+	while (i < map->rows)
 	{
 		j = 0;
 		write(1, "\n", 1);
-		while (j < col)
+		while (j < map->col_num[i])
 		{
-			write(1, &map_array[i][j], 1);
+			
+			ft_printf("%d", map->map_array[i][j]);
 			j++;
 		}
 		i++;
 	}
+	write(1, "\n", 1);
 }
 
 int	check_input_map(char *map_file, t_game *game)
@@ -86,7 +91,7 @@ int	check_input_map(char *map_file, t_game *game)
 		game->map->line = get_next_line(fd);
 	}
 	ft_printf("Game saved correctly!");
-	show_map(game->map->map_array, game->map->rows, game->map->cols);
+	show_map(game->map);
 	printf("FIN DEL MAPA\n");
 	return (EXIT_SUCCESS);
 }

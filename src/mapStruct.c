@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapStruct.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 23:00:32 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/25 13:59:53 by elias            ###   ########.fr       */
+/*   Updated: 2024/03/26 20:41:35 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,13 @@ void	save_textures(char *line, t_game *game)
 	}
 }
 
-static int	is_valid_line(char *line, int *index)
+static int	is_valid_line(char *line)
 {
 	int	i;
 
 	i = 0;
 	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
 		i++;
-	*index = i;
 	while (line[i] && line[i] != '\n')
 	{
 		if (line[i] != '0' && line[i] != '1' && line[i] != 'N' \
@@ -120,19 +119,19 @@ void	save_map(char *line, t_game *game, int *map_row)
 	int	i;
 
 	i = -1;
-	if (!is_valid_line(line, &i))
+	if (!is_valid_line(line))
 		return (ft_error(game, EXIT_FAILURE));
-	i = -1;
-	game->map->map_array[*map_row] = ft_calloc(sizeof(int), ft_strlen(line) - i);
-	while (game->map->map_array[*map_row][++i])
+	game->map->map_array[*map_row] = ft_calloc(sizeof(int), ft_strlen(line));
+	if (!game->map->map_array[*map_row])
+		return (ft_error(game, 0));
+	game->map->col_num[*map_row] = ft_strlen(line) - 1;
+	while (line[++i] != '\n')
 	{
-		if (!game->map->map_array[*map_row])
-			return (ft_error(game, 0));
-		if (line[i] == SPACE)
+		if (line[i] == '0')
 			game->map->map_array[*map_row][i] = SPACE;
-		if (line[i] == WALL)
+		else if (line[i] == '1')
 			game->map->map_array[*map_row][i] = WALL;
-		if (line[i] == 'N')
+		else if (line[i] == 'N')
 			game->map->map_array[*map_row][i] = P_N;
 		else if (line[i] == 'S')
 			game->map->map_array[*map_row][i] = P_S;
@@ -142,6 +141,8 @@ void	save_map(char *line, t_game *game, int *map_row)
 			game->map->map_array[*map_row][i] = P_W;
 		else
 			game->map->map_array[*map_row][i] = OUT_MAP;
+		// printf("%d", game->map->map_array[*map_row][i]);
 	}
-	*map_row += 1;
+	// printf(" -> %d\n", game->map->col_num[*map_row]);
+	(*map_row)++;
 }
