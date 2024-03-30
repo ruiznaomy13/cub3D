@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:44 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/26 20:44:17 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/03/30 14:03:21 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,22 @@
 int	read_dimension(int fd, t_map *map, char *map_file, int *map_row)
 {
 	char	*line;
+	int		line_ln;
 
 	line = get_next_line(fd);
+	line_ln = 0;
 	while (line)
 	{
+		line_ln = ft_strlen(line);
 		if (get_first_char(line) == '1')
 			map->rows += 1;
+		if (map->cols < line_ln)
+			map->cols = line_ln - 1;
 		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
 	map->map_array = ft_calloc(map->rows, sizeof(int *));
-	map->col_num = ft_calloc(map->rows, sizeof(int));
 	fd = open(map_file, O_RDONLY);
 	*map_row = 0;
 	return (fd);
@@ -54,7 +58,7 @@ void	show_map(t_map *map)
 	{
 		j = 0;
 		write(1, "\n", 1);
-		while (j < map->col_num[i])
+		while (j < map->cols)
 		{
 			
 			ft_printf("%d", map->map_array[i][j]);

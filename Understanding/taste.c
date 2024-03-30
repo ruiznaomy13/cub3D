@@ -1,78 +1,94 @@
+#include <stdlib.h>
 #include <stdio.h>
-#include <stdbool.h>
 
-#define ROWS 5
-#define COLS 5
+typedef struct s_point
+{
+    int x;
+    int y;
+} 		t_point;
 
-char mapa[ROWS][COLS] = {
-    "01111",
-    "11111",
-    "11111",
-    "11111",
-    "11111"
-};
-
-bool is_surrounded_by_ones() {
-    int i, j;
-    bool visited[ROWS][COLS] = {false};
-
-    int dr[] = {1, -1, 0, 0};
-    int dc[] = {0, 0, 1, -1};
-
-    // Find all starting points
-    for (i = 1; i < ROWS - 1; i++) {
-        for (j = 1; j < COLS - 1; j++) {
-            if (mapa[i][j] == '1' && !visited[i][j]) {
-                // Perform BFS
-                int queue[ROWS * COLS][2];
-                int front = 0, rear = 0;
-                int r, c;
-
-                queue[rear][0] = i;
-                queue[rear][1] = j;
-                rear++;
-
-                visited[i][j] = true;
-
-                while (front < rear) {
-                    r = queue[front][0];
-                    c = queue[front][1];
-                    front++;
-
-                    for (int k = 0; k < 4; k++) {
-                        int new_r = r + dr[k];
-                        int new_c = c + dc[k];
-
-                        if (new_r >= 0 && new_r < ROWS && new_c >= 0 && new_c < COLS &&
-                            mapa[new_r][new_c] == '1' && !visited[new_r][new_c]) {
-                            queue[rear][0] = new_r;
-                            queue[rear][1] = new_c;
-                            rear++;
-
-                            visited[new_r][new_c] = true;
-                        }
-                    }
-                }
-            }
-        }
+void	check_square(int **area, t_point size, t_point iter, int *check)
+{
+	if ((iter.x < 1 || iter.x >= size.x - 1) || (iter.y < 1 || iter.y >= size.y - 1))
+    {
+        *check = 1;
+        printf("entro\n");
+        return;
     }
-
-    // Check if any visited point is on the border
-    for (i = 0; i < ROWS; i++) {
-        if (mapa[i][0] == '1' || mapa[i][COLS - 1] == '1') return false;
-    }
-    for (j = 0; j < COLS; j++) {
-        if (mapa[0][j] == '1' || mapa[ROWS - 1][j] == '1') return false;
-    }
-
-    return true;
+	if (area[iter.y - 1][iter.x] == 5 || area[iter.y + 1][iter.x] == 5)
+		*check = 1;
+	else if (area[iter.y][iter.x - 1] == 5 || area[iter.y][iter.x + 1] == 5)
+		*check = 1;
+	else if (area[iter.y - 1][iter.x - 1] == 5 || area[iter.y - 1][iter.x + 1] == 5)
+		*check = 1;
+	else if (area[iter.y + 1][iter.x + 1] == 5 || area[iter.y + 1][iter.x - 1] == 5)
+		*check = 1;
 }
 
-int main() {
-    if (is_surrounded_by_ones()) {
-        printf("El área está completamente rodeada de unos.\n");
-    } else {
-        printf("El área no está completamente rodeada de unos.\n");
+void	checker(int **area, t_point size)
+{
+	t_point	iter = {0, 0};
+	int		check = 0;
+
+	while (iter.y < size.y && !check)
+	{
+		iter.x = 0;
+		printf("------------------------- y = %d ----------------------------\n", iter.y);
+		while (iter.x < size.x)
+		{
+			printf(" -----> OUT POS[%d][%d] = %d <-------\n", iter.y, iter.x, area[iter.y][iter.x]);
+			if (area[iter.y][iter.x] == 0)
+			{
+				printf("POS[%d][%d] = %d\n", iter.y, iter.x, area[iter.y][iter.x]);
+				check_square(area, size, iter, &check);
+			}
+			iter.x++;
+		}
+		iter.y++;
+	}
+	if (check)
+		printf("\nERROR\n");
+}
+
+int **make_area(int **zone, t_point size)
+{
+    int **new = malloc(sizeof(int *) * size.y);
+    for (int i = 0; i < size.y; ++i) {
+        new[i] = malloc(sizeof(int) * size.x);
+        for (int j = 0; j < size.x; ++j)
+            new[i][j] = zone[i][j];
     }
+    return new;
+}
+
+int main(void)
+{
+    t_point size = {9, 5};
+
+    int *zone[] = {
+		(int[]) {5, 1, 1, 1, 1, 1, 1, 1, 1},
+		(int[]) {5, 1, 0, 0, 0, 1, 0, 0, 1},
+		(int[]) {5, 1, 1, 0, 1, 1, 0, 0, 1},
+		(int[]) {1, 1, 0, 0, 1, 0, 0, 0, 1},
+		(int[]) {5, 1, 1, 1, 1, 1, 1, 1, 1}
+    };
+
+    int **area = make_area(zone, size);
+
+    for (int i = 0; i < size.y; ++i)
+	{
+        for (int j = 0; j < size.x; ++j)
+            printf("%d", area[i][j]);
+        printf("\n");
+    }
+	printf("\n");
+   
+	checker(area, size);
+
+    // Liberar memoria
+    for (int i = 0; i < size.y; ++i)
+        free(area[i]);
+    free(area);
+
     return 0;
 }

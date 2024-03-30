@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 23:00:32 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/26 20:41:35 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/03/30 14:05:33 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,31 +102,23 @@ static int	is_valid_line(char *line)
 	return (1);
 }
 
-// void	save_map(char *line, t_game *game, int *map_row)
-// {
-// 	int		i;
-
-// 	i = 0;
-// 	if (!is_valid_line(line, &i))
-// 		return (ft_error(game, EXIT_FAILURE));
-// 	game->map->map_guide[*map_row] = ft_substr(line, 0, \
-// 	ft_strlen(line) - 1);
-// 	*map_row += 1;
-// }
-
 void	save_map(char *line, t_game *game, int *map_row)
 {
 	int	i;
 
-	i = -1;
+	i = 0;
 	if (!is_valid_line(line))
 		return (ft_error(game, EXIT_FAILURE));
-	game->map->map_array[*map_row] = ft_calloc(sizeof(int), ft_strlen(line));
+	game->map->map_array[*map_row] = ft_calloc(sizeof(int), game->map->cols);
 	if (!game->map->map_array[*map_row])
 		return (ft_error(game, 0));
-	game->map->col_num[*map_row] = ft_strlen(line) - 1;
-	while (line[++i] != '\n')
+	while (i < game->map->cols)
 	{
+		if (line[i] == '\n')
+		{
+			while (i < game->map->cols)
+				game->map->map_array[*map_row][i++] = OUT_MAP;
+		}
 		if (line[i] == '0')
 			game->map->map_array[*map_row][i] = SPACE;
 		else if (line[i] == '1')
@@ -139,10 +131,10 @@ void	save_map(char *line, t_game *game, int *map_row)
 			game->map->map_array[*map_row][i] = P_E;
 		else if (line[i] == 'W')
 			game->map->map_array[*map_row][i] = P_W;
-		else
+		else if (line[i] == ' ' || line[i] == '\t')
 			game->map->map_array[*map_row][i] = OUT_MAP;
-		// printf("%d", game->map->map_array[*map_row][i]);
+		i++;
 	}
-	// printf(" -> %d\n", game->map->col_num[*map_row]);
+	game->map->map_array[*map_row][i] = '\0';
 	(*map_row)++;
 }
