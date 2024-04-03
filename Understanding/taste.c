@@ -33,15 +33,10 @@ void	checker(int **area, t_point size)
 	while (iter.y < size.y && !check)
 	{
 		iter.x = 0;
-		printf("------------------------- y = %d ----------------------------\n", iter.y);
 		while (iter.x < size.x)
 		{
-			printf(" -----> OUT POS[%d][%d] = %d <-------\n", iter.y, iter.x, area[iter.y][iter.x]);
 			if (area[iter.y][iter.x] == 0)
-			{
-				printf("POS[%d][%d] = %d\n", iter.y, iter.x, area[iter.y][iter.x]);
 				check_square(area, size, iter, &check);
-			}
 			iter.x++;
 		}
 		iter.y++;

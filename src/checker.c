@@ -6,11 +6,59 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:44 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/30 14:03:21 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/04/03 22:19:43 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	check_square(t_map *map, t_point iter, int *check)
+{
+	if ((iter.x < 1 || iter.x >= map->rows) \
+	|| (iter.y < 1 || iter.y >= map->cols))
+	{
+		*check = 1;
+		return ;
+	}
+	if (map->map_array[iter.x - 1][iter.y] == -1 || \
+	map->map_array[iter.x - 1][iter.y] == -1)
+		*check = 1;
+	else if (map->map_array[iter.x][iter.y - 1] == -1 || \
+	map->map_array[iter.x][iter.y + 1] == -1)
+		*check = 1;
+	else if (map->map_array[iter.x - 1][iter.y - 1] == -1 || \
+	map->map_array[iter.x - 1][iter.y + 1] == -1)
+		*check = 1;
+	else if (map->map_array[iter.x + 1][iter.y + 1] == -1 || \
+	map->map_array[iter.x + 1][iter.y - 1] == -1)
+		*check = 1;
+}
+
+// x -> rows
+// y -> cols
+int	check_map(t_map *map)
+{
+	t_point	iter;
+	int	check;
+	
+	iter.x = 0;
+	iter.y = 0;
+	check = 0;
+	while (iter.x < map->rows && !check)
+	{
+		iter.y = 0;
+		while (iter.y < map->cols && !check)
+		{
+			if (map->map_array[iter.x][iter.y] == 0)
+				check_square(map, iter, &check);
+			iter.y++;
+		}
+		iter.x++;
+	}
+	if (check)
+		return (0);
+	return (1);
+}
 
 int	read_dimension(int fd, t_map *map, char *map_file, int *map_row)
 {
@@ -94,8 +142,7 @@ int	check_input_map(char *map_file, t_game *game)
 		free(game->map->line);
 		game->map->line = get_next_line(fd);
 	}
-	ft_printf("Game saved correctly!");
 	show_map(game->map);
-	printf("FIN DEL MAPA\n");
+	ft_printf("Game saved correctly!");
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/30 14:06:24 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/04/03 22:27:18 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,12 @@
 
 /* MAP PX TYPE */
 
+typedef struct s_point
+{
+    int x;
+    int y;
+} 		t_point;
+
 typedef struct	s_textures
 {
 	void	*wall;
@@ -48,7 +54,7 @@ typedef struct s_player
 typedef struct s_map
 {
 	int		**map_array;
-	char	**map_guide;
+	// char	**map_guide;
 	char	*texture_no;
 	char	*texture_so;
 	char	*texture_we;

@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/03/06 16:34:58 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/04/03 22:21:10 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ int		check_input_map(char *map_file, t_game *game);
 int		check_map_name(char *map_file);
 char	get_first_char(char *line);
 int		read_dimension(int fd, t_map *map, char *map_file, int *map_row);
+int		check_map(t_map *map);
 
 /* CHECKER_AUX */
 int		check_line_info(char *line, t_game *game);

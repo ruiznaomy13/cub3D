@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/30 13:37:26 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/04/03 22:24:55 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ int	init_game(char *map_file, t_game *game)
 	game->map = ft_calloc(1, sizeof(t_map));
 
 	check_input_map(map_file, game);
+	if (!check_map(game->map))
+		ft_error(game, 1);
+	printf(GREEN"\nGOOD MAP!\n"WHITE);
 	// init_textures(game);
 	//init_ray(game);
 	// store_map();
