@@ -6,14 +6,14 @@
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/03/06 16:18:22 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/04/06 00:07:55 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "structures.h"
+# include "structs.h"
 
 # include <unistd.h>
 # include <stdlib.h>

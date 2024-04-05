@@ -1,27 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   structures.h                                       :+:      :+:    :+:   */
+/*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/06 16:06:45 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/04/06 00:09:22 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#define MAGENTA	"\033[95m"
-#define GREEN	"\x1b[32m"
-#define WHITE	"\e[1;37m"
+#ifndef STRUCTS_H
+# define STRUCTS_H
 
 #define SQSZ	20
 
-#define WALL	1
-#define SPACE	0
-#define PLAYER	2
+# define MAGENTA	"\033[95m"
+# define GREEN		"\x1b[32m"
+# define WHITE		"\e[1;37m"
+
+# define WALL	1
+# define SPACE	0
+# define PLAYER	2
 
 /* ERROR TYPE*/
-#define E_SYNTAX 2
+# define E_SYNTAX 2
 
 #define SCR_W 1024
 #define SCR_H 768
@@ -72,3 +75,5 @@ typedef struct s_game
 	int			end;
 	// int			error;
 }				t_game;
+
+#endif
