@@ -1,17 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   structs.h                                          :+:      :+:    :+:   */
+/*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/04/06 00:09:22 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/04/06 01:06:18 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef STRUCTS_H
-# define STRUCTS_H
+#define MAGENTA	"\033[95m"
+#define GREEN	"\x1b[32m"
+#define WHITE	"\e[1;37m"
 
 #define SQSZ	20
 
@@ -19,15 +20,28 @@
 # define GREEN		"\x1b[32m"
 # define WHITE		"\e[1;37m"
 
-# define WALL	1
-# define SPACE	0
-# define PLAYER	2
+#define WALL	1
+#define SPACE	0
+#define PLAYER	2
+#define P_N		21
+#define P_S		22
+#define P_E		23
+#define P_W		24
+#define	OUT_MAP	-1
 
 /* ERROR TYPE*/
-# define E_SYNTAX 2
+#define E_SYNTAX 2
 
 #define SCR_W 1024
 #define SCR_H 768
+
+/* MAP PX TYPE */
+
+typedef struct s_point
+{
+    int x;
+    int y;
+} 		t_point;
 
 typedef struct	s_textures
 {
@@ -43,15 +57,16 @@ typedef struct s_player
 
 typedef struct s_map
 {
-	char	**map_guide;
+	int		**map_array;
+	// char	**map_guide;
 	char	*texture_no;
 	char	*texture_so;
 	char	*texture_we;
 	char	*texture_ea;
 	int		ceiling_c[3];
 	int		floor_c[3];
-	int		cols;
 	int		rows;
+	int		cols;
 	char	*line;
 }			t_map;
 
@@ -69,11 +84,10 @@ typedef struct s_game
 	t_player	*player;
 	t_ray		*ray_cast;
 	t_textures	*texts;
+	int			n_players;
 	void		*mlx;
 	void		*mlx_win;
 	int			checker;
 	int			end;
 	// int			error;
 }				t_game;
-
-#endif

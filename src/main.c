@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/04/06 00:07:03 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/04/06 01:13:47 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	ft_error(t_game *game, int error)
 		ft_printf(MAGENTA"\nSomething went wrong!\n\n"WHITE);
 	else if (error == E_SYNTAX)
 		ft_printf(MAGENTA"Bad map structure\nTry with a different map 😛\n\n"WHITE);
-	// free_game(game);
+	clean_memmory(game);
 	exit(error);
 }
 
@@ -38,10 +38,13 @@ int	init_game(char *map_file, t_game *game)
 	game->mlx = mlx_init();
 	game->mlx_win = mlx_new_window(game->mlx, SCR_W, SCR_H, "cub3D");
 	game->map = ft_calloc(1, sizeof(t_map));
-	game->map->rows = 0;
+	game->n_players = 0;
 
 	check_input_map(map_file, game);
-	init_textures(game);
+	if (!check_map(game->map))
+		ft_error(game, 1);
+	printf(GREEN"\nGOOD MAP!\n"WHITE);
+	// init_textures(game);
 	//init_ray(game);
 	// store_map();
 	return (EXIT_SUCCESS);
@@ -53,12 +56,12 @@ int	main(int ac, char *av[])
 	if (ac != 2)
 		ft_error(NULL, EXIT_FAILURE);
 	init_game(av[1], &game);
-	print_map(game);
-	mlx_loop(game.mlx);
-	while(game.end == 0)
-	{
+	// print_map(game);
+	// mlx_loop(game.mlx);
+	// while(game.end == 0)
+	// {
 		
-	}
+	// }
 	//clean_memmory(&game);
 	return (0);
 }

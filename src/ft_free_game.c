@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_game.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 19:16:27 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/06 16:19:05 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/04/03 22:29:04 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,17 @@ static void	clean_map(t_map *map)
 	i = -1;
 	if (map)
 	{
-		if (map->map_guide)
+		// if (map->map_guide)
+		// {
+		// 	while (++i < map->rows)
+		// 		free(map->map_guide[i]);
+		// 	free(map->map_guide);
+		// }
+		if (map->map_array)
 		{
 			while (++i < map->rows)
-				free(map->map_guide[i]);
-			free(map->map_guide);
+				free(map->map_array[i]);
+			free(map->map_array);
 		}
 		free(map->line);
 		free(map->texture_no);

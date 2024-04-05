@@ -6,14 +6,14 @@
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/04/06 00:07:55 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/04/06 00:13:10 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "structs.h"
+# include "structures.h"
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -33,6 +33,9 @@ int     init_game(char *map_file, t_game *game);
 /* FREE GAME */
 void	clean_memmory(t_game *game);
 
+/* FT_FREE_GAME */
+void	clean_memmory(t_game *game);
+
 /* UTILS */
 void	free_char_array(char **str);
 char	get_first_char(char *line);
@@ -46,6 +49,7 @@ int		check_input_map(char *map_file, t_game *game);
 int		check_map_name(char *map_file);
 char	get_first_char(char *line);
 int		read_dimension(int fd, t_map *map, char *map_file, int *map_row);
+int		check_map(t_map *map);
 
 /* CHECKER_AUX */
 int		check_line_info(char *line, t_game *game);

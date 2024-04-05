@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkerAux.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 22:26:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/02/29 15:15:22 by elias            ###   ########.fr       */
+/*   Updated: 2024/03/06 17:46:31 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ int	check_line_info(char *line, t_game *game)
 	{
 		if (get_first_char(aux[0]) == '1' && check_paths(game))
 			return (2);
-		else
-			return (1);
 	}
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 23:00:32 by ncastell          #+#    #+#             */
-/*   Updated: 2024/03/06 15:41:14 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/04/06 01:12:02 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,14 +84,13 @@ void	save_textures(char *line, t_game *game)
 	}
 }
 
-static int	is_valid_line(char *line, int *index)
+static int	is_valid_line(char *line)
 {
 	int	i;
 
 	i = 0;
 	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
 		i++;
-	*index = i;
 	while (line[i] && line[i] != '\n')
 	{
 		if (line[i] != '0' && line[i] != '1' && line[i] != 'N' \
@@ -103,14 +102,47 @@ static int	is_valid_line(char *line, int *index)
 	return (1);
 }
 
+void	save_player(t_game *game, int p_orientation, int *map_row, int *i)
+{
+	game->map->map_array[*map_row][*i] = p_orientation;
+	game->n_players++;
+}
+
+void	save_in_array(t_game *game, char *line_char, int *i, int *map_row)
+{
+		if (line_char[*i] == '\n')
+		{
+			while (*i < game->map->cols)
+				game->map->map_array[*map_row][(*i)++] = OUT_MAP;
+		}
+		if (line_char[*i] == '0')
+			game->map->map_array[*map_row][*i] = SPACE;
+		else if (line_char[*i] == '1')
+			game->map->map_array[*map_row][*i] = WALL;
+		else if (line_char[*i] == 'N')
+			save_player(game, P_N, map_row, i);
+		else if (line_char[*i] == 'S')
+			save_player(game, P_S, map_row, i);
+		else if (line_char[*i] == 'E')
+			save_player(game, P_E, map_row, i);
+		else if (line_char[*i] == 'W')
+			save_player(game, P_W, map_row, i);
+		else if (line_char[*i] == ' ' || line_char[*i] == '\t')
+			game->map->map_array[*map_row][*i] = OUT_MAP;
+}
+
 void	save_map(char *line, t_game *game, int *map_row)
 {
-	int		i;
+	int	i;
 
-	i = 0;
-	if (!is_valid_line(line, &i))
+	i = -1;
+	if (!is_valid_line(line))
 		return (ft_error(game, EXIT_FAILURE));
-	game->map->map_guide[*map_row] = ft_substr(line, 0, \
-	ft_strlen(line) - 1);
-	*map_row += 1;
+	game->map->map_array[*map_row] = ft_calloc(sizeof(int), game->map->cols);
+	if (!game->map->map_array[*map_row])
+		return (ft_error(game, 0));
+	while (++i < game->map->cols)
+		save_in_array(game, line, &i, map_row);
+	game->map->map_array[*map_row][i] = '\0';
+	(*map_row)++;
 }
