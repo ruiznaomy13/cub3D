@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 22:47:28 by ncastell          #+#    #+#             */
-/*   Updated: 2024/02/28 19:13:22 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/04/06 09:39:19 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,4 +41,32 @@ int	first_char_pos(char *line)
 	while (line[i] && (line[i] == ' ' || line[i] == '\t'))
 		i++;
 	return (i);
+}
+
+int	key_event(int key, t_game *game)
+{
+	ft_printf("Key pressed: %d\t", key);
+	if (key == 53)
+	{
+		ft_printf("\nGood bye!\n");
+		close_button(game, 1);
+		exit(EXIT_SUCCESS);
+	}
+	if (!(key == RIGHT || key == RIGHT_D || key == LEFT \
+	|| key == LEFT_A || key == DOWN || key == DOWN_S \
+	|| key == UP || key == UP_W))
+		ft_printf("\n");
+	game->key = key;
+	move_player(game);
+	return (0);
+}
+
+int	game_update(t_game *game)
+{
+	int	p_status;
+
+	p_status = 0;
+	if (game->player)
+		mlx_pixel_put(game->mlx, game->mlx_win, game->player->pos_x, game->player->pos_y, 0xFF0000);
+	return (0);
 }

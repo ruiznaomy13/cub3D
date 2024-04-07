@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/04/06 01:13:47 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/04/06 09:38:52 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,13 @@ int	init_game(char *map_file, t_game *game)
 	check_input_map(map_file, game);
 	if (!check_map(game->map))
 		ft_error(game, 1);
-	printf(GREEN"\nGOOD MAP!\n"WHITE);
-	// init_textures(game);
+	// printf(GREEN"\nGOOD MAP!\n"WHITE);
+	init_textures(game);
 	//init_ray(game);
 	// store_map();
 	return (EXIT_SUCCESS);
 }
+
 int	main(int ac, char *av[])
 {
 	t_game	game;
@@ -56,8 +57,11 @@ int	main(int ac, char *av[])
 	if (ac != 2)
 		ft_error(NULL, EXIT_FAILURE);
 	init_game(av[1], &game);
-	// print_map(game);
-	// mlx_loop(game.mlx);
+	print_map(game);
+	mlx_loop_hook(game.mlx, &game_update, &game);
+	mlx_hook(game.mlx_win, 17, 1L << 17, &close_button, &game);
+	mlx_hook(game.mlx_win, 2, 1L << 0, key_event, &game);
+	mlx_loop(game.mlx);
 	// while(game.end == 0)
 	// {
 		

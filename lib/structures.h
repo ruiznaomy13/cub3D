@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/04/06 01:06:18 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/04/06 09:10:31 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@
 #define P_E		23
 #define P_W		24
 #define	OUT_MAP	-1
+#define RIGHT 124
+#define RIGHT_D 2
+#define LEFT 123
+#define LEFT_A 0
+#define DOWN 125
+#define DOWN_S 1
+#define UP 126
+#define UP_W 13
 
 /* ERROR TYPE*/
 #define E_SYNTAX 2
@@ -58,7 +66,6 @@ typedef struct s_player
 typedef struct s_map
 {
 	int		**map_array;
-	// char	**map_guide;
 	char	*texture_no;
 	char	*texture_so;
 	char	*texture_we;
@@ -85,6 +92,7 @@ typedef struct s_game
 	t_ray		*ray_cast;
 	t_textures	*texts;
 	int			n_players;
+	int			key;
 	void		*mlx;
 	void		*mlx_win;
 	int			checker;

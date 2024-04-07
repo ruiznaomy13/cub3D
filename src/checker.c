@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:44 by ncastell          #+#    #+#             */
-/*   Updated: 2024/04/06 01:13:04 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/04/06 09:47:11 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,9 +147,7 @@ int	check_input_map(char *map_file, t_game *game)
 		free(game->map->line);
 		game->map->line = get_next_line(fd);
 	}
-	if (game->n_players > 1)
-		ft_error(game, EXIT_FAILURE);
-	show_map(game->map);
+	check_players(game);
 	ft_printf("Game saved correctly!");
 	return (EXIT_SUCCESS);
 }
