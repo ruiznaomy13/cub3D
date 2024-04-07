@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/04/06 09:10:31 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/04/07 20:14:30 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,25 @@ typedef struct s_map
 
 typedef struct s_ray
 {
+	double	rayDirX;
+	double	rayDirY;
 	double	dirX;
 	double	dirY;
+	double	cameraX;
 	double	planeX;
 	double	planeY;
+	int		boxMapX;
+	int		boxMapY;
+	double	sideDistX;
+	double	sideDistY;
+	double	deltaDistX;
+	double	deltaDistY;
+	double	perpWallDist;
+	double	stepX;
+	double	stepY;
+	int		lineHeight;
+	int		drawStart;
+	int		drawEnd;
 }			t_ray;
 
 typedef struct s_game

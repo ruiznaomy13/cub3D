@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print.c                                            :+:      :+:    :+:   */
+/*   ray_aux.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/05 20:06:26 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/04/07 19:26:21 by eliagarc         ###   ########.fr       */
+/*   Created: 2024/04/07 20:09:24 by eliagarc          #+#    #+#             */
+/*   Updated: 2024/04/07 20:21:10 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	print_map(t_game game)
+void	verLine(int x, t_game *game, int color)
 {
 	int	i;
-	int	j;
 
-	i = 0;
-	j = 0;
-	while (i < game.map->rows)
+	i = game->ray_cast->drawStart;
+	while (i != game->ray_cast->drawEnd)
 	{
-		while (j < game.map->cols)
-		{
-			if (game.map->map_array[i][j] == 1)
-				mlx_put_image_to_window(game.mlx, game.mlx_win, \
-				game.texts->wall, j * SQSZ, i * SQSZ);
-			j++;
-		}
-		j = 0;
+		mlx_pixel_put(game->mlx, game->mlx_win, i, x, color);
 		i++;
-	}
+	}	
 }

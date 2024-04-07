@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/04/06 09:47:24 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/04/07 20:21:35 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <math.h>
 
 # include "mlx.h"
 # include "libft.h"
@@ -75,5 +76,9 @@ void    move_player(t_game *game);
 
 /* RAY */
 void	init_ray(t_game *game);
+void	ft_raytracing(t_game *game);
+
+/* RAY_AUX */
+void	verLine(int x, t_game *game, int color);
 
 #endif

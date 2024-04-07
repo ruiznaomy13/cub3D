@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 22:47:28 by ncastell          #+#    #+#             */
-/*   Updated: 2024/04/06 09:39:19 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/04/07 19:59:47 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ int	game_update(t_game *game)
 
 	p_status = 0;
 	if (game->player)
+		ft_raytracing(game);
+		
 		mlx_pixel_put(game->mlx, game->mlx_win, game->player->pos_x, game->player->pos_y, 0xFF0000);
 	return (0);
 }

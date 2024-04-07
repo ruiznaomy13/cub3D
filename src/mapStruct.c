@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 23:00:32 by ncastell          #+#    #+#             */
-/*   Updated: 2024/04/07 16:20:30 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/04/07 20:02:26 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,15 @@ void	save_player(t_game *game, int p_orientation, int *map_row, int *i)
 	if (game->n_players == 0)
 	{
 		game->player = ft_calloc(1, sizeof(t_player));
-		game->player->card_p =p_orientation;
-		game->player->pos_x = *map_row;
+		if (p_orientation == P_N)
+			game->player->card_p = 'N';
+		else if (p_orientation == P_S)
+			game->player->card_p = 'S';
+		else if (p_orientation == P_E)
+			game->player->card_p = 'E';
+		else if (p_orientation == P_W)
+			game->player->card_p = 'W';
+		game->player->pos_x = *map_row * SQSZ;
 		game->player->pos_y = *i;
 	}
 	game->n_players++;

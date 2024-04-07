@@ -25,7 +25,7 @@ SILENCE =  --no-print-directory
 
 SRCS		= main.c checker.c checkerAux.c auxiliarFunctions.c \
 			utils.c mapStruct.c utils_2.c ray.c print.c ft_free_game.c \
-			moves.c
+			moves.c ray_aux.c
 
 OBJ			= $(addprefix ${OBJ_DIR}/,  ${SRCS:.c=.o})
 DEPS		= $(addprefix ${OBJ_DIR}/,  ${SRCS:.c=.d})
