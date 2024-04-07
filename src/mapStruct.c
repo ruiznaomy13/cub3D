@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 23:00:32 by ncastell          #+#    #+#             */
-/*   Updated: 2024/04/06 01:12:02 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/04/07 16:20:30 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,13 @@ static int	is_valid_line(char *line)
 void	save_player(t_game *game, int p_orientation, int *map_row, int *i)
 {
 	game->map->map_array[*map_row][*i] = p_orientation;
+	if (game->n_players == 0)
+	{
+		game->player = ft_calloc(1, sizeof(t_player));
+		game->player->card_p =p_orientation;
+		game->player->pos_x = *map_row;
+		game->player->pos_y = *i;
+	}
 	game->n_players++;
 }
 
