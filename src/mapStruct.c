@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapStruct.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 23:00:32 by ncastell          #+#    #+#             */
-/*   Updated: 2024/04/07 20:02:26 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/04/10 16:47:38 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,29 +59,27 @@ void	save_textures(char *line, t_game *game)
 {
 	int	i;
 	int	aux;
+	int	error;
 
-	if (is_map_texture(line, &i, &aux) == 1)
+	((0) || (aux = 0) || (error = 0));
+	if (is_map_texture(line, &i, &aux) == 1 && !game->map->texture_no)
 		game->map->texture_no = ft_substr(&line[i], aux, \
 		ft_strlen(&line[aux + i]) - 1);
-	else if (is_map_texture(line, &i, &aux) == 2)
+	else if (is_map_texture(line, &i, &aux) == 2 && !game->map->texture_so)
 		game->map->texture_so = ft_substr(&line[i], aux, \
 		ft_strlen(&line[aux + i]) - 1);
-	else if (is_map_texture(line, &i, &aux) == 3)
+	else if (is_map_texture(line, &i, &aux) == 3 && !game->map->texture_we)
 		game->map->texture_we = ft_substr(&line[i], aux, \
 		ft_strlen(&line[aux + i]) - 1);
-	else if (is_map_texture(line, &i, &aux) == 4)
+	else if (is_map_texture(line, &i, &aux) == 4 && !game->map->texture_ea)
 		game->map->texture_ea = ft_substr(&line[i], aux, \
 		ft_strlen(&line[aux + i]) - 1);
-	if (is_map_texture(line, &i, &aux) == 5)
-	{
-		if (save_rgb(&line[first_char_pos(&line[i])], game->map->floor_c))
-			ft_error(game, EXIT_FAILURE);
-	}
+	else if (is_map_texture(line, &i, &aux) == 5)
+		error = save_rgb(&line[first_char_pos(&line[i])], game->map->floor_c);
 	else if (is_map_texture(line, &i, &aux) == 6)
-	{
-		if (save_rgb(&line[first_char_pos(&line[i++])], game->map->ceiling_c))
-			ft_error(game, EXIT_FAILURE);
-	}
+		error = save_rgb(&line[first_char_pos(&line[i++])], game->map->ceiling_c);
+	else
+		ft_error(game, EXIT_FAILURE);
 }
 
 static int	is_valid_line(char *line)

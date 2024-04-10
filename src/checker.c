@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:44 by ncastell          #+#    #+#             */
-/*   Updated: 2024/04/06 09:47:11 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/04/10 16:18:24 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,17 +101,14 @@ void	show_map(t_map *map)
 {
 	int i;
 	int j;
-	int	last;
 
 	i = 0;
-	last = 1;
 	while (i < map->rows)
 	{
 		j = 0;
 		write(1, "\n", 1);
 		while (j < map->cols)
 		{
-			
 			ft_printf("%d", map->map_array[i][j]);
 			j++;
 		}
