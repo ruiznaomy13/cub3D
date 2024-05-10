@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkerAux.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 22:26:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/03/06 17:46:31 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/04/06 09:47:46 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,4 +94,11 @@ int	check_line_info(char *line, t_game *game)
 			return (2);
 	}
 	return (1);
+}
+
+void	check_players(t_game *game)
+{
+	if (game->n_players > 1)
+		ft_error(game, EXIT_FAILURE);
+	
 }

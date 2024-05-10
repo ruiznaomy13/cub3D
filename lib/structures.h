@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/04/03 22:27:18 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/04/07 20:14:30 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 
 #define SQSZ	20
 
+# define MAGENTA	"\033[95m"
+# define GREEN		"\x1b[32m"
+# define WHITE		"\e[1;37m"
+
 #define WALL	1
 #define SPACE	0
 #define PLAYER	2
@@ -24,6 +28,14 @@
 #define P_E		23
 #define P_W		24
 #define	OUT_MAP	-1
+#define RIGHT 124
+#define RIGHT_D 2
+#define LEFT 123
+#define LEFT_A 0
+#define DOWN 125
+#define DOWN_S 1
+#define UP 126
+#define UP_W 13
 
 /* ERROR TYPE*/
 #define E_SYNTAX 2
@@ -54,7 +66,6 @@ typedef struct s_player
 typedef struct s_map
 {
 	int		**map_array;
-	// char	**map_guide;
 	char	*texture_no;
 	char	*texture_so;
 	char	*texture_we;
@@ -68,10 +79,25 @@ typedef struct s_map
 
 typedef struct s_ray
 {
+	double	rayDirX;
+	double	rayDirY;
 	double	dirX;
 	double	dirY;
+	double	cameraX;
 	double	planeX;
 	double	planeY;
+	int		boxMapX;
+	int		boxMapY;
+	double	sideDistX;
+	double	sideDistY;
+	double	deltaDistX;
+	double	deltaDistY;
+	double	perpWallDist;
+	double	stepX;
+	double	stepY;
+	int		lineHeight;
+	int		drawStart;
+	int		drawEnd;
 }			t_ray;
 
 typedef struct s_game
@@ -80,6 +106,8 @@ typedef struct s_game
 	t_player	*player;
 	t_ray		*ray_cast;
 	t_textures	*texts;
+	int			n_players;
+	int			key;
 	void		*mlx;
 	void		*mlx_win;
 	int			checker;

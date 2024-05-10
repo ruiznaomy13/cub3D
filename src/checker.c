@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:44 by ncastell          #+#    #+#             */
-/*   Updated: 2024/05/10 14:53:42 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/05/10 14:55:45 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	check_square(t_map *map, t_point iter, int *check)
 {
-	if ((iter.x < 1 || iter.x >= map->rows) \
-	|| (iter.y < 1 || iter.y >= map->cols))
+	if ((iter.x < 1 || iter.x >= map->rows - 1) \
+	|| (iter.y < 1 || iter.y >= map->cols - 1))
 	{
 		*check = 1;
 		return ;
@@ -44,6 +44,7 @@ int	check_map(t_map *map)
 	iter.x = 0;
 	iter.y = 0;
 	check = 0;
+	printf("rows: %d | cols: %d\n", map->rows, map->cols);
 	while (iter.x < map->rows && !check)
 	{
 		iter.y = 0;
@@ -72,6 +73,8 @@ int	read_dimension(int fd, t_map *map, char *map_file, int *map_row)
 	char	*line;
 	int		line_ln;
 
+	map->rows = 0;
+	map->cols = 0;
 	line = get_next_line(fd);
 	line_ln = 0;
 	while (line)
@@ -105,17 +108,14 @@ void	show_map(t_map *map)
 {
 	int i;
 	int j;
-	int	last;
 
 	i = 0;
-	last = 1;
 	while (i < map->rows)
 	{
 		j = 0;
 		write(1, "\n", 1);
 		while (j < map->cols)
 		{
-			
 			ft_printf("%d", map->map_array[i][j]);
 			j++;
 		}
@@ -133,6 +133,8 @@ int	check_input_map(char *map_file, t_game *game)
 	if (check_map_name(map_file) || fd < 0)
 		ft_error(game, E_SYNTAX);
 	fd = read_dimension(fd, game->map, map_file, &map_row);
+	if (fd == -1)
+		ft_error(game, EXIT_FAILURE);
 	game->map->line = get_next_line(fd);
 	while (game->map->line)
 	{
@@ -149,7 +151,7 @@ int	check_input_map(char *map_file, t_game *game)
 		free(game->map->line);
 		game->map->line = get_next_line(fd);
 	}
-	show_map(game->map);
+	check_players(game);
 	ft_printf("Game saved correctly!");
 	return (EXIT_SUCCESS);
 }
