@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:44 by ncastell          #+#    #+#             */
-/*   Updated: 2024/04/03 22:19:43 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/05/10 14:53:42 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,13 @@ int	check_map(t_map *map)
 		return (0);
 	return (1);
 }
+int	line_length(char *line)
+{
+	int	i = ft_strlen(line) - 2;
+	while (line[i] == ' ' || line[i] == '\t')
+		i--;
+	return (i + 2);
+}
 
 int	read_dimension(int fd, t_map *map, char *map_file, int *map_row)
 {
@@ -69,7 +76,7 @@ int	read_dimension(int fd, t_map *map, char *map_file, int *map_row)
 	line_ln = 0;
 	while (line)
 	{
-		line_ln = ft_strlen(line);
+		line_ln = line_length(line); // modificado hace POQUITPO
 		if (get_first_char(line) == '1')
 			map->rows += 1;
 		if (map->cols < line_ln)
