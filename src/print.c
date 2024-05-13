@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:06:26 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/04/07 19:26:21 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/05/13 16:18:42 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	print_map(t_game game)
 		{
 			if (game.map->map_array[i][j] == 1)
 				mlx_put_image_to_window(game.mlx, game.mlx_win, \
-				game.texts->wall, j * SQSZ, i * SQSZ);
+				game.texts->wall, (j * SQSZ) * 1, (i * SQSZ) * 1);
 			j++;
 		}
 		j = 0;

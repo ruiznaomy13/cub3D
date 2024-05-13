@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/04/10 16:22:38 by elias            ###   ########.fr       */
+/*   Updated: 2024/05/13 16:19:40 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,8 @@ int	init_game(char *map_file, t_game *game)
 		ft_error(game, 1);
 	printf(GREEN"\nGOOD MAP!\n"WHITE);
 	init_textures(game);
-	//init_ray(game);
-	// store_map();
+	init_ray(game);
+	//store_map();
 	return (EXIT_SUCCESS);
 }
 
@@ -58,14 +58,14 @@ int	main(int ac, char *av[])
 		ft_error(NULL, EXIT_FAILURE);
 	init_game(av[1], &game);
 	// print_map(game);
-	// mlx_loop_hook(game.mlx, &game_update, &game);
-	// mlx_hook(game.mlx_win, 17, 1L << 17, &close_button, &game);
-	// mlx_hook(game.mlx_win, 2, 1L << 0, key_event, &game);
-	// mlx_loop(game.mlx);
-	// while(game.end == 0)
-	// {
+	mlx_loop_hook(game.mlx, &game_update, &game);
+	mlx_hook(game.mlx_win, 17, 1L << 17, &close_button, &game);
+	mlx_hook(game.mlx_win, 2, 1L << 0, key_event, &game);
+	mlx_loop(game.mlx);
+	while(game.end == 0)
+	{
 		
-	// }
-	//clean_memmory(&game);
+	}
+	clean_memmory(&game);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/04/07 20:14:30 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:29:35 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ typedef struct s_ray
 	int		lineHeight;
 	int		drawStart;
 	int		drawEnd;
+	double	moveSpeed;
+	double	rotSpeed;
 }			t_ray;
 
 typedef struct s_game

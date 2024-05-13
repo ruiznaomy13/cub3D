@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapStruct.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 23:00:32 by ncastell          #+#    #+#             */
-/*   Updated: 2024/04/10 16:47:38 by elias            ###   ########.fr       */
+/*   Updated: 2024/05/13 16:39:41 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ void	save_player(t_game *game, int p_orientation, int *map_row, int *i)
 			game->player->card_p = 'E';
 		else if (p_orientation == P_W)
 			game->player->card_p = 'W';
-		game->player->pos_x = *map_row * SQSZ;
+		game->player->pos_x = *map_row;
 		game->player->pos_y = *i;
 	}
 	game->n_players++;

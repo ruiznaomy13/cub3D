@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/04/10 16:20:24 by elias            ###   ########.fr       */
+/*   Updated: 2024/05/13 16:09:23 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	free_char_array(char **str);
 char	get_first_char(char *line);
 int		first_char_pos(char *line);
 int     key_event(int key, t_game *game);
-// int     game_update(t_game *wd);
+int     game_update(t_game *wd);
 
 /* UTILS 2 */
 char	**ft_split_cub(const char *str);
