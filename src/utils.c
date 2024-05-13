@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 22:47:28 by ncastell          #+#    #+#             */
-/*   Updated: 2024/05/13 17:30:45 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/05/13 18:18:03 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,8 @@ int	game_update(t_game *game)
 	{
 		ft_raytracing(game);
 		mlx_clear_window(game->mlx, game->mlx_win);
-		
 	}
 	
-	mlx_pixel_put(game->mlx, game->mlx_win, game->player->pos_x, game->player->pos_y, 0xFF0000);
+	// mlx_pixel_put(game->mlx, game->mlx_win, game->player->pos_x, game->player->pos_y, 0xFF0000);
 	return (0);
 }
