@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:53:57 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/05/15 05:01:48 by elias            ###   ########.fr       */
+/*   Updated: 2024/05/15 13:43:13 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ void	dir_ray(t_game *game)
 void	init_ray(t_game *game)
 {
 	game->ray_cast = ft_calloc(1, sizeof(t_ray));
-	game->ray_cast->moveSpeed = 5.0;
-	game->ray_cast->rotSpeed = 3.0;
+	game->ray_cast->moveSpeed = 1.0;
+	game->ray_cast->rotSpeed = 1.0;
 	dir_ray(game);
 }
 
@@ -80,19 +80,17 @@ static void	perfDDA(t_game *game, int *hit, int *side)
 		if(game->ray_cast->sideDistX < game->ray_cast->sideDistY)
 		{
 			game->ray_cast->sideDistX += game->ray_cast->deltaDistX;
-			game->ray_cast->boxMapX += game->ray_cast->stepX;
+			game->ray_cast->boxMapX += (int)game->ray_cast->stepX;
 			*side = 0; //EW
 		}
 		else
 		{
 			game->ray_cast->sideDistY += game->ray_cast->deltaDistY;
-			game->ray_cast->boxMapY += game->ray_cast->stepY;
+			game->ray_cast->boxMapY += (int)game->ray_cast->stepY;
 			*side = 1; //NS
 		}
 		if (game->map->map_array[game->ray_cast->boxMapX][game->ray_cast->boxMapY] > 0)
 			*hit = 1;
-		if (i != 0)
-			mlx_pixel_put(game->mlx, game->mlx_win, game->ray_cast->boxMapX, game->ray_cast->boxMapY, 0x00FF00);
 		i++;
 	}
 }
@@ -150,12 +148,11 @@ void	ft_raytracing(t_game *game)
 				color = 0xFFFF00; 
 				break; //yellow
 		}
-		(void)color;
 		//give x and y sides different brightness
 		/* if (side == 1)
 			color = color / 2; */
 		//draw the pixels of the stripe as a vertical line
-		// verLine(i, game, color);
-		i += 8;
+		verLine(i, game, color);
+		i += 4;
 	}
 }

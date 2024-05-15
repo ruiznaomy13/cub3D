@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 22:47:28 by ncastell          #+#    #+#             */
-/*   Updated: 2024/05/15 04:50:38 by elias            ###   ########.fr       */
+/*   Updated: 2024/05/15 13:23:33 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	game_update(t_game *game)
 	{
 		ft_raytracing(game);
 		mlx_clear_window(game->mlx, game->mlx_win);
-		print_map(*game);
+		// print_map(*game);
 	}
 	return (0);
 }

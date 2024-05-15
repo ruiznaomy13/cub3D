@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 09:37:43 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/05/15 04:46:49 by elias            ###   ########.fr       */
+/*   Updated: 2024/05/15 13:49:02 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,16 +35,16 @@ void    move_player(t_game *game)
 	}
 	else if (game->key == DOWN_S || game->key == DOWN)
 	{
-		if (game->player->pos_x - (game->ray_cast->dirX * game->ray_cast->moveSpeed) > 0)
-			game->player->pos_x -= game->ray_cast->dirX * game->ray_cast->moveSpeed;
-		if (game->player->pos_y - (game->ray_cast->dirY * game->ray_cast->moveSpeed) > 0)
-			game->player->pos_y -= game->ray_cast->dirY * game->ray_cast->moveSpeed;
+		if (game->player->pos_x - (int)(game->ray_cast->dirX * game->ray_cast->moveSpeed) > 0 && game->map->map_array[(game->player->pos_x - (int)game->ray_cast->dirX)][game->player->pos_y] != 1)
+			game->player->pos_x -= (int)(game->ray_cast->dirX * game->ray_cast->moveSpeed);
+		if (game->player->pos_y - (int)(game->ray_cast->dirY * game->ray_cast->moveSpeed) > 0 && game->map->map_array[game->player->pos_x][(game->player->pos_y - (int)game->ray_cast->dirY)] != 1)
+			game->player->pos_y -= (int)(game->ray_cast->dirY * game->ray_cast->moveSpeed);
 	}
 	else if (game->key == UP_W || game->key == UP)
 	{
-		if (game->player->pos_x + (game->ray_cast->dirX * game->ray_cast->moveSpeed) < game->map->rows)
-			game->player->pos_x += game->ray_cast->dirX * game->ray_cast->moveSpeed;
-		if (game->player->pos_y + (game->ray_cast->dirY * game->ray_cast->moveSpeed) < game->map->cols)
-			game->player->pos_y += game->ray_cast->dirY * game->ray_cast->moveSpeed;
+		if (game->player->pos_x + (int)(game->ray_cast->dirX * game->ray_cast->moveSpeed) < game->map->rows &&  game->map->map_array[(game->player->pos_x + (int)game->ray_cast->dirX)][game->player->pos_y] != 1)
+			game->player->pos_x += (int)(game->ray_cast->dirX * game->ray_cast->moveSpeed);
+		if (game->player->pos_y + (int)(game->ray_cast->dirY * game->ray_cast->moveSpeed) < game->map->cols && game->map->map_array[game->player->pos_x][(game->player->pos_y + (int)game->ray_cast->dirY)] != 1)
+			game->player->pos_y += (int)(game->ray_cast->dirY * game->ray_cast->moveSpeed);
 	}
 }
