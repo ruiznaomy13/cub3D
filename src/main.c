@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/05/13 16:19:40 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/05/15 04:40:05 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int	main(int ac, char *av[])
 	if (ac != 2)
 		ft_error(NULL, EXIT_FAILURE);
 	init_game(av[1], &game);
-	// print_map(game);
+	print_map(game);
 	mlx_loop_hook(game.mlx, &game_update, &game);
 	mlx_hook(game.mlx_win, 17, 1L << 17, &close_button, &game);
 	mlx_hook(game.mlx_win, 2, 1L << 0, key_event, &game);

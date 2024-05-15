@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 09:37:43 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/05/13 18:12:00 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/05/15 04:46:49 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void    move_player(t_game *game)
 {
-	// mlx_pixel_put(game->mlx, game->mlx_win, game->player->pos_x, game->player->pos_y, 0x000000);
 	double oldDirX;
 	double oldPlaneX;
 	
@@ -36,12 +35,16 @@ void    move_player(t_game *game)
 	}
 	else if (game->key == DOWN_S || game->key == DOWN)
 	{
-		game->player->pos_y -= game->ray_cast->dirY * game->ray_cast->moveSpeed;
-		game->player->pos_x -= game->ray_cast->dirX * game->ray_cast->moveSpeed;
+		if (game->player->pos_x - (game->ray_cast->dirX * game->ray_cast->moveSpeed) > 0)
+			game->player->pos_x -= game->ray_cast->dirX * game->ray_cast->moveSpeed;
+		if (game->player->pos_y - (game->ray_cast->dirY * game->ray_cast->moveSpeed) > 0)
+			game->player->pos_y -= game->ray_cast->dirY * game->ray_cast->moveSpeed;
 	}
 	else if (game->key == UP_W || game->key == UP)
 	{
-		game->player->pos_y += game->ray_cast->dirY * game->ray_cast->moveSpeed;
-		game->player->pos_x += game->ray_cast->dirX * game->ray_cast->moveSpeed;
+		if (game->player->pos_x + (game->ray_cast->dirX * game->ray_cast->moveSpeed) < game->map->rows)
+			game->player->pos_x += game->ray_cast->dirX * game->ray_cast->moveSpeed;
+		if (game->player->pos_y + (game->ray_cast->dirY * game->ray_cast->moveSpeed) < game->map->cols)
+			game->player->pos_y += game->ray_cast->dirY * game->ray_cast->moveSpeed;
 	}
 }

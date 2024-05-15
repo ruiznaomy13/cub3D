@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkerAux.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 22:26:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/04/06 09:47:46 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/05/15 04:43:39 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,5 +100,4 @@ void	check_players(t_game *game)
 {
 	if (game->n_players > 1)
 		ft_error(game, EXIT_FAILURE);
-	
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:06:26 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/05/13 16:18:42 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/05/15 05:01:07 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,5 @@ void	print_map(t_game game)
 		j = 0;
 		i++;
 	}
+	mlx_pixel_put(game.mlx, game.mlx_win, game.player->pos_y, game.player->pos_x, 0xFF0000);
 }
