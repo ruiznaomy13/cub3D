@@ -6,7 +6,7 @@
 /*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 22:47:28 by ncastell          #+#    #+#             */
-/*   Updated: 2024/05/16 05:04:44 by elias            ###   ########.fr       */
+/*   Updated: 2024/05/17 00:01:46 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,9 @@ int	game_update(t_game *game)
 	// p_status = 0;
 	if (game->player)
 	{
-		ft_raytracing(game);
 		mlx_clear_window(game->mlx, game->mlx_win);
-		print_map(*game);
+		ft_raytracing(game);
+		// print_map(*game);
 	}
 	return (0);
 }

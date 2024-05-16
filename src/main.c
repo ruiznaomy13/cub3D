@@ -6,7 +6,7 @@
 /*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/05/16 05:05:18 by elias            ###   ########.fr       */
+/*   Updated: 2024/05/16 23:13:37 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,6 @@ int	main(int ac, char *av[])
 	mlx_hook(game.mlx_win, 17, 1L << 17, &close_button, &game);
 	mlx_hook(game.mlx_win, 2, 1L << 0, key_event, &game);
 	mlx_loop(game.mlx);
-	while(game.end == 0)
-	{
-		
-	}
 	clean_memmory(&game);
 	return (0);
 }
