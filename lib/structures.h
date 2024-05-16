@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/05/13 17:29:35 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/05/16 05:17:21 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@
 /* ERROR TYPE*/
 #define E_SYNTAX 2
 
-#define SCR_W 1024
-#define SCR_H 768
+#define SCR_W 1280
+#define SCR_H 720
 
 /* MAP PX TYPE */
 
@@ -58,8 +58,8 @@ typedef struct	s_textures
 
 typedef struct s_player
 {
-	int		pos_x;
-	int		pos_y;
+	double	pos_x;
+	double	pos_y;
 	int		card_p;
 }			t_player;
 
@@ -93,8 +93,8 @@ typedef struct s_ray
 	double	deltaDistX;
 	double	deltaDistY;
 	double	perpWallDist;
-	double	stepX;
-	double	stepY;
+	int		stepX;
+	int		stepY;
 	int		lineHeight;
 	int		drawStart;
 	int		drawEnd;
