@@ -6,7 +6,7 @@
 /*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:53:57 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/05/16 06:03:27 by elias            ###   ########.fr       */
+/*   Updated: 2024/05/16 20:56:57 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,6 @@ void	ft_raytracing(t_game *game)
 	int	side;
 
 	i = 0;
-	printf("%.2f\n", game->ray_cast->dirX);
-	printf("%.2f\n", game->ray_cast->dirY);
 	while (i < SCR_W /2)
 	{
 		game->ray_cast->cameraX = 2 * i / (double)SCR_W - 1;
