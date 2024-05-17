@@ -6,7 +6,7 @@
 /*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 09:37:43 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/05/17 00:50:20 by elias            ###   ########.fr       */
+/*   Updated: 2024/05/17 05:58:40 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,14 @@ void    move_player(t_game *game)
 	
 	oldPlaneX = game->ray_cast->planeX;
 	oldDirX = game->ray_cast->dirX;
-	if (game->key == RIGHT_D || game->key == RIGHT)
+	if (game->key == LEFT_A || game->key == LEFT)
 	{
       	game->ray_cast->dirX = game->ray_cast->dirX * cos(-game->ray_cast->rotSpeed) - game->ray_cast->dirY * sin(-game->ray_cast->rotSpeed);
       	game->ray_cast->dirY = oldDirX * sin(-game->ray_cast->rotSpeed) + game->ray_cast->dirY * cos(-game->ray_cast->rotSpeed);
       	game->ray_cast->planeX = game->ray_cast->planeX * cos(-game->ray_cast->rotSpeed) - game->ray_cast->planeY * sin(-game->ray_cast->rotSpeed);
       	game->ray_cast->planeY = oldPlaneX * sin(-game->ray_cast->rotSpeed) + game->ray_cast->planeY * cos(-game->ray_cast->rotSpeed);
 	}
-	else if (game->key == LEFT_A || game->key == LEFT)
+	else if (game->key == RIGHT_D || game->key == RIGHT)
 	{
 		game->ray_cast->dirX = game->ray_cast->dirX * cos(game->ray_cast->rotSpeed) - game->ray_cast->dirY * sin(game->ray_cast->rotSpeed);
       	game->ray_cast->dirY = oldDirX * sin(game->ray_cast->rotSpeed) + game->ray_cast->dirY * cos(game->ray_cast->rotSpeed);

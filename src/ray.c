@@ -6,7 +6,7 @@
 /*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:53:57 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/05/17 01:12:12 by elias            ###   ########.fr       */
+/*   Updated: 2024/05/17 06:01:49 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,32 +17,38 @@ void	dir_ray(t_game *game)
 	if (game->player->card_p == 'N')
 	{
 		game->ray_cast->dirX = 0.0;
-		game->ray_cast->dirY = 1.0;
+		game->ray_cast->dirY = -1.0;
+		game->ray_cast->planeX = 0.66;
+		game->ray_cast->planeY = 0;
 	}
 	if (game->player->card_p == 'S')
 	{
 		game->ray_cast->dirX = 0.0;
-		game->ray_cast->dirY = -1.0;
+		game->ray_cast->dirY = 1.0;
+		game->ray_cast->planeX = -0.66;
+		game->ray_cast->planeY = 0;
 	}
 	if (game->player->card_p == 'W')
 	{
 		game->ray_cast->dirX = -1.0;
 		game->ray_cast->dirY = 0.0;
+		game->ray_cast->planeX = 0;
+		game->ray_cast->planeY = -0.66;
 	}
-	if (game->player->card_p == 'O')
+	if (game->player->card_p == 'E')
 	{
 		game->ray_cast->dirX = 1.0;
 		game->ray_cast->dirY = 0.0;
+		game->ray_cast->planeX = 0;
+		game->ray_cast->planeY = 0.66;
 	}
-	game->ray_cast->planeX = 0.0;
-	game->ray_cast->planeY = 0.66;
 }
 
 void	init_ray(t_game *game)
 {
 	game->ray_cast = ft_calloc(1, sizeof(t_ray));
 	game->ray_cast->moveSpeed = 0.15;
-	game->ray_cast->rotSpeed = 0.1;
+	game->ray_cast->rotSpeed = 0.15;
 	dir_ray(game);
 }
 
@@ -88,6 +94,9 @@ static void	perfDDA(t_game *game, int *hit, int *side)
 			game->ray_cast->boxMapY += game->ray_cast->stepY;
 			*side = 1; //NS
 		}
+		if (game->ray_cast->boxMapY < 0 || game->ray_cast->boxMapX < 0
+			|| game->ray_cast->boxMapY > SCR_W || game->ray_cast->boxMapX > SCR_H)
+			break ;
 		if (game->map->map_array[game->ray_cast->boxMapX][game->ray_cast->boxMapY] == 1)
 			*hit = 1;
 	}
@@ -107,14 +116,8 @@ void	ft_raytracing(t_game *game)
 		game->ray_cast->rayDirY = game->ray_cast->dirY + game->ray_cast->planeY * game->ray_cast->cameraX;
 		game->ray_cast->boxMapX = (int)game->player->pos_x;
 		game->ray_cast->boxMapY = (int)game->player->pos_y;
-		if (game->ray_cast->rayDirX == 0)
-			game->ray_cast->deltaDistX = 1;
-		else
-			game->ray_cast->deltaDistX = fabs(1.0 / game->ray_cast->rayDirX);
-		if (game->ray_cast->rayDirY == 0)
-			game->ray_cast->deltaDistY = 1;
-		else
-			game->ray_cast->deltaDistY = fabs(1.0 / game->ray_cast->rayDirY);
+		game->ray_cast->deltaDistX = fabs(1 / game->ray_cast->rayDirX);
+		game->ray_cast->deltaDistY = fabs(1 / game->ray_cast->rayDirY);
 		
 		getDirection(game);
 		perfDDA(game, &hit, &side);
@@ -146,11 +149,9 @@ void	ft_raytracing(t_game *game)
 				color = 0xFFFF00; 
 				break; //yellow
 		}
-		// (void)color;
-		//give x and y sides different brightness
-		/* if (side == 1)
-			color = color / 2; */
+		if (side == 1)
+			color = color / 2;
 		verLine(i, game, color);
-		i += 2;
+		i += 4;
 	}
 }
