@@ -6,7 +6,7 @@
 /*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 22:47:28 by ncastell          #+#    #+#             */
-/*   Updated: 2024/05/17 00:01:46 by elias            ###   ########.fr       */
+/*   Updated: 2024/05/19 23:14:48 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,25 +52,31 @@ int	key_event(int key, t_game *game)
 		close_button(game, 1);
 		exit(EXIT_SUCCESS);
 	}
+	game->key = key;
 	if (!(key == RIGHT || key == RIGHT_D || key == LEFT \
 	|| key == LEFT_A || key == DOWN || key == DOWN_S \
 	|| key == UP || key == UP_W))
 		ft_printf("\n");
-	game->key = key;
-	move_player(game);
+	else
+	{
+		move_player(game);
+		game->moves++;
+	}
 	return (0);
 }
 
 int	game_update(t_game *game)
 {
-	// int	p_status;
-
-	// p_status = 0;
 	if (game->player)
 	{
-		mlx_clear_window(game->mlx, game->mlx_win);
 		ft_raytracing(game);
-		// print_map(*game);
+		drawBuffer(game, game->buffer);
+    	for(int y = 0; y < SCR_H; y++)
+		{
+			for(int x = 0; x < SCR_W; x++)
+				game->buffer[y][x] = 0;
+		}
+		print_map(*game);
 	}
 	return (0);
 }

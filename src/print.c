@@ -6,7 +6,7 @@
 /*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:06:26 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/05/16 05:15:54 by elias            ###   ########.fr       */
+/*   Updated: 2024/05/20 01:30:26 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ void	print_map(t_game game)
 		j = 0;
 		i++;
 	}
-	mlx_pixel_put(game.mlx, game.mlx_win, SCR_W/2 + game.player->pos_y * SQSZ, game.player->pos_x * SQSZ, 0xFF0000);
+	// mlx_pixel_put(game.mlx, game.mlx_win, SCR_W/2 + game.player->pos_y * SQSZ, game.player->pos_x * SQSZ, 0xFF0000);
+	mlx_put_image_to_window(game.mlx, game.mlx_win, game.texts->player, SCR_W / 2 + (int)game.player->pos_y * SQSZ, (int)game.player->pos_x * SQSZ);
 }

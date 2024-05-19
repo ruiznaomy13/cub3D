@@ -6,7 +6,7 @@
 /*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/05/17 00:50:50 by elias            ###   ########.fr       */
+/*   Updated: 2024/05/19 23:15:48 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,9 @@ void	ft_raytracing(t_game *game);
 
 /* RAY_AUX */
 void	verLine(int x, t_game *game, int color);
+void	drawBuffer(t_game *game, unsigned int **buff);
+
+/* TEXTURES */
+void	render(t_game *game, int side, int i);
 
 #endif
