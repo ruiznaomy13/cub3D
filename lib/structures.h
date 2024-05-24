@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/05/13 17:29:35 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/05/20 01:26:53 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,15 @@
 #define DOWN_S 1
 #define UP 126
 #define UP_W 13
+#define NUM_TXT 2
 
 /* ERROR TYPE*/
 #define E_SYNTAX 2
 
-#define SCR_W 1024
-#define SCR_H 768
+#define SCR_W 1280
+#define SCR_H 720
+#define TEX_W 64
+#define TEX_H 64
 
 /* MAP PX TYPE */
 
@@ -53,13 +56,21 @@ typedef struct s_point
 
 typedef struct	s_textures
 {
-	void	*wall;
-}			t_textures;
+	void			*wall;
+	void			*player;
+	void			*walle;
+	char			*texture_data;
+	unsigned int	floor;
+	unsigned int	ceiling;
+	int				bpp;
+	int				size_line;
+	int				endian;
+}				t_textures;
 
 typedef struct s_player
 {
-	int		pos_x;
-	int		pos_y;
+	double	pos_x;
+	double	pos_y;
 	int		card_p;
 }			t_player;
 
@@ -93,8 +104,8 @@ typedef struct s_ray
 	double	deltaDistX;
 	double	deltaDistY;
 	double	perpWallDist;
-	double	stepX;
-	double	stepY;
+	int		stepX;
+	int		stepY;
 	int		lineHeight;
 	int		drawStart;
 	int		drawEnd;
@@ -104,15 +115,17 @@ typedef struct s_ray
 
 typedef struct s_game
 {
-	t_map		*map;
-	t_player	*player;
-	t_ray		*ray_cast;
-	t_textures	*texts;
-	int			n_players;
-	int			key;
-	void		*mlx;
-	void		*mlx_win;
-	int			checker;
-	int			end;
+	t_map			*map;
+	t_player		*player;
+	t_ray			*ray_cast;
+	t_textures		*texts;
+	int				n_players;
+	int				key;
+	void			*mlx;
+	void			*mlx_win;
+	int				checker;
+	int				end;
+	unsigned int	**buffer;
+	int				moves;
 	// int			error;
 }				t_game;
