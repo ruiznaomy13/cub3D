@@ -3,17 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_game.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 19:16:27 by ncastell          #+#    #+#             */
-/*   Updated: 2024/04/06 09:18:29 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/06/11 13:27:54 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	close_button(void *game)
+void	close_button(void *param)
 {
+	t_game	*game;
+
+	game = param;
 	mlx_close_window(game->mlx);
 	mlx_terminate(game->mlx);
 	clean_memmory(game);

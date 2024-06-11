@@ -6,7 +6,7 @@
 /*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/05/20 01:37:08 by elias            ###   ########.fr       */
+/*   Updated: 2024/06/11 13:34:15 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	init_game(char *map_file, t_game *game)
 
 	i = -1;
 	game->mlx = mlx_init(SCR_W, SCR_H, "cub3D", false);
+	game->mlx_win = mlx_new_image(game->mlx, SCR_W, SCR_H);
 	game->map = ft_calloc(1, sizeof(t_map));
 	game->n_players = 0;
 	game->moves = 0;

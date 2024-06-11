@@ -6,7 +6,7 @@
 /*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 22:50:02 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/05/20 00:59:45 by elias            ###   ########.fr       */
+/*   Updated: 2024/06/11 14:00:45 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,10 @@ void	render(t_game *game, int side, int i)
 		int texY = (int)texPos & (TEX_H - 1);
 		texPos += step;
 		int color_offset = texY * game->texts->size_line + texX * (game->texts->bpp / 8);
-        int color = (game->texts->texture_data[color_offset + 0] & 0xFF)       | // Blue
-                        ((game->texts->texture_data[color_offset + 1] & 0xFF) << 8) | // Green
-                        ((game->texts->texture_data[color_offset + 2] & 0xFF) << 16) | // Red
-                        ((game->texts->texture_data[color_offset + 3] & 0xFF) << 24); // Alpha
+        int color = (game->texts->texture_data->pixels[color_offset + 0] & 0xFF)       | // Blue
+                        ((game->texts->texture_data->pixels[color_offset + 1] & 0xFF) << 8) | // Green
+                        ((game->texts->texture_data->pixels[color_offset + 2] & 0xFF) << 16) | // Red
+                        ((game->texts->texture_data->pixels[color_offset + 3] & 0xFF) << 24); // Alpha
 		game->buffer[y][i] = color;
 	}
 }

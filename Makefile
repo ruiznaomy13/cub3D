@@ -30,7 +30,8 @@ SRCS		= main.c checker.c checkerAux.c auxiliarFunctions.c \
 
 OBJ			= $(addprefix ${OBJ_DIR}/,  ${SRCS:.c=.o})
 DEPS		= $(addprefix ${OBJ_DIR}/,  ${SRCS:.c=.d})
-RUTAS		= inc/libft/libft.a inc/ft_printf/libftprintf.a $(LIBMLX)/build/libmlx42.a -lglfw -lm
+RUTAS		= inc/libft/libft.a inc/ft_printf/libftprintf.a $(LIBMLX)/build/libmlx42.a -ldl \
+			-L/opt/hombrew/Cellar/glfw/3.4 -lglfw -lm
 
 ######## COLORS #########
 GREEN		= \033[1;92m
@@ -52,8 +53,8 @@ sub_make:
 #	@$(MAKE) -sC inc/mlx $(SILENCE)
 	@$(MAKE) -sC inc/ft_printf $(SILENCE)
 
-$(NAME): $(OBJ) $(RUTAS)
-	@$(CC) $(C_FLAGS) $(OBJ) $(RUTAS) -o $@ -pie
+$(NAME): $(OBJ)
+	@$(CC) $(C_FLAGS) $(OBJ) $(RUTAS) -o $@
 	@echo "$(GREEN)  \n    🐉🧚  cub3D compiled  🐉🧚\n$(NC)"
 
 -include $(DEPS)

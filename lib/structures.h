@@ -6,9 +6,14 @@
 /*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/05/20 01:26:53 by elias            ###   ########.fr       */
+/*   Updated: 2024/06/11 14:00:27 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef	STRUCTURES_H
+# define	STRUCTURES_H
+
+#include "../inc/mlx42/include/MLX42/MLX42.h"
 
 #define MAGENTA	"\033[95m"
 #define GREEN	"\x1b[32m"
@@ -59,7 +64,7 @@ typedef struct	s_textures
 	void			*wall;
 	void			*player;
 	void			*walle;
-	void			*texture_data;
+	mlx_image_t		*texture_data;
 	unsigned int	floor;
 	unsigned int	ceiling;
 	int				bpp;
@@ -121,10 +126,13 @@ typedef struct s_game
 	t_textures		*texts;
 	int				n_players;
 	int				key;
-	void			*mlx;
+	mlx_t			*mlx;
+	mlx_image_t		*mlx_win;
 	int				checker;
 	int				end;
 	unsigned int	**buffer;
 	int				moves;
 	// int			error;
 }				t_game;
+
+#endif
