@@ -59,7 +59,7 @@ typedef struct	s_textures
 	void			*wall;
 	void			*player;
 	void			*walle;
-	char			*texture_data;
+	void			*texture_data;
 	unsigned int	floor;
 	unsigned int	ceiling;
 	int				bpp;
@@ -122,7 +122,6 @@ typedef struct s_game
 	int				n_players;
 	int				key;
 	void			*mlx;
-	void			*mlx_win;
 	int				checker;
 	int				end;
 	unsigned int	**buffer;

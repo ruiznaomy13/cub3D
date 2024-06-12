@@ -24,13 +24,13 @@ void	print_map(t_game game)
 		while (j < game.map->cols)
 		{
 			if (game.map->map_array[i][j] == 1)
-				mlx_put_image_to_window(game.mlx, game.mlx_win, \
-				game.texts->wall, SCR_W/2 + (j * SQSZ) * 1, (i * SQSZ) * 1);
+				mlx_image_to_window(game.mlx, game.texts->wall, \
+				SCR_W/2 + (j * SQSZ) * 1, (i * SQSZ) * 1);
 			j++;
 		}
 		j = 0;
 		i++;
 	}
 	// mlx_pixel_put(game.mlx, game.mlx_win, SCR_W/2 + game.player->pos_y * SQSZ, game.player->pos_x * SQSZ, 0xFF0000);
-	mlx_put_image_to_window(game.mlx, game.mlx_win, game.texts->player, SCR_W / 2 + (int)game.player->pos_y * SQSZ, (int)game.player->pos_x * SQSZ);
+	mlx_image_to_window(game.mlx, game.texts->player, SCR_W / 2 + (int)game.player->pos_y * SQSZ, (int)game.player->pos_x * SQSZ);
 }

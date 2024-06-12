@@ -12,15 +12,11 @@
 
 #include "cub3D.h"
 
-int	close_button(t_game *game, int option)
+void	close_button(void *game)
 {
-	mlx_destroy_window(game->mlx, game->mlx_win);
+	mlx_close_window(game->mlx);
+	mlx_terminate(game->mlx);
 	clean_memmory(game);
-	if (option == 1)
-	{
-		game = NULL;
-		return (0);
-	}
 	printf("\nGood bye!\n");
 	exit(EXIT_SUCCESS);
 }

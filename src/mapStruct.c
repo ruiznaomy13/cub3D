@@ -59,9 +59,8 @@ void	save_textures(char *line, t_game *game)
 {
 	int	i;
 	int	aux;
-	int	error;
 
-	((0) || (aux = 0) || (error = 0));
+	aux = 0;
 	if (is_map_texture(line, &i, &aux) == 1 && !game->map->texture_no)
 		game->map->texture_no = ft_substr(&line[i], aux, \
 		ft_strlen(&line[aux + i]) - 1);
@@ -75,9 +74,9 @@ void	save_textures(char *line, t_game *game)
 		game->map->texture_ea = ft_substr(&line[i], aux, \
 		ft_strlen(&line[aux + i]) - 1);
 	else if (is_map_texture(line, &i, &aux) == 5)
-		error = save_rgb(&line[first_char_pos(&line[i])], game->map->floor_c);
+		save_rgb(&line[first_char_pos(&line[i])], game->map->floor_c);
 	else if (is_map_texture(line, &i, &aux) == 6)
-		error = save_rgb(&line[first_char_pos(&line[i++])], game->map->ceiling_c);
+		save_rgb(&line[first_char_pos(&line[i++])], game->map->ceiling_c);
 	else
 		ft_error(game, EXIT_FAILURE);
 }

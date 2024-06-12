@@ -104,7 +104,7 @@ int	check_map_name(char *map_file)
 	return (0);
 }
 
-void	show_map(t_map *map)
+/*void	show_map(t_map *map)
 {
 	int i;
 	int j;
@@ -122,7 +122,7 @@ void	show_map(t_map *map)
 		i++;
 	}
 	write(1, "\n", 1);
-}
+}*/
 
 int	check_input_map(char *map_file, t_game *game)
 {

@@ -20,7 +20,7 @@
 # include <fcntl.h>
 # include <math.h>
 
-# include "mlx.h"
+# include "../inc/mlx42/include/MLX42/MLX42.h"
 # include "libft.h"
 # include "ft_printf.h"
 
@@ -36,14 +36,14 @@ void	clean_memmory(t_game *game);
 
 /* FT_FREE_GAME */
 void	clean_memmory(t_game *game);
-int     close_button(t_game *game, int option);
+void    close_button(void *wd);
 
 /* UTILS */
 void	free_char_array(char **str);
 char	get_first_char(char *line);
 int		first_char_pos(char *line);
-int     key_event(int key, t_game *game);
-int     game_update(t_game *wd);
+void    key_event(mlx_key_data_t key, void *game);
+void    game_update(void *wd);
 
 /* UTILS 2 */
 char	**ft_split_cub(const char *str);

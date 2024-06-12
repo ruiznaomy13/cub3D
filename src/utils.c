@@ -43,40 +43,53 @@ int	first_char_pos(char *line)
 	return (i);
 }
 
-int	key_event(int key, t_game *game)
+void	key_event(mlx_key_data_t key, void *param)
 {
-	ft_printf("Key pressed: %d\t", key);
-	if (key == 53)
+	t_game *game;
+
+	game = param;
+	ft_printf("Key pressed: %d\t", key.key);
+	if (key.key == 53)
 	{
 		ft_printf("\nGood bye!\n");
-		close_button(game, 1);
+		close_button(game);
 		exit(EXIT_SUCCESS);
 	}
-	game->key = key;
-	if (!(key == RIGHT || key == RIGHT_D || key == LEFT \
-	|| key == LEFT_A || key == DOWN || key == DOWN_S \
-	|| key == UP || key == UP_W))
+	game->key = key.key;
+	if (!(key.key == RIGHT || key.key == RIGHT_D || key.key == LEFT \
+	|| key.key == LEFT_A || key.key == DOWN || key.key == DOWN_S \
+	|| key.key == UP || key.key == UP_W))
 		ft_printf("\n");
 	else
 	{
 		move_player(game);
 		game->moves++;
 	}
-	return (0);
 }
 
-int	game_update(t_game *game)
+void	game_update(void *param)
 {
+	t_game	*game;
+	int	x;
+	int	y;
+
+	game = param;
+	x = 0;
+	y = 0;
 	if (game->player)
 	{
 		ft_raytracing(game);
 		drawBuffer(game, game->buffer);
-    	for(int y = 0; y < SCR_H; y++)
+    	while (y < SCR_H)
 		{
-			for(int x = 0; x < SCR_W; x++)
+			while (x < SCR_W)
+			{
 				game->buffer[y][x] = 0;
+				x++;
+			}
+			x = 0;
+			y++;
 		}
 		print_map(*game);
 	}
-	return (0);
 }
