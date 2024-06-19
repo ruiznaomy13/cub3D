@@ -31,7 +31,7 @@ SRCS		= main.c checker.c checkerAux.c auxiliarFunctions.c \
 OBJ			= $(addprefix ${OBJ_DIR}/,  ${SRCS:.c=.o})
 DEPS		= $(addprefix ${OBJ_DIR}/,  ${SRCS:.c=.d})
 RUTAS		= inc/libft/libft.a inc/ft_printf/libftprintf.a $(LIBMLX)/build/libmlx42.a -ldl \
-			-L/opt/hombrew/Cellar/glfw/3.4 -lglfw -lm
+			-L/opt/hombrew/Cellar/glfw/3.4 -lglfw -pthread -lm
 
 ######## COLORS #########
 GREEN		= \033[1;92m
