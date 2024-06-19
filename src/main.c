@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/06/11 13:34:15 by elias            ###   ########.fr       */
+/*   Updated: 2024/06/19 18:23:44 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ void	ft_error(t_game *game, int error)
 void	init_textures(t_game *game)
 {
 	game->texts = (t_textures *)ft_calloc(1, sizeof(t_textures));
-	game->texts->wall = mlx_load_xpm42("textures/minimap/wall_texture.xpm");
-	game->texts->player = mlx_load_xpm42("textures/minimap/player.xpm");
-	game->texts->walle = mlx_load_xpm42("textures/map/mossy.xpm");
+	game->texts->wall = mlx_load_png("textures/minimap/wall_texture.png");
+	game->texts->player = mlx_load_png("textures/minimap/player.png");
+	game->texts->walle = mlx_load_png("textures/map/mossy.png");
 	if (!game->texts->walle || !game->texts->wall || !game->texts->player)
 		ft_error(game, EXIT_FAILURE);
-	game->texts->texture_data = mlx_texture_to_image(game->mlx, game->texts->wall);
+	game->texts->texture_data = mlx_texture_to_image(game->mlx, game->texts->walle);
 	game->texts->floor = ((game->map->floor_c[0] & 0xff) << 16) + ((game->map->floor_c[1] & 0xff) << 8) + (game->map->floor_c[2] & 0xff);
 	game->texts->ceiling = ((game->map->ceiling_c[0] & 0xff) << 16) + ((game->map->ceiling_c[1] & 0xff) << 8) + (game->map->ceiling_c[2] & 0xff);
 }
@@ -42,6 +42,8 @@ int	init_game(char *map_file, t_game *game)
 
 	i = -1;
 	game->mlx = mlx_init(SCR_W, SCR_H, "cub3D", false);
+	if (!game->mlx)
+		return (EXIT_FAILURE);
 	game->mlx_win = mlx_new_image(game->mlx, SCR_W, SCR_H);
 	game->map = ft_calloc(1, sizeof(t_map));
 	game->n_players = 0;
@@ -66,12 +68,11 @@ int	main(int ac, char *av[])
 
 	if (ac != 2)
 		ft_error(NULL, EXIT_FAILURE);
-	init_game(av[1], &game);
-	print_map(game);
+	if (init_game(av[1], &game))
+		return (1);
 	mlx_loop_hook(game.mlx, &game_update, &game);
 	mlx_close_hook(game.mlx, &close_button, &game);
 	mlx_key_hook(game.mlx, key_event, &game);
 	mlx_loop(game.mlx);
-	clean_memmory(&game);
 	return (0);
 }

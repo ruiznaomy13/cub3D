@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/06/11 14:00:27 by elias            ###   ########.fr       */
+/*   Updated: 2024/06/19 18:15:37 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@
 #define P_E		23
 #define P_W		24
 #define	OUT_MAP	-1
-#define RIGHT 124
-#define RIGHT_D 2
-#define LEFT 123
-#define LEFT_A 0
-#define DOWN 125
-#define DOWN_S 1
-#define UP 126
-#define UP_W 13
+#define RIGHT 262
+#define RIGHT_D 68
+#define LEFT 263
+#define LEFT_A 65
+#define DOWN 264
+#define DOWN_S 83
+#define UP 265
+#define UP_W 87
 #define NUM_TXT 2
 
 /* ERROR TYPE*/
@@ -61,15 +61,12 @@ typedef struct s_point
 
 typedef struct	s_textures
 {
-	void			*wall;
-	void			*player;
-	void			*walle;
+	mlx_texture_t	*wall;
+	mlx_texture_t	*player;
+	mlx_texture_t	*walle;
 	mlx_image_t		*texture_data;
 	unsigned int	floor;
 	unsigned int	ceiling;
-	int				bpp;
-	int				size_line;
-	int				endian;
 }				t_textures;
 
 typedef struct s_player

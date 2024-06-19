@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_aux.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 20:09:24 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/06/11 13:53:14 by elias            ###   ########.fr       */
+/*   Updated: 2024/06/19 18:50:11 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,30 +33,33 @@ void	verLine(int x, t_game *game, int color)
 
 void	drawBuffer(t_game *game, unsigned int **buff)
 {
-    int x, y;
+	int	x;
+	int	y;
+	int	pixel;
+	int	color;
 
-	for (y = 0; y < SCR_H; y++)
-    {
-        for (x = 0; x < SCR_W; x++)
-        {
-            int pixel;
-            int color;
+	x = -1;
+	y = -1;
+	while (++y < SCR_H)
+	{
+		while (++x < SCR_W)
+		{
 			color = buff[y][x];
-			pixel = y * SCR_W * 4 + x * (32 / 8);
+			pixel = y * SCR_W + x;
 			if (game->buffer[y][x] > 0)
-			{}
+				;
 			else if (y < SCR_H / 2)
-        		color = game->texts->ceiling;
-			else if (y < SCR_H -1)
+				color = game->texts->ceiling;
+			else if (y < SCR_H - 1)
 				color = game->texts->floor;
-            game->mlx_win->pixels[pixel] = color & 0xFF;         // Blue
-            game->mlx_win->pixels[pixel + 1] = (color >> 8) & 0xFF;  // Green
-            game->mlx_win->pixels[pixel + 2] = (color >> 16) & 0xFF; // Red
-            game->mlx_win->pixels[pixel + 3] = (color >> 24) & 0xFF; // Alpha
-        }
-    }
-    mlx_image_to_window(game->mlx, game->mlx_win, 0, 0);
-    mlx_delete_image(game->mlx, game->mlx_win);
+			//game->mlx_win->pixels[pixel] = color & 0xFF;         // Blue
+			//game->mlx_win->pixels[pixel + 1] = (color >> 8) & 0xFF;  // Green
+			//game->mlx_win->pixels[pixel + 2] = (color >> 16) & 0xFF; // Red
+			//game->mlx_win->pixels[pixel + 3] = (color >> 24) & 0xFF; // Alpha
+			game->mlx_win->pixels[pixel] = color;
+		}
+		x = -1;
+	}
 }
 
 int FixAng(int a)

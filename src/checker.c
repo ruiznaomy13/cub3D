@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:44 by ncastell          #+#    #+#             */
-/*   Updated: 2024/05/13 16:02:19 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/06/19 16:15:35 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int	check_map_name(char *map_file)
 	write(1, "\n", 1);
 }*/
 
-int	check_input_map(char *map_file, t_game *game)
+void	check_input_map(char *map_file, t_game *game)
 {
 	int		fd;
 	int		map_row;
@@ -153,5 +153,4 @@ int	check_input_map(char *map_file, t_game *game)
 	}
 	check_players(game);
 	ft_printf("Game saved correctly!");
-	return (EXIT_SUCCESS);
 }

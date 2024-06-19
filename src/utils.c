@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 22:47:28 by ncastell          #+#    #+#             */
-/*   Updated: 2024/05/24 11:31:29 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/06/19 18:59:28 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,22 +49,20 @@ void	key_event(mlx_key_data_t key, void *param)
 
 	game = param;
 	ft_printf("Key pressed: %d\t", key.key);
-	if (key.key == 53)
+	if (key.key == 256)
 	{
 		ft_printf("\nGood bye!\n");
 		close_button(game);
-		exit(EXIT_SUCCESS);
 	}
 	game->key = key.key;
-	if (!(key.key == RIGHT || key.key == RIGHT_D || key.key == LEFT \
+	if ((key.key == RIGHT || key.key == RIGHT_D || key.key == LEFT \
 	|| key.key == LEFT_A || key.key == DOWN || key.key == DOWN_S \
 	|| key.key == UP || key.key == UP_W))
-		ft_printf("\n");
-	else
 	{
 		move_player(game);
 		game->moves++;
 	}
+	ft_printf("\n");
 }
 
 void	game_update(void *param)
@@ -80,6 +78,7 @@ void	game_update(void *param)
 	{
 		ft_raytracing(game);
 		drawBuffer(game, game->buffer);
+		clear_pixels(game->mlx_win);
     	while (y < SCR_H)
 		{
 			while (x < SCR_W)
@@ -91,5 +90,6 @@ void	game_update(void *param)
 			y++;
 		}
 		print_map(*game);
+		mlx_image_to_window(game->mlx, game->mlx_win, 0, 0);
 	}
 }

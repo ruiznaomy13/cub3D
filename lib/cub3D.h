@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/05/19 23:15:48 by elias            ###   ########.fr       */
+/*   Updated: 2024/06/19 18:59:22 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void    game_update(void *wd);
 char	**ft_split_cub(const char *str);
 
 /* CHECKER */
-int		check_input_map(char *map_file, t_game *game);
+void	check_input_map(char *map_file, t_game *game);
 int		check_map_name(char *map_file);
 char	get_first_char(char *line);
 int		read_dimension(int fd, t_map *map, char *map_file, int *map_row);
@@ -70,6 +70,8 @@ void	save_map(char *line, t_game *game, int *map_row);
 
 /* PRINT */
 void	print_map(t_game    wd);
+void    mlx_draw_texture(mlx_image_t *window_image, mlx_texture_t *texture, int dest_x, int dest_y);
+void    clear_pixels(mlx_image_t *image);
 
 /* MOVES */
 void    move_player(t_game *game);
