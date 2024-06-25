@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:44 by ncastell          #+#    #+#             */
-/*   Updated: 2024/06/19 16:15:35 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/25 17:41:04 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ int	check_map(t_map *map)
 }
 int	line_length(char *line)
 {
-	int	i = ft_strlen(line) - 2;
+	int	i = ft_strlen(line) - 1;
 	while (line[i] == ' ' || line[i] == '\t')
 		i--;
-	return (i + 2);
+	return (i);
 }
 
 int	read_dimension(int fd, t_map *map, char *map_file, int *map_row)
@@ -83,7 +83,7 @@ int	read_dimension(int fd, t_map *map, char *map_file, int *map_row)
 		if (get_first_char(line) == '1')
 			map->rows += 1;
 		if (map->cols < line_ln)
-			map->cols = line_ln - 1;
+			map->cols = line_ln;
 		free(line);
 		line = get_next_line(fd);
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapStruct.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 23:00:32 by ncastell          #+#    #+#             */
-/*   Updated: 2024/05/15 04:49:31 by elias            ###   ########.fr       */
+/*   Updated: 2024/06/25 17:27:24 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,11 +149,14 @@ void	save_map(char *line, t_game *game, int *map_row)
 	i = -1;
 	if (!is_valid_line(line))
 		return (ft_error(game, EXIT_FAILURE));
-	game->map->map_array[*map_row] = ft_calloc(sizeof(int), game->map->cols);
-	if (!game->map->map_array[*map_row])
-		return (ft_error(game, 0));
-	while (++i < game->map->cols)
-		save_in_array(game, line, &i, map_row);
-	game->map->map_array[*map_row][i] = '\0';
-	(*map_row)++;
+	if (*map_row <= game->map->rows)
+	{
+		game->map->map_array[*map_row] = ft_calloc(sizeof(int), game->map->cols);
+		if (!game->map->map_array[*map_row])
+			return (ft_error(game, 0));
+		while (++i < game->map->cols)
+			save_in_array(game, line, &i, map_row);
+		game->map->map_array[*map_row][i] = '\0';
+		(*map_row)++;
+	}
 }

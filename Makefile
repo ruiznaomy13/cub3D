@@ -12,10 +12,10 @@
 NAME		= cub3D
 HEADER		= lib/cub3D.h
 
-INCLUDE		= -I lib/ -I inc/libft -I inc/ft_printf -I inc/mlx
+INCLUDE		= -I lib/ -I inc/libft -I inc/ft_printf -I $(LIBMLX)/include
 
 CC			= gcc
-C_FLAGS		= -Wall -Werror -Wextra -O3 -g -fPIE
+C_FLAGS		= -Wall -Werror -Wextra -Wunreachable-code -Ofast
 LIBMLX		= inc/mlx42
 #MLX_FLAGS	= -L inc/mlx -lmlx -framework OpenGL -framework AppKit
 
@@ -30,8 +30,7 @@ SRCS		= main.c checker.c checkerAux.c auxiliarFunctions.c \
 
 OBJ			= $(addprefix ${OBJ_DIR}/,  ${SRCS:.c=.o})
 DEPS		= $(addprefix ${OBJ_DIR}/,  ${SRCS:.c=.d})
-RUTAS		= inc/libft/libft.a inc/ft_printf/libftprintf.a $(LIBMLX)/build/libmlx42.a -ldl \
-			-L/opt/hombrew/Cellar/glfw/3.4 -lglfw -pthread -lm
+RUTAS		= inc/libft/libft.a inc/ft_printf/libftprintf.a $(LIBMLX)/build/libmlx42.a -ldl -lglfw -pthread -lm
 
 ######## COLORS #########
 GREEN		= \033[1;92m

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/06/19 18:23:44 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/25 17:26:46 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,34 @@ int	init_game(char *map_file, t_game *game)
 	int	i;
 
 	i = -1;
-	game->mlx = mlx_init(SCR_W, SCR_H, "cub3D", false);
+	mlx_set_setting(MLX_MAXIMIZED, true);
+	game->mlx = mlx_init(SCR_W, SCR_H, "cub3D", true);
 	if (!game->mlx)
 		return (EXIT_FAILURE);
 	game->mlx_win = mlx_new_image(game->mlx, SCR_W, SCR_H);
-	game->map = ft_calloc(1, sizeof(t_map));
+	if (!game->mlx_win)
+		return (EXIT_FAILURE);
+	game->map = (t_map *)ft_calloc(1, sizeof(t_map));
+	if (!game->map)
+		return (EXIT_FAILURE);
 	game->n_players = 0;
 	game->moves = 0;
-	game->buffer = (unsigned int **)malloc(SCR_H * sizeof(int *));
+	game->buffer = (unsigned int **)malloc(SCR_H * sizeof(unsigned int *));
+	if (!game->buffer)
+		return (EXIT_FAILURE);
     while (++i < SCR_H)
-		game->buffer[i] = (unsigned int *)malloc(SCR_W * sizeof(int));
-
+	{
+		game->buffer[i] = (unsigned int *)malloc(SCR_W * sizeof(unsigned int));
+		if (!game->buffer[i])
+			return (EXIT_FAILURE);
+	}
 	check_input_map(map_file, game);
+	printf("Hola\n");
 	if (!check_map(game->map))
 		ft_error(game, 1);
 	printf(GREEN"\nGOOD MAP!\n"WHITE);
 	init_textures(game);
 	init_ray(game);
-	//store_map();
 	return (EXIT_SUCCESS);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checkerAux.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 22:26:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/05/15 04:43:39 by elias            ###   ########.fr       */
+/*   Updated: 2024/06/25 17:28:55 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ int	check_line_info(char *line, t_game *game)
 	aux = ft_split_cub(line);
 	if (!aux)
 		return (1);
+	printf("Estoy llegano aqui %s\n", aux[0]);
 	if (!ft_strncmp(aux[0], "NO", 3))
 		return (is_valid_path(aux[1]));
 	else if (!ft_strncmp(aux[0], "SO", 3))	
