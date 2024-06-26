@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 22:50:02 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/06/26 05:20:44 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/26 15:15:58 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	render(t_game *game, int side, int i)
 	texPos = (game->ray_cast->drawStart - SCR_H / 2 + game->ray_cast->lineHeight / 2) * step;
 	for(int y = game->ray_cast->drawStart; y < game->ray_cast->drawEnd; y++)
 	{
-		texY = (int)texPos & (TEX_H - 1);
+		texY = ((int)texPos) & (TEX_H - 1);
 		texPos += step;
 		unsigned int color_offset = texY * TEX_W * 4 + texX * 4;
 		uint32_t color = (game->texts->texture_data->pixels[color_offset + 2] & 0xFF)       | // Blue

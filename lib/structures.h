@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/06/26 05:03:18 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/26 15:04:33 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,8 @@ typedef struct	s_textures
 	mlx_texture_t	*player;
 	mlx_texture_t	*walle;
 	mlx_image_t		*texture_data;
-	unsigned int	floor;
-	unsigned int	ceiling;
+	uint32_t		floor;
+	uint32_t		ceiling;
 }				t_textures;
 
 typedef struct s_player

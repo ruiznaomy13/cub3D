@@ -1,9 +1,9 @@
 SO textures/SO.txt
-C     105,30,51
+C     155,30,51
 WE textures/WE.txt
 EA textures/EA.txt
 
-F 210,200,40   
+F 10,10,40   
 
 
       	NO textures/NO.txt

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/06/26 04:49:52 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/26 15:02:19 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	ft_raytracing(t_game *game);
 
 /* RAY_AUX */
 void	verLine(int x, t_game *game, int color);
-void	drawBuffer(t_game *game, unsigned int **buff);
+void	drawBuffer(t_game *game, uint32_t **buff);
 
 /* TEXTURES */
 void	render(t_game *game, int side, int i);

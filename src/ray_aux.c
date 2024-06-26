@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_aux.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 20:09:24 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/06/26 05:22:34 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/26 15:06:44 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ void	verLine(int x, t_game *game, int color)
 	}	
 }
 
-void	drawBuffer(t_game *game, unsigned int **buff)
+void	drawBuffer(t_game *game, uint32_t **buff)
 {
-	int	x;
-	int	y;
+	int			x;
+	int			y;
 	uint32_t	color;
 
 	x = -1;
@@ -44,8 +44,14 @@ void	drawBuffer(t_game *game, unsigned int **buff)
 		while (++x < SCR_W)
 		{
 			color = buff[y][x];
-			if (color > 0)
-				mlx_put_pixel(game->mlx_win, x, y, color);
+			if (color == 0)
+			{
+				if (y < SCR_H / 2)
+					color = game->texts->floor;
+				else
+					color = game->texts->ceiling;
+			}
+			mlx_put_pixel(game->mlx_win, x, y, color);
 			//game->mlx_win->pixels[pixel] = color;
 		}
 		x = -1;

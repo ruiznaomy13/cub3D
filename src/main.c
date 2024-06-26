@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/06/26 05:12:23 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/26 15:04:55 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ void	init_textures(t_game *game)
 	if (!game->texts->walle || !game->texts->wall || !game->texts->player)
 		ft_error(game, EXIT_FAILURE);
 	game->texts->texture_data = mlx_texture_to_image(game->mlx, game->texts->walle);
-	game->texts->floor = (0xff << 24) + ((game->map->floor_c[0] & 0xff) << 16) + ((game->map->floor_c[1] & 0xff) << 8) + (game->map->floor_c[2] & 0xff);
-	game->texts->ceiling = (0xff << 24) + ((game->map->ceiling_c[0] & 0xff) << 16) + ((game->map->ceiling_c[1] & 0xff) << 8) + (game->map->ceiling_c[2] & 0xff);
-	game->floor = mlx_new_image(game->mlx, SCR_W, SCR_H / 2);
+	game->texts->floor = (0xff << 24) | ((game->map->floor_c[0] & 0xff) << 16) | ((game->map->floor_c[1] & 0xff) << 8) | (game->map->floor_c[2] & 0xff);
+	game->texts->ceiling = (0xff << 24) | ((game->map->ceiling_c[0] & 0xff) << 16) | ((game->map->ceiling_c[1] & 0xff) << 8) | (game->map->ceiling_c[2] & 0xff);
+	/* game->floor = mlx_new_image(game->mlx, SCR_W, SCR_H / 2);
 	game->ceiling = mlx_new_image(game->mlx, SCR_W, SCR_H / 2);
 	fill_color(game->floor, game->texts->floor);
 	fill_color(game->ceiling, game->texts->ceiling);
 	mlx_image_to_window(game->mlx, game->floor, 0, 0);
-	mlx_image_to_window(game->mlx, game->ceiling, 0, SCR_H / 2);
+	mlx_image_to_window(game->mlx, game->ceiling, 0, SCR_H / 2); */
 }
 
 int	init_game(char *map_file, t_game *game)
