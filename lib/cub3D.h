@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/06/19 18:59:22 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/26 04:49:52 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,6 @@ void	drawBuffer(t_game *game, unsigned int **buff);
 
 /* TEXTURES */
 void	render(t_game *game, int side, int i);
+void    fill_color(mlx_image_t *img, uint32_t color);
 
 #endif

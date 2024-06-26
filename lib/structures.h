@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/06/25 17:11:16 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/06/26 05:03:18 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,9 +125,11 @@ typedef struct s_game
 	int				key;
 	mlx_t			*mlx;
 	mlx_image_t		*mlx_win;
+	mlx_image_t		*ceiling;
+	mlx_image_t		*floor;
 	int				checker;
 	int				end;
-	unsigned int	**buffer;
+	uint32_t		**buffer;
 	int				moves;
 	// int			error;
 }				t_game;

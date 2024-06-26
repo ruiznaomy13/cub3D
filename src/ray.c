@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:53:57 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/05/24 11:35:17 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/06/26 04:28:29 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ void	ft_raytracing(t_game *game)
 		game->ray_cast->drawStart = -game->ray_cast->lineHeight / 2 + SCR_H / 2;
 		if (game->ray_cast->drawStart < 0)
 			game->ray_cast->drawStart = 0;
-		game->ray_cast->drawEnd = game->ray_cast->lineHeight / 2 + SCR_H / 2;
+		game->ray_cast->drawEnd = game->ray_cast->drawStart + game->ray_cast->lineHeight;
 		if (game->ray_cast->drawEnd >= SCR_H)
 			game->ray_cast->drawEnd = SCR_H - 1;
 		render(game, side, i);

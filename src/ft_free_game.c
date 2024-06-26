@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_game.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 19:16:27 by ncastell          #+#    #+#             */
-/*   Updated: 2024/06/25 16:33:25 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/06/26 03:57:25 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	close_button(void *param)
 
 	game = param;
 	mlx_close_window(game->mlx);
-	mlx_terminate(game->mlx);
-	//clean_memmory(game);
+	//mlx_terminate(game->mlx);
+	clean_memmory(game);
 	printf("\nGood bye!\n");
 	exit(EXIT_SUCCESS);
 }
@@ -40,7 +40,6 @@ static void	clean_map(t_map *map)
 			}*/
 			free(map->map_array);
 		}
-		free(map->line);
 		free(map->texture_no);
 		free(map->texture_so);
 		free(map->texture_we);
@@ -54,6 +53,6 @@ void	clean_memmory(t_game *game)
 	if (game)
 	{
 		clean_map(game->map);
-		// free(game->player);
+		free(game->player);
 	}
 }
