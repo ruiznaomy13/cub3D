@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 22:50:02 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/06/26 15:15:58 by elias            ###   ########.fr       */
+/*   Updated: 2024/06/28 17:53:03 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ void	render(t_game *game, int side, int i)
 		texY = ((int)texPos) & (TEX_H - 1);
 		texPos += step;
 		unsigned int color_offset = texY * TEX_W * 4 + texX * 4;
-		uint32_t color = (game->texts->texture_data->pixels[color_offset + 2] & 0xFF)       | // Blue
-						((game->texts->texture_data->pixels[color_offset + 1] & 0xFF) << 8) | // Green
-						((game->texts->texture_data->pixels[color_offset + 0] & 0xFF) << 16) | // Red
-						((game->texts->texture_data->pixels[color_offset + 3] & 0xFF) << 24); // Alpha
+		uint32_t color = (game->texts->texture_data->pixels[color_offset + 3] & 0xFF)       | // Blue
+						((game->texts->texture_data->pixels[color_offset + 2] & 0xFF) << 8) | // Green
+						((game->texts->texture_data->pixels[color_offset + 1] & 0xFF) << 16) | // Red
+						((game->texts->texture_data->pixels[color_offset + 0] & 0xFF) << 24); // Alpha
 		game->buffer[y][i] = color;
 	}
 }

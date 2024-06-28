@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:44 by ncastell          #+#    #+#             */
-/*   Updated: 2024/06/26 03:57:43 by marvin           ###   ########.fr       */
+/*   Updated: 2024/06/28 17:32:49 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,6 +151,7 @@ void	check_input_map(char *map_file, t_game *game)
 		free(game->map->line);
 		game->map->line = get_next_line(fd);
 	}
+	close(fd);
 	check_players(game);
 	ft_printf("Game saved correctly!");
 }
