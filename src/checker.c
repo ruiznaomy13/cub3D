@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:44 by ncastell          #+#    #+#             */
-/*   Updated: 2024/05/10 14:55:45 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/06/28 16:08:21 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void	show_map(t_map *map)
 	while (i < map->rows)
 	{
 		j = 0;
-		write(1, "\n", 1);
+		ft_printf("\n");
 		while (j < map->cols)
 		{
 			ft_printf("%d", map->map_array[i][j]);
@@ -121,7 +121,7 @@ void	show_map(t_map *map)
 		}
 		i++;
 	}
-	write(1, "\n", 1);
+	ft_printf("\n");
 }
 
 int	check_input_map(char *map_file, t_game *game)

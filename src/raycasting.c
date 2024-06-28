@@ -156,23 +156,7 @@
 // 	int startX = (int)jugador->px;
 // 	int startY = (int)jugador->py;
 // 	int playerColor = 0x800080;
-
-// 	for (int i = startX; i < startX + P_SIZE; i++) {
-// 		for (int j = startY; j < startY + P_SIZE; j++)
-// 			my_mlx_pixel_put(data, i, j, playerColor);
-// 	}
-
-// 	int endX = startX + (P_SIZE / 2) + (cos(jugador->pa) * P_SIZE * 2);
-// 	int endY = startY + (P_SIZE / 2) + (sin(jugador->pa) * P_SIZE * 2);
-// 	int lineColor = playerColor;
-// 	int lineWidth = 3;
-
-// 	int dx = endX - (startX + P_SIZE / 2);
-// 	int dy = endY - (startY + P_SIZE / 2);
-// 	int steps = abs(dx) > abs(dy) ? abs(dx) : abs(dy);
-// 	float Xinc = dx / (float)steps;
-// 	float Yinc = dy / (float)steps;
-// 	float X = startX + P_SIZE / 2;
+		// free(game->player);
 // 	float Y = startY + P_SIZE / 2;
 
 // 	for (int i = 0; i <= steps; i++) {

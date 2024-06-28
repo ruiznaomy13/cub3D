@@ -6,7 +6,7 @@
 #    By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/23 21:20:17 by ncastell          #+#    #+#              #
-#    Updated: 2024/02/11 18:39:08 by ncastell         ###   ########.fr        #
+#    Updated: 2024/06/28 16:22:13 by ncastell         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,7 @@ DEPS 	= $(addprefix $(OBJ_DIR)/, ${SRCS:.c=.d})
 DEPS_BONUS 	= $(addprefix $(OBJ_DIR)/, ${SRCS_BONUS:.c=.d})
 
 CC	= cc
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -fPIE
 
 ######## COLORS ########
 GREEN		= \033[1;92m

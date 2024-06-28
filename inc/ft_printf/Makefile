@@ -12,7 +12,7 @@ DEPS	= $(addsuffix .d, $(basename ${OBJS}))
 
 CC		= gcc
 
-CFLAGS	= -Wall -Wextra -Werror
+CFLAGS	= -Wall -Wextra -Werror -fPIE
 
 # COLORS
 GREEN = \033[1;92m

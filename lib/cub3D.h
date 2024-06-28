@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/04/10 16:20:24 by elias            ###   ########.fr       */
+/*   Updated: 2024/06/28 16:15:12 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <fcntl.h>
 # include <math.h>
 
-# include "mlx.h"
 # include "libft.h"
 # include "ft_printf.h"
 
@@ -31,12 +30,8 @@ void	ft_error(t_game *game, int error);
 void	init_textures(t_game *game);
 int     init_game(char *map_file, t_game *game);
 
-/* FREE GAME */
-void	clean_memmory(t_game *game);
-
 /* FT_FREE_GAME */
 void	clean_memmory(t_game *game);
-int     close_button(t_game *game, int option);
 
 /* UTILS */
 void	free_char_array(char **str);
@@ -67,18 +62,5 @@ int		arg_counter(char **argv);
 void	save_textures(char *line, t_game *game);
 int		save_rgb(char *line, int *color_array);
 void	save_map(char *line, t_game *game, int *map_row);
-
-/* PRINT */
-void	print_map(t_game    wd);
-
-/* MOVES */
-void    move_player(t_game *game);
-
-/* RAY */
-void	init_ray(t_game *game);
-void	ft_raytracing(t_game *game);
-
-/* RAY_AUX */
-void	verLine(int x, t_game *game, int color);
 
 #endif

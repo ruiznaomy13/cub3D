@@ -3,27 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_game.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42barcelona.    +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 19:16:27 by ncastell          #+#    #+#             */
-/*   Updated: 2024/04/06 09:18:29 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/06/28 16:16:13 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-int	close_button(t_game *game, int option)
-{
-	mlx_destroy_window(game->mlx, game->mlx_win);
-	clean_memmory(game);
-	if (option == 1)
-	{
-		game = NULL;
-		return (0);
-	}
-	printf("\nGood bye!\n");
-	exit(EXIT_SUCCESS);
-}
 
 static void	clean_map(t_map *map)
 {
@@ -52,6 +39,5 @@ void	clean_memmory(t_game *game)
 	if (game)
 	{
 		clean_map(game->map);
-		// free(game->player);
 	}
 }
