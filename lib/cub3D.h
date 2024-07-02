@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/06/28 17:43:23 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/02 16:50:55 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int		check_map(t_map *map);
 int		check_line_info(char *line, t_game *game);
 int		check_paths(t_game *game);
 void 	check_players(t_game *game);
+int		is_valid_path(char *line, char ***aux);
 
 /* AUXILIAR FUNCTIONS */
 int		arg_counter(char **argv);

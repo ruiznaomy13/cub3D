@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 22:26:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/06/25 17:28:55 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/02 16:54:32 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,21 +29,23 @@ int	check_paths(t_game *game)
 	return (1);
 }
 
-int	is_valid_path(char *line)
+int	is_valid_path(char *line, char ***aux)
 {
 	int		fd;
 	char 	*file;
 
 	file = ft_substr(line, 0, ft_strlen(line) - 1);
+	if (!file)
+		return (free_char_array(*aux), 1);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		return (1);
+		return (free_char_array(*aux), 1);
 	close(fd);
 	free(file);
-	return (0);
+	return (free_char_array(*aux), 0);
 }
 
-int	is_valid_color(char *line)
+int	is_valid_color(char *line, char ***arr)
 {
 	char	**aux;
 	int		i;
@@ -54,19 +56,19 @@ int	is_valid_color(char *line)
 	i = 0;
 	aux = ft_split(color, ',');
 	if (!aux)
-		return (1);
+		return (free(color), 1);
 	len = arg_counter(aux);
 	if (len != 3)
-		return (free(color), free_char_array(aux), 1);
+		return (free(color), free_char_array(aux), free_char_array(*arr), 1);
 	while (i < 3)
 	{
 		if ((int)ft_atoi(aux[i]) < 0)
 		{
-			return (free(color), free_char_array(aux), 1);
+			return (free(color), free_char_array(aux), free_char_array(*arr), 1);
 		}
 		i++;
 	}
-	return (free(color), free_char_array(aux), 0);
+	return (free(color), free_char_array(aux), free_char_array(*arr), 0);
 }
 
 int	check_line_info(char *line, t_game *game)
@@ -76,25 +78,24 @@ int	check_line_info(char *line, t_game *game)
 	aux = ft_split_cub(line);
 	if (!aux)
 		return (1);
-	printf("Estoy llegano aqui %s\n", aux[0]);
 	if (!ft_strncmp(aux[0], "NO", 3))
-		return (is_valid_path(aux[1]));
+		return (is_valid_path(aux[1], &aux));
 	else if (!ft_strncmp(aux[0], "SO", 3))	
-		return (is_valid_path(aux[1]));
+		return (is_valid_path(aux[1], &aux));
 	else if (!ft_strncmp(aux[0], "WE", 3))	
-		return (is_valid_path(aux[1]));
+		return (is_valid_path(aux[1], &aux));
 	else if (!ft_strncmp(aux[0], "EA", 3))
-		return (is_valid_path(aux[1]));
+		return (is_valid_path(aux[1], &aux));
 	else if (!ft_strncmp(aux[0], "F", 2))
-		return (is_valid_color(aux[1]));
+		return (is_valid_color(aux[1], &aux));
 	else if (!ft_strncmp(aux[0], "C", 2))
-		return (is_valid_color(aux[1]));
+		return (is_valid_color(aux[1], &aux));
 	else
 	{
 		if (get_first_char(aux[0]) == '1' && check_paths(game))
-			return (2);
+			return (free_char_array(aux), 2);
 	}
-	return (1);
+	return (free_char_array(aux), 1);
 }
 
 void	check_players(t_game *game)

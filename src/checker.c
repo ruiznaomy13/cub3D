@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:44 by ncastell          #+#    #+#             */
-/*   Updated: 2024/06/28 17:32:49 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/02 16:29:33 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,6 +147,7 @@ void	check_input_map(char *map_file, t_game *game)
 				save_map(game->map->line, game, &map_row);
 			else
 				ft_error(game, EXIT_FAILURE);
+				
 		}
 		free(game->map->line);
 		game->map->line = get_next_line(fd);

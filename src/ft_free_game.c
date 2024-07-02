@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_game.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 19:16:27 by ncastell          #+#    #+#             */
-/*   Updated: 2024/06/26 03:57:25 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/02 16:42:29 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,24 +26,28 @@ void	close_button(void *param)
 
 static void	clean_map(t_map *map)
 {
-	//int	i;
-
-	//i = -1;
+	int	i;
+	
+	i = -1;
 	if (map)
 	{
 		if (map->map_array)
 		{
-			/*while (++i < map->rows)
+			while (++i < map->rows)
 			{
 				if (map->map_array[i])
 					free(map->map_array[i]);
-			}*/
+			}
 			free(map->map_array);
 		}
-		free(map->texture_no);
-		free(map->texture_so);
-		free(map->texture_we);
-		free(map->texture_ea);
+		if (map->texture_no)
+			free(map->texture_no);
+		if (map->texture_so)
+			free(map->texture_so);
+		if (map->texture_we)
+			free(map->texture_we);
+		if (map->texture_ea)
+			free(map->texture_ea);
 		free(map);
 	}
 }
@@ -52,7 +56,11 @@ void	clean_memmory(t_game *game)
 {
 	if (game)
 	{
-		clean_map(game->map);
-		free(game->player);
+		if (game->map)
+			clean_map(game->map);
+		if (game->player)
+		{
+			free(game->player);
+		}
 	}
 }

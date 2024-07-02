@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/06/28 18:03:41 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/02 16:21:45 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	ft_error(t_game *game, int error)
 {
-	(void)game;
 	if (error == EXIT_FAILURE)
 		ft_printf(MAGENTA"\nSomething went wrong!\n\n"WHITE);
 	else if (error == E_SYNTAX)
@@ -80,6 +79,7 @@ int	main(int ac, char *av[])
 {
 	t_game	game;
 
+	game = (t_game){};
 	if (ac != 2)
 		ft_error(NULL, EXIT_FAILURE);
 	if (init_game(av[1], &game))
