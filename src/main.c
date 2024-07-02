@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/02 16:21:45 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/02 17:45:01 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,18 @@ void	init_textures(t_game *game)
 	game->texts = (t_textures *)ft_calloc(1, sizeof(t_textures));
 	game->texts->wall = mlx_load_png("textures/minimap/wall_texture.png");
 	game->texts->player = mlx_load_png("textures/minimap/player.png");
-	game->texts->walle = mlx_load_png("textures/map/mossy.png");
-	if (!game->texts->walle || !game->texts->wall || !game->texts->player)
+	game->texts->walln = mlx_load_png("textures/map/NO.png");
+	game->texts->walls = mlx_load_png("textures/map/SO.png");
+	game->texts->wallw = mlx_load_png("textures/map/WE.png");
+	game->texts->walle = mlx_load_png("textures/map/EA.png");
+	if (!check_textures(game->texts) || !game->texts->wall || !game->texts->player)
 		ft_error(game, EXIT_FAILURE);
-	game->texts->texture_data = mlx_texture_to_image(game->mlx, game->texts->walle);
+	game->texts->texture_n = mlx_texture_to_image(game->mlx, game->texts->walln);
+	game->texts->texture_s = mlx_texture_to_image(game->mlx, game->texts->walls);
+	game->texts->texture_w = mlx_texture_to_image(game->mlx, game->texts->wallw);
+	game->texts->texture_e = mlx_texture_to_image(game->mlx, game->texts->walle);
 	game->texts->floor = (0xff << 24) | ((game->map->floor_c[0] & 0xff) << 16) | ((game->map->floor_c[1] & 0xff) << 8) | (game->map->floor_c[2] & 0xff);
 	game->texts->ceiling = (0xff << 24) | ((game->map->ceiling_c[0] & 0xff) << 16) | ((game->map->ceiling_c[1] & 0xff) << 8) | (game->map->ceiling_c[2] & 0xff);
-	/* game->floor = mlx_new_image(game->mlx, SCR_W, SCR_H / 2);
-	game->ceiling = mlx_new_image(game->mlx, SCR_W, SCR_H / 2);
-	fill_color(game->floor, game->texts->floor);
-	fill_color(game->ceiling, game->texts->ceiling);
-	mlx_image_to_window(game->mlx, game->floor, 0, 0);
-	mlx_image_to_window(game->mlx, game->ceiling, 0, SCR_H / 2); */
 }
 
 int	init_game(char *map_file, t_game *game)

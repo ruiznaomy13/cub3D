@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/06/28 17:43:29 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/02 17:47:06 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@
 /* ERROR TYPE*/
 #define E_SYNTAX 2
 
-#define SCR_W 1280
-#define SCR_H 720
+#define SCR_W 1920
+#define SCR_H 1080
 #define TEX_W 64
 #define TEX_H 64
 
@@ -63,8 +63,14 @@ typedef struct	s_textures
 {
 	mlx_texture_t	*wall;
 	mlx_texture_t	*player;
+	mlx_texture_t	*walln;
+	mlx_texture_t	*walls;
+	mlx_texture_t	*wallw;
 	mlx_texture_t	*walle;
-	mlx_image_t		*texture_data;
+	mlx_image_t		*texture_n;
+	mlx_image_t		*texture_s;
+	mlx_image_t		*texture_e;
+	mlx_image_t		*texture_w;
 	uint32_t		floor;
 	uint32_t		ceiling;
 }				t_textures;

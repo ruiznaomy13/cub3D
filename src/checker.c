@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:44 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/02 16:29:33 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/02 17:01:41 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	check_map(t_map *map)
 	iter.x = 0;
 	iter.y = 0;
 	check = 0;
-	printf("rows: %d | cols: %d\n", map->rows, map->cols);
 	while (iter.x < map->rows && !check)
 	{
 		iter.y = 0;

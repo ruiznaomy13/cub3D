@@ -1,12 +1,12 @@
-SO textures/SO.txt
+SO textures/map/SO.png
 C     155,30,51
-WE textures/WE.txt
-EA textures/EA.txt
+WE textures/map/WE.png
+EA textures/map/EA.png
 
 F 240,110,40   
 
 
-      	NO textures/NO.txt
+      	NO textures/map/NO.png
 
 
 

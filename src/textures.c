@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 22:50:02 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/06/28 17:53:03 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/02 17:27:27 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,29 @@
 
 void	render(t_game *game, int side, int i)
 {
-	double	wallX;
-	int		texX;
-	int		texY;
-	double	step;
-	double	texPos;
+	double		wallX;
+	int			texX;
+	int			texY;
+	double		step;
+	double		texPos;
+	mlx_image_t	*textr;
 
 	if (side == 0)
+	{
 		wallX = game->player->pos_y + game->ray_cast->perpWallDist * game->ray_cast->rayDirY;
+		if (game->ray_cast->stepX == 1)
+			textr = game->texts->texture_e;
+		else
+			textr = game->texts->texture_w;
+	}
 	else
+	{
 		wallX = game->player->pos_x + game->ray_cast->perpWallDist * game->ray_cast->rayDirX;
+		if (game->ray_cast->stepY == 1)
+			textr = game->texts->texture_n;
+		else
+			textr = game->texts->texture_s;
+	}
 	wallX -= floor((wallX));
 	texX = (int)(wallX * (double)TEX_W);
 	if(side == 0 && game->ray_cast->rayDirX > 0)
@@ -37,10 +50,15 @@ void	render(t_game *game, int side, int i)
 		texY = ((int)texPos) & (TEX_H - 1);
 		texPos += step;
 		unsigned int color_offset = texY * TEX_W * 4 + texX * 4;
-		uint32_t color = (game->texts->texture_data->pixels[color_offset + 3] & 0xFF)       | // Blue
+		uint32_t color = (textr->pixels[color_offset + 3] & 0xFF)       | // Blue
+						((textr->pixels[color_offset + 2] & 0xFF) << 8) | // Green
+						((textr->pixels[color_offset + 1] & 0xFF) << 16) | // Red
+						((textr->pixels[color_offset + 0] & 0xFF) << 24); // Alpha
+		/*uint32_t color = (game->texts->texture_data->pixels[color_offset + 3] & 0xFF)       | // Blue
 						((game->texts->texture_data->pixels[color_offset + 2] & 0xFF) << 8) | // Green
 						((game->texts->texture_data->pixels[color_offset + 1] & 0xFF) << 16) | // Red
 						((game->texts->texture_data->pixels[color_offset + 0] & 0xFF) << 24); // Alpha
+						*/
 		game->buffer[y][i] = color;
 	}
 }
@@ -61,4 +79,17 @@ void	fill_color(mlx_image_t *img, uint32_t color)
 		}
 		i++;
 	}
+}
+
+int	check_textures(t_textures *txts)
+{
+	if (!txts->walle)
+		return (0);
+	if (!txts->walln)
+		return (0);
+	if (!txts->walls)
+		return (0);
+	if (!txts->wallw)
+		return (0);
+	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray_aux.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 20:09:24 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/06/28 17:58:36 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/02 17:04:19 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	drawBuffer(t_game *game, uint32_t **buff)
 	int			x;
 	int			y;
 	uint32_t	color;
-	//int			pixel;
 	
 	x = -1;
 	y = -1;
@@ -45,7 +44,6 @@ void	drawBuffer(t_game *game, uint32_t **buff)
 		while (++x < SCR_W)
 		{
 			color = buff[y][x];
-			//pixel = y * SCR_W * 4 + x;
 			if (color == 0)
 			{
 				if (y < SCR_H / 2)
@@ -54,7 +52,6 @@ void	drawBuffer(t_game *game, uint32_t **buff)
 					color = game->texts->floor;
 			}
 			mlx_put_pixel(game->mlx_win, x, y, color);
-			//game->mlx_win->pixels[pixel] = color;
 		}
 		x = -1;
 	}
