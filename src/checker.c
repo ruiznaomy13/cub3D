@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:44 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/04 12:41:28 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/07/04 17:00:33 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,15 @@ void	check_square(t_map *map, t_point iter, int *check)
 		*check = 1;
 }
 
+int	inside_map_item(int item)
+{
+	if (item == SPACE)
+		return (1);
+	else if (item == P_N || item == P_S || item == P_E || item == P_W)
+		return (1);
+	return (0);
+}
+
 // x -> rows
 // y -> cols
 int	check_map(t_map *map)
@@ -44,13 +53,13 @@ int	check_map(t_map *map)
 	iter.x = 0;
 	iter.y = 0;
 	check = 0;
-	printf("rows: %d | cols: %d\n", map->rows, map->cols);
+	printf("rows: %d | cols: %d\n", map->rows, map->cols); // __BORRAR__
 	while (iter.x < map->rows && !check)
 	{
 		iter.y = 0;
 		while (iter.y < map->cols && !check)
 		{
-			if (map->map_array[iter.x][iter.y] == 0)
+			if (inside_map_item(map->map_array[iter.x][iter.y]))
 				check_square(map, iter, &check);
 			iter.y++;
 		}
@@ -75,7 +84,7 @@ int	line_length(char *line)
 	return (i + 1);
 }
 
-int	read_dimension(int fd, t_game *game, char *map_file, int *map_row)
+int	read_dimension(int fd, t_game *game, char *map_file)
 {
 	char	*line;
 	int		line_ln;
@@ -103,7 +112,6 @@ int	read_dimension(int fd, t_game *game, char *map_file, int *map_row)
 	if (game->map->map_array == NULL)
 		ft_error(game, EXIT_FAILURE);
 	fd = open(map_file, O_RDONLY);
-	*map_row = 0;
 	return (fd);
 }
 
@@ -117,54 +125,46 @@ int	check_map_name(char *map_file)
 	return (0);
 }
 
-void	show_map(t_map *map)
+int	skip_empty_line(char *str)
 {
-	int i;
-	int j;
+	int	i = -1;
 
-	i = 0;
-	while (i < map->rows)
+	while (str[++i] && str[i] != '\n')
 	{
-		j = 0;
-		ft_printf("\n");
-		while (j < map->cols)
-		{
-			ft_printf("%d", map->map_array[i][j]);
-			j++;
-		}
-		i++;
+		if (str[i] != ' ' && str[i] != '\t')
+			return (1);
 	}
-	ft_printf("\n");
+	return (0);
 }
 
 int	check_input_map(char *map_file, t_game *game)
 {
 	int		fd;
-	int		map_row;
+	int		map_row = 0;
 
 	fd = open(map_file, O_RDONLY);
 	if (check_map_name(map_file) || fd < 0)
 		ft_error(game, E_SYNTAX);
-	fd = read_dimension(fd, game, map_file, &map_row);
+	fd = read_dimension(fd, game, map_file);
 	if (fd == -1)
 		ft_error(game, EXIT_FAILURE);
 	game->map->line = get_next_line(fd);
 	while (game->map->line)
 	{
-		if (ft_strncmp(game->map->line, "\n", 1)) // cambiarlo porque nos pueden pasar la última sin salto de linea
+		if (skip_empty_line(game->map->line))
 		{
 			game->checker = check_line_info(game->map->line, game);
 			if (game->checker == 0)
 				save_textures(game->map->line, game);
 			else if (game->checker == 2)
 				save_map(game->map->line, game, &map_row);
-			else
+			else if (game->checker != 2)
 				ft_error(game, EXIT_FAILURE);
 		}
 		free(game->map->line);
 		game->map->line = get_next_line(fd);
 	}
 	ft_printf(GREEN"Game saved correctly!\n");
-	// check_players(game);
+	check_players(game);
 	return (EXIT_SUCCESS);
 }
