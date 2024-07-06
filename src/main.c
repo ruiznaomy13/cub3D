@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/06 05:27:28 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/06 16:18:27 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,14 @@ void	init_textures(t_game *game)
 	game->texts->walls = mlx_load_png("textures/map/SO.png");
 	game->texts->wallw = mlx_load_png("textures/map/WE.png");
 	game->texts->walle = mlx_load_png("textures/map/EA.png");
+	game->texts->black = mlx_load_png("textures/minimap/Black.png");
 	if (!check_textures(game->texts) || !game->texts->wall || !game->texts->player)
 		ft_error(game, EXIT_FAILURE);
 	game->texts->texture_n = mlx_texture_to_image(game->mlx, game->texts->walln);
 	game->texts->texture_s = mlx_texture_to_image(game->mlx, game->texts->walls);
 	game->texts->texture_w = mlx_texture_to_image(game->mlx, game->texts->wallw);
 	game->texts->texture_e = mlx_texture_to_image(game->mlx, game->texts->walle);
+	game->texts->txt_black = mlx_texture_to_image(game->mlx, game->texts->black);
 	game->texts->floor = (0xff << 24) | ((game->map->floor_c[0] & 0xff) << 16) | ((game->map->floor_c[1] & 0xff) << 8) | (game->map->floor_c[2] & 0xff);
 	game->texts->ceiling = (0xff << 24) | ((game->map->ceiling_c[0] & 0xff) << 16) | ((game->map->ceiling_c[1] & 0xff) << 8) | (game->map->ceiling_c[2] & 0xff);
 }

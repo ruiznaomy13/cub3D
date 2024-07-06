@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:06:26 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/07/06 05:27:40 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/06 16:23:43 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,15 @@ void	print_map(t_game game)
 			if ((i >= 0 && i < game.map->rows) && (j >= 0 && j < game.map->cols))
 			{
 				if (game.map->map_array[i][j] == 1)
-				{
 					mlx_draw_texture(game.mlx_win, game.texts->wall, \
 					(SCR_W - (SCR_W / 6)) + ((j - (int)game.player->pos_y) * SQSZ), (SCR_H / 5) + ((i - (int)game.player->pos_x) * SQSZ));
-				}
+				else if (game.map->map_array[i][j] == -1)
+					mlx_draw_texture(game.mlx_win, game.texts->black, \
+				(SCR_W - (SCR_W / 6)) + ((j - (int)game.player->pos_y) * SQSZ), (SCR_H / 5) + ((i - (int)game.player->pos_x) * SQSZ));
 			}
+			else
+				mlx_draw_texture(game.mlx_win, game.texts->black, \
+				(SCR_W - (SCR_W / 6)) + ((j - (int)game.player->pos_y) * SQSZ), (SCR_H / 5) + ((i - (int)game.player->pos_x) * SQSZ));
 			j++;
 		}
 		i++;

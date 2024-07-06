@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/06 05:27:30 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/06 16:15:27 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,12 @@ typedef struct	s_textures
 	mlx_texture_t	*walls;
 	mlx_texture_t	*wallw;
 	mlx_texture_t	*walle;
+	mlx_texture_t	*black;
 	mlx_image_t		*texture_n;
 	mlx_image_t		*texture_s;
 	mlx_image_t		*texture_e;
 	mlx_image_t		*texture_w;
+	mlx_image_t		*txt_black;
 	uint32_t		floor;
 	uint32_t		ceiling;
 }				t_textures;

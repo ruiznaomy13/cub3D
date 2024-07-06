@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 22:50:02 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/07/06 05:28:06 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/06 16:18:25 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,8 @@ int	check_textures(t_textures *txts)
 	if (!txts->walls)
 		return (0);
 	if (!txts->wallw)
+		return (0);
+	if (!txts->black)
 		return (0);
 	return (1);
 }
