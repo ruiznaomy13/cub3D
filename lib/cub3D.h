@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/07/06 04:46:12 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/06 16:38:34 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@ void	ft_error(t_game *game, int error);
 void	init_textures(t_game *game);
 int     init_game(char *map_file, t_game *game);
 
-/* FREE GAME */
-void	clean_memmory(t_game *game);
-
 /* FT_FREE_GAME */
 void	clean_memmory(t_game *game);
 void    close_button(void *wd);
@@ -52,7 +49,7 @@ char	**ft_split_cub(const char *str);
 void	check_input_map(char *map_file, t_game *game);
 int		check_map_name(char *map_file);
 char	get_first_char(char *line);
-int		read_dimension(int fd, t_map *map, char *map_file, int *map_row);
+int     read_dimension(int fd, t_game *game, char *map_file);
 int		check_map(t_map *map);
 
 /* CHECKER_AUX */

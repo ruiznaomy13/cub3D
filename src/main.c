@@ -6,11 +6,32 @@
 /*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/06 16:18:27 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/06 16:42:55 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+
+void	show_map(t_map *map)
+{
+	int i;
+	int j;
+
+	i = 0;
+	while (i < map->rows)
+	{
+		j = 0;
+		ft_printf("\n");
+		while (j < map->cols)
+		{
+			ft_printf("%d", map->map_array[i][j]);
+			j++;
+		}
+		i++;
+	}
+	ft_printf("\n");
+}
 
 void	ft_error(t_game *game, int error)
 {
@@ -69,6 +90,7 @@ int	init_game(char *map_file, t_game *game)
 			return (EXIT_FAILURE);
 	}
 	check_input_map(map_file, game);
+	show_map(game->map);
 	if (!check_map(game->map))
 		ft_error(game, 1);
 	printf(GREEN"\nGOOD MAP!\n"WHITE);

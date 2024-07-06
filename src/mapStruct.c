@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapStruct.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 23:00:32 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/06 03:39:42 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/06 16:43:50 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	is_map_texture(char *line, int *i, int *aux)
 	return (ret_value);
 }
 
+/* se ha modificado*/
 void	save_textures(char *line, t_game *game)
 {
 	int	i;
@@ -119,27 +120,27 @@ void	save_player(t_game *game, int p_orientation, int *map_row, int *i)
 	game->n_players++;
 }
 
-void	save_in_array(t_game *game, char *line_char, int *i, int *map_row)
+void	save_in_array(t_game *game, char *line, int *i, int *map_row)
 {
-		if (line_char[*i] == '\n')
+		if (line[*i] == '\n' || !line[*i])
 		{
 			while (*i < game->map->cols)
 				game->map->map_array[*map_row][(*i)++] = OUT_MAP;
 			(*i)--;
 		}
-		else if (line_char[*i] == '0')
+		else if (line[*i] == '0')
 			game->map->map_array[*map_row][*i] = SPACE;
-		else if (line_char[*i] == '1')
+		else if (line[*i] == '1')
 			game->map->map_array[*map_row][*i] = WALL;
-		else if (line_char[*i] == 'N')
+		else if (line[*i] == 'N')
 			save_player(game, P_N, map_row, i);
-		else if (line_char[*i] == 'S')
+		else if (line[*i] == 'S')
 			save_player(game, P_S, map_row, i);
-		else if (line_char[*i] == 'E')
+		else if (line[*i] == 'E')
 			save_player(game, P_E, map_row, i);
-		else if (line_char[*i] == 'W')
+		else if (line[*i] == 'W')
 			save_player(game, P_W, map_row, i);
-		else if (line_char[*i] == ' ' || line_char[*i] == '\t')
+		else if (line[*i] == ' ' || line[*i] == '\t')
 			game->map->map_array[*map_row][*i] = OUT_MAP;
 }
 
