@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:06:26 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/07/06 16:23:43 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/06 16:28:10 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void	print_map(t_game game)
 	int	i;
 	int	j;
 
-	i = -MPSZ + (int)game.player->pos_x;
+	i = -MPSZ + (int)game.player->pos_x - 1;
 	print_border(game, MPSZ);
-	while (i < (int)game.player->pos_x + MPSZ)
+	while (++i < (int)game.player->pos_x + MPSZ)
 	{
-		j = -MPSZ + (int)game.player->pos_y;
-		while (j < (int)game.player->pos_y + MPSZ)
+		j = -MPSZ + (int)game.player->pos_y - 1;
+		while (++j < (int)game.player->pos_y + MPSZ)
 		{
 			if ((i >= 0 && i < game.map->rows) && (j >= 0 && j < game.map->cols))
 			{
@@ -31,14 +31,12 @@ void	print_map(t_game game)
 					(SCR_W - (SCR_W / 6)) + ((j - (int)game.player->pos_y) * SQSZ), (SCR_H / 5) + ((i - (int)game.player->pos_x) * SQSZ));
 				else if (game.map->map_array[i][j] == -1)
 					mlx_draw_texture(game.mlx_win, game.texts->black, \
-				(SCR_W - (SCR_W / 6)) + ((j - (int)game.player->pos_y) * SQSZ), (SCR_H / 5) + ((i - (int)game.player->pos_x) * SQSZ));
+					(SCR_W - (SCR_W / 6)) + ((j - (int)game.player->pos_y) * SQSZ), (SCR_H / 5) + ((i - (int)game.player->pos_x) * SQSZ));
 			}
 			else
 				mlx_draw_texture(game.mlx_win, game.texts->black, \
 				(SCR_W - (SCR_W / 6)) + ((j - (int)game.player->pos_y) * SQSZ), (SCR_H / 5) + ((i - (int)game.player->pos_x) * SQSZ));
-			j++;
 		}
-		i++;
 	}
 	mlx_draw_texture(game.mlx_win, game.texts->player, SCR_W - (SCR_W / 6), (SCR_H / 5));
 }
@@ -50,14 +48,14 @@ void mlx_draw_texture(mlx_image_t *window_image, mlx_texture_t *texture, int des
 	int			window_index;
 	int			texture_index;
 	
-	x = 0;
-	y = 0;
+	x = -1;
+	y = -1;
 	uint32_t *texture_data = (uint32_t *)texture->pixels;
 	uint32_t *window_data = (uint32_t *)window_image->pixels;
 
-	while (y < texture->height)
+	while (++y < texture->height)
 	{
-		while (x < texture->width)
+		while (++x < texture->width)
 		{
 			window_index = (dest_y + y) * window_image->width + (dest_x + x);
 			texture_index = y * texture->width + x;
@@ -66,10 +64,8 @@ void mlx_draw_texture(mlx_image_t *window_image, mlx_texture_t *texture, int des
 				if (texture_data[texture_index] != 0)
 					window_data[window_index] = texture_data[texture_index];
 			}
-			x++;
 		}
-		x = 0;
-		y++;
+		x = -1;
 	}
 }
 
