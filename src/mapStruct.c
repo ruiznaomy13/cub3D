@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapStruct.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 23:00:32 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/02 16:41:50 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/06 03:39:42 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,7 +121,6 @@ void	save_player(t_game *game, int p_orientation, int *map_row, int *i)
 
 void	save_in_array(t_game *game, char *line_char, int *i, int *map_row)
 {
-		printf("%c\n", line_char[*i]);
 		if (line_char[*i] == '\n')
 		{
 			while (*i < game->map->cols)
@@ -153,8 +152,6 @@ void	save_map(char *line, t_game *game, int *map_row)
 		return (ft_error(game, EXIT_FAILURE));
 	if (*map_row <= game->map->rows)
 	{
-		printf("%i\n",*map_row);
-		printf("%i\n", game->map->cols);
 		game->map->map_array[*map_row] = (int *)ft_calloc(sizeof(int), game->map->cols);
 		if (!game->map->map_array[*map_row])
 			return (ft_error(game, 0));

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/02 17:47:06 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/06 05:27:30 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 #define WHITE	"\e[1;37m"
 
 #define SQSZ	20
+#define MPSZ	5
 
 # define MAGENTA	"\033[95m"
 # define GREEN		"\x1b[32m"
@@ -46,8 +47,8 @@
 /* ERROR TYPE*/
 #define E_SYNTAX 2
 
-#define SCR_W 1920
-#define SCR_H 1080
+#define SCR_W 1280
+#define SCR_H 720
 #define TEX_W 64
 #define TEX_H 64
 

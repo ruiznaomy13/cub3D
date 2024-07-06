@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:06:26 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/06/19 19:02:06 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/06 05:27:40 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,21 +17,26 @@ void	print_map(t_game game)
 	int	i;
 	int	j;
 
-	i = 0;
-	j = 0;
-	while (i < game.map->rows)
+	i = -MPSZ + (int)game.player->pos_x;
+	print_border(game, MPSZ);
+	while (i < (int)game.player->pos_x + MPSZ)
 	{
-		while (j < game.map->cols)
+		j = -MPSZ + (int)game.player->pos_y;
+		while (j < (int)game.player->pos_y + MPSZ)
 		{
-			if (game.map->map_array[i][j] == 1)
-				mlx_draw_texture(game.mlx_win, game.texts->wall, \
-				SCR_W/2 + (j * SQSZ) * 1, (i * SQSZ) * 1);
+			if ((i >= 0 && i < game.map->rows) && (j >= 0 && j < game.map->cols))
+			{
+				if (game.map->map_array[i][j] == 1)
+				{
+					mlx_draw_texture(game.mlx_win, game.texts->wall, \
+					(SCR_W - (SCR_W / 6)) + ((j - (int)game.player->pos_y) * SQSZ), (SCR_H / 5) + ((i - (int)game.player->pos_x) * SQSZ));
+				}
+			}
 			j++;
 		}
-		j = 0;
 		i++;
 	}
-	mlx_draw_texture(game.mlx_win, game.texts->player, SCR_W / 2 + (int)game.player->pos_y * SQSZ, (int)game.player->pos_x * SQSZ);
+	mlx_draw_texture(game.mlx_win, game.texts->player, SCR_W - (SCR_W / 6), (SCR_H / 5));
 }
 
 void mlx_draw_texture(mlx_image_t *window_image, mlx_texture_t *texture, int dest_x, int dest_y)
@@ -53,7 +58,10 @@ void mlx_draw_texture(mlx_image_t *window_image, mlx_texture_t *texture, int des
 			window_index = (dest_y + y) * window_image->width + (dest_x + x);
 			texture_index = y * texture->width + x;
 			if ((dest_x + x) < window_image->width && (dest_y + y) < window_image->height)
-				window_data[window_index] = texture_data[texture_index];
+			{
+				if (texture_data[texture_index] != 0)
+					window_data[window_index] = texture_data[texture_index];
+			}
 			x++;
 		}
 		x = 0;
@@ -61,16 +69,45 @@ void mlx_draw_texture(mlx_image_t *window_image, mlx_texture_t *texture, int des
 	}
 }
 
-void clear_pixels(mlx_image_t *image) 
+static void	print_bline(t_game game, int j, int i, int option)
 {
-	size_t	pixel_data_size;
-	size_t	i;
-
-	i = SCR_W / 2;
-	pixel_data_size = image->width/2 * image->height * 4;
-	while (i < pixel_data_size)
+	if (option == 1)
 	{
-		((uint32_t *)image->pixels)[i] = 0;
+		mlx_put_pixel(game.mlx_win, SCR_W - (SCR_W / 6) + j, (SCR_H / 5) + i - 2, 0);
+		mlx_put_pixel(game.mlx_win, SCR_W - (SCR_W / 6) + j, (SCR_H / 5) + i - 1, 0);
+		mlx_put_pixel(game.mlx_win, SCR_W - (SCR_W / 6) + j, (SCR_H / 5) + i, 0);
+		mlx_put_pixel(game.mlx_win, SCR_W - (SCR_W / 6) + j, (SCR_H / 5) + i + 1, 0);
+		mlx_put_pixel(game.mlx_win, SCR_W - (SCR_W / 6) + j, (SCR_H / 5) + i + 2, 0);
+	}
+	else if (option == 2)
+	{
+		mlx_put_pixel(game.mlx_win, SCR_W - (SCR_W / 6) + j - 2, (SCR_H / 5) + i, 0);
+		mlx_put_pixel(game.mlx_win, SCR_W - (SCR_W / 6) + j - 1, (SCR_H / 5) + i, 0);
+		mlx_put_pixel(game.mlx_win, SCR_W - (SCR_W / 6) + j, (SCR_H / 5) + i, 0);
+		mlx_put_pixel(game.mlx_win, SCR_W - (SCR_W / 6) + j + 1, (SCR_H / 5) + i, 0);
+		mlx_put_pixel(game.mlx_win, SCR_W - (SCR_W / 6) + j + 2, (SCR_H / 5) + i, 0);
+	}
+}
+
+void	print_border(t_game game, int x)
+{
+	int i;
+	int j;
+	
+	i = -x * SQSZ;
+	while (i <= x * SQSZ)
+	{
+		j = -x * SQSZ;
+		while (j <= x * SQSZ)
+		{
+			if (i == -x * SQSZ || i == x *SQSZ)
+				print_bline(game, j, i, 1);
+			else if (j == -x * SQSZ || j == x * SQSZ)
+				print_bline(game, j, i, 2);
+			else
+				mlx_put_pixel(game.mlx_win, SCR_W - (SCR_W / 6) + j, (SCR_H / 5) + i, game.texts->floor);
+			j++;
+		}
 		i++;
 	}
 }
