@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/06 16:42:55 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/16 12:52:30 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,15 +43,16 @@ void	ft_error(t_game *game, int error)
 	exit(error);
 }
 
+/* BAD SMELL */
 void	init_textures(t_game *game)
 {
 	game->texts = (t_textures *)ft_calloc(1, sizeof(t_textures));
 	game->texts->wall = mlx_load_png("textures/minimap/wall_texture.png");
 	game->texts->player = mlx_load_png("textures/minimap/player.png");
-	game->texts->walln = mlx_load_png("textures/map/NO.png");
-	game->texts->walls = mlx_load_png("textures/map/SO.png");
-	game->texts->wallw = mlx_load_png("textures/map/WE.png");
-	game->texts->walle = mlx_load_png("textures/map/EA.png");
+	game->texts->walln = mlx_load_png(game->map->texture_no);
+	game->texts->walls = mlx_load_png(game->map->texture_so);
+	game->texts->wallw = mlx_load_png(game->map->texture_we);
+	game->texts->walle = mlx_load_png(game->map->texture_ea);
 	game->texts->black = mlx_load_png("textures/minimap/Black.png");
 	if (!check_textures(game->texts) || !game->texts->wall || !game->texts->player)
 		ft_error(game, EXIT_FAILURE);
