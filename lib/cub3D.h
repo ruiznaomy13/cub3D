@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/07/06 16:38:34 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/18 04:25:52 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	save_map(char *line, t_game *game, int *map_row);
 void	print_map(t_game    wd);
 void    mlx_draw_texture(mlx_image_t *window_image, mlx_texture_t *texture, int dest_x, int dest_y);
 void    print_border(t_game game, int x);
-void    print_hand(t_game game);
+void    print_hand(t_game *game);
 
 /* MOVES */
 void    move_player(t_game *game);

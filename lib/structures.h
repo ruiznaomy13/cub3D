@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/06 16:38:46 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/18 04:23:48 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,11 +69,13 @@ typedef struct	s_textures
 	mlx_texture_t	*wallw;
 	mlx_texture_t	*walle;
 	mlx_texture_t	*black;
+	mlx_texture_t	*hand;
 	mlx_image_t		*texture_n;
 	mlx_image_t		*texture_s;
 	mlx_image_t		*texture_e;
 	mlx_image_t		*texture_w;
 	mlx_image_t		*txt_black;
+	mlx_image_t		*txt_hand;
 	uint32_t		floor;
 	uint32_t		ceiling;
 }				t_textures;
@@ -140,6 +142,7 @@ typedef struct s_game
 	int				end;
 	uint32_t		**buffer;
 	int				moves;
+	int				spr;
 	// int			error;
 }				t_game;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   print.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 20:06:26 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/07/06 16:28:10 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/18 04:32:18 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,4 +110,15 @@ void	print_border(t_game game, int x)
 		}
 		i++;
 	}
+}
+
+void	print_hand(t_game *game)
+{
+	if (game->spr > 20)
+		mlx_draw_texture(game->mlx_win, game->texts->hand, SCR_W / 2, SCR_H - game->texts->hand->height + 10);
+	else
+		mlx_draw_texture(game->mlx_win, game->texts->hand, SCR_W / 2, SCR_H - game->texts->hand->height);
+	game->spr++;
+	if (game->spr == 40)
+		game->spr = 0;
 }

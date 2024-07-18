@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 22:47:28 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/06 16:44:21 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/18 04:25:40 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,5 @@ void	game_update(void *param)
 		y++;
 	}
 	print_map(*game);
+	print_hand(game);
 }

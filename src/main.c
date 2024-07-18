@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/16 12:52:30 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/07/18 04:33:54 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	init_textures(t_game *game)
 	game->texts->wallw = mlx_load_png(game->map->texture_we);
 	game->texts->walle = mlx_load_png(game->map->texture_ea);
 	game->texts->black = mlx_load_png("textures/minimap/Black.png");
+	game->texts->hand = mlx_load_png("textures/map/gun.png");
 	if (!check_textures(game->texts) || !game->texts->wall || !game->texts->player)
 		ft_error(game, EXIT_FAILURE);
 	game->texts->texture_n = mlx_texture_to_image(game->mlx, game->texts->walln);
@@ -61,6 +62,7 @@ void	init_textures(t_game *game)
 	game->texts->texture_w = mlx_texture_to_image(game->mlx, game->texts->wallw);
 	game->texts->texture_e = mlx_texture_to_image(game->mlx, game->texts->walle);
 	game->texts->txt_black = mlx_texture_to_image(game->mlx, game->texts->black);
+	game->texts->txt_hand = mlx_texture_to_image(game->mlx, game->texts->hand);
 	game->texts->floor = (0xff << 24) | ((game->map->floor_c[0] & 0xff) << 16) | ((game->map->floor_c[1] & 0xff) << 8) | (game->map->floor_c[2] & 0xff);
 	game->texts->ceiling = (0xff << 24) | ((game->map->ceiling_c[0] & 0xff) << 16) | ((game->map->ceiling_c[1] & 0xff) << 8) | (game->map->ceiling_c[2] & 0xff);
 }
@@ -81,6 +83,7 @@ int	init_game(char *map_file, t_game *game)
 		return (EXIT_FAILURE);
 	game->n_players = 0;
 	game->moves = 0;
+	game->spr = 0;
 	game->buffer = (uint32_t **)ft_calloc(SCR_H, sizeof(uint32_t *));
 	if (!game->buffer)
 		return (EXIT_FAILURE);
