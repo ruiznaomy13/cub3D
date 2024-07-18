@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/18 04:33:54 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/18 04:53:39 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,8 @@ void	init_textures(t_game *game)
 	game->texts->texture_e = mlx_texture_to_image(game->mlx, game->texts->walle);
 	game->texts->txt_black = mlx_texture_to_image(game->mlx, game->texts->black);
 	game->texts->txt_hand = mlx_texture_to_image(game->mlx, game->texts->hand);
-	game->texts->floor = (0xff << 24) | ((game->map->floor_c[0] & 0xff) << 16) | ((game->map->floor_c[1] & 0xff) << 8) | (game->map->floor_c[2] & 0xff);
-	game->texts->ceiling = (0xff << 24) | ((game->map->ceiling_c[0] & 0xff) << 16) | ((game->map->ceiling_c[1] & 0xff) << 8) | (game->map->ceiling_c[2] & 0xff);
+	game->texts->floor = (0 << 24) | ((game->map->floor_c[0] & 0xff) << 16) | ((game->map->floor_c[1] & 0xff) << 8) | (game->map->floor_c[2] & 0xff);
+	game->texts->ceiling = (0 << 24) | ((game->map->ceiling_c[0] & 0xff) << 16) | ((game->map->ceiling_c[1] & 0xff) << 8) | (game->map->ceiling_c[2] & 0xff);
 }
 
 int	init_game(char *map_file, t_game *game)
