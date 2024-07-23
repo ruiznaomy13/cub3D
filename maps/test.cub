@@ -1,9 +1,9 @@
 SO textures/map/SO.png
-C     255,0,0
+C     0,255,120
 WE textures/map/WE.png
 EA textures/map/EA.png
 
-F 140,210,40   
+F 0,200,40   
 
 
       	NO textures/map/NO.png

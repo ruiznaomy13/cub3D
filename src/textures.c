@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 22:50:02 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/07/18 04:34:12 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/23 14:14:16 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,11 +54,6 @@ void	render(t_game *game, int side, int i)
 						((textr->pixels[color_offset + 2] & 0xFF) << 8) | // Green
 						((textr->pixels[color_offset + 1] & 0xFF) << 16) | // Red
 						((textr->pixels[color_offset + 0] & 0xFF) << 24); // Alpha
-		/*uint32_t color = (game->texts->texture_data->pixels[color_offset + 3] & 0xFF)       | // Blue
-						((game->texts->texture_data->pixels[color_offset + 2] & 0xFF) << 8) | // Green
-						((game->texts->texture_data->pixels[color_offset + 1] & 0xFF) << 16) | // Red
-						((game->texts->texture_data->pixels[color_offset + 0] & 0xFF) << 24); // Alpha
-						*/
 		game->buffer[y][i] = color;
 	}
 }
@@ -96,4 +91,9 @@ int	check_textures(t_textures *txts)
 	if (!txts->hand)
 		return (0);
 	return (1);
+}
+
+int32_t get_rgba(int32_t r, int32_t g, int32_t b, int32_t a)
+{
+    return (r << 24 | g << 16 | b << 8 | a);
 }

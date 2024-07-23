@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/07/18 04:25:52 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/23 14:12:12 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,5 +87,6 @@ void	drawBuffer(t_game *game, uint32_t **buff);
 void	render(t_game *game, int side, int i);
 void    fill_color(mlx_image_t *img, uint32_t color);
 int		check_textures(t_textures *txts);
+int32_t get_rgba(int r, int g, int b, int a);
 
 #endif

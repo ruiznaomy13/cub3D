@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 22:47:28 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/18 04:25:40 by marvin           ###   ########.fr       */
+/*   Updated: 2024/07/23 12:11:45 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void	game_update(void *param)
 	{
 		mlx_delete_image(game->mlx, game->mlx_win);
 		game->mlx_win = mlx_new_image(game->mlx, SCR_W, SCR_H);
+		
 	}
 	ft_raytracing(game);
 	drawBuffer(game, game->buffer);
