@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/25 14:08:54 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:35:48 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,37 +17,43 @@ void	ft_error(t_game *game, int error)
 	if (error == EXIT_FAILURE)
 		ft_printf(MAGENTA"\nSomething went wrong!\n\n"WHITE);
 	else if (error == E_SYNTAX)
-		ft_printf(MAGENTA"Bad map structure\nTry with a different map 😛\n\n"WHITE);
+	{
+		ft_printf(MAGENTA"Bad map structure\n");
+		ft_printf("Try with a different map 😛\n\n"WHITE);
+	}
 	clean_memmory(game);
 	exit(error);
 }
 
-/* BAD SMELL */
-void	init_textures(t_game *game)
+int	init_textures(t_textures **texts, t_map map, mlx_t *mlx)
 {
-	game->texts = (t_textures *)ft_calloc(1, sizeof(t_textures));
-	game->texts->wall = mlx_load_png("textures/minimap/wall_texture.png");
-	game->texts->player = mlx_load_png("textures/minimap/player.png");
-	game->texts->walln = mlx_load_png(game->map->texture_no);
-	game->texts->walls = mlx_load_png(game->map->texture_so);
-	game->texts->wallw = mlx_load_png(game->map->texture_we);
-	game->texts->walle = mlx_load_png(game->map->texture_ea);
-	game->texts->black = mlx_load_png("textures/minimap/Black.png");
-	game->texts->hand = mlx_load_png("textures/map/gun.png");
-	if (!check_textures(game->texts) || !game->texts->wall || !game->texts->player)
-		ft_error(game, EXIT_FAILURE);
-	game->texts->texture_n = mlx_texture_to_image(game->mlx, game->texts->walln);
-	game->texts->texture_s = mlx_texture_to_image(game->mlx, game->texts->walls);
-	game->texts->texture_w = mlx_texture_to_image(game->mlx, game->texts->wallw);
-	game->texts->texture_e = mlx_texture_to_image(game->mlx, game->texts->walle);
-	game->texts->txt_black = mlx_texture_to_image(game->mlx, game->texts->black);
-	game->texts->txt_hand = mlx_texture_to_image(game->mlx, game->texts->hand);
-	game->texts->floor = get_rgba(game->map->floor_c[0], game->map->floor_c[1], game->map->floor_c[2], 0xFF);
-	game->texts->ceiling = get_rgba(game->map->ceiling_c[0], game->map->ceiling_c[1], game->map->ceiling_c[2], 0xFF);
+	*texts = (t_textures *)ft_calloc(1, sizeof(t_textures));
+	if (!*texts)
+		return (EXIT_FAILURE);
+	(*texts)->wall = mlx_load_png("textures/minimap/wall_texture.png");
+	(*texts)->player = mlx_load_png("textures/minimap/player.png");
+	(*texts)->walln = mlx_load_png(map.texture_no);
+	(*texts)->walls = mlx_load_png(map.texture_so);
+	(*texts)->wallw = mlx_load_png(map.texture_we);
+	(*texts)->walle = mlx_load_png(map.texture_ea);
+	(*texts)->black = mlx_load_png("textures/minimap/Black.png");
+	(*texts)->hand = mlx_load_png("textures/map/gun.png");
+	(*texts)->texture_n = mlx_texture_to_image(mlx, (*texts)->walln);
+	(*texts)->texture_s = mlx_texture_to_image(mlx, (*texts)->walls);
+	(*texts)->texture_w = mlx_texture_to_image(mlx, (*texts)->wallw);
+	(*texts)->texture_e = mlx_texture_to_image(mlx, (*texts)->walle);
+	(*texts)->txt_black = mlx_texture_to_image(mlx, (*texts)->black);
+	(*texts)->txt_hand = mlx_texture_to_image(mlx, (*texts)->hand);
+	if (!check_textures(*texts))
+		return (EXIT_FAILURE);
+	(*texts)->floor = get_rgba(map.floor_c[0], \
+	map.floor_c[1], map.floor_c[2], 0xFF);
+	(*texts)->ceiling = get_rgba(map.ceiling_c[0], \
+	map.ceiling_c[1], map.ceiling_c[2], 0xFF);
+	return (0);
 }
 
-
-int	init_game(char *map_file, t_game *game)
+static int	init_game_aux(t_game *game)
 {
 	int	i;
 
@@ -64,16 +70,24 @@ int	init_game(char *map_file, t_game *game)
 	game->buffer = (uint32_t **)ft_calloc(SCR_H, sizeof(uint32_t *));
 	if (!game->buffer)
 		return (EXIT_FAILURE);
-    while (++i < SCR_H)
+	while (++i < SCR_H)
 	{
 		game->buffer[i] = (uint32_t *)ft_calloc(SCR_W, sizeof(uint32_t));
 		if (!game->buffer[i])
 			return (EXIT_FAILURE);
 	}
+	return (0);
+}
+
+int	init_game(char *map_file, t_game *game)
+{
+	if (init_game_aux(game))
+		return (EXIT_FAILURE);
 	check_input_map(map_file, game);
 	if (!check_map(game->map))
 		ft_error(game, 1);
-	init_textures(game);
+	if (init_textures(&game->texts, *game->map, game->mlx))
+		ft_error(game, EXIT_FAILURE);
 	init_ray(game);
 	return (EXIT_SUCCESS);
 }

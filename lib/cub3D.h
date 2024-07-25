@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/07/25 13:09:24 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:37:30 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,69 +24,69 @@
 # include "libft.h"
 # include "ft_printf.h"
 
-int		main(int ac, char *av[]);
+int		    main(int ac, char *av[]);
 
 /* MAIN */
-void	ft_error(t_game *game, int error);
-void	init_textures(t_game *game);
-int     init_game(char *map_file, t_game *game);
+void	    ft_error(t_game *game, int error);
+int         init_textures(t_textures **texts, t_map map, mlx_t *mlx);
+int         init_game(char *map_file, t_game *game);
 
 /* FT_FREE_GAME */
-void	clean_memmory(t_game *game);
-void    close_button(void *wd);
+void	    clean_memmory(t_game *game);
+void        close_button(void *wd);
 
 /* UTILS */
-void	free_char_array(char **str);
-char	get_first_char(char *line);
-int		first_char_pos(char *line);
-void    key_event(mlx_key_data_t key, void *game);
-void    game_update(void *wd);
+void	    free_char_array(char **str);
+char	    get_first_char(char *line);
+int		    first_char_pos(char *line);
+void        key_event(mlx_key_data_t key, void *game);
+void        game_update(void *wd);
 
 /* UTILS 2 */
-char	**ft_split_cub(const char *str);
+char	    **ft_split_cub(const char *str);
 
 /* CHECKER */
-void	check_input_map(char *map_file, t_game *game);
-int		check_map_name(char *map_file);
-char	get_first_char(char *line);
-int     read_dimension(int fd, t_game *game, char *map_file);
-int		check_map(t_map *map);
+void	    check_input_map(char *map_file, t_game *game);
+int		    check_map_name(char *map_file);
+char	    get_first_char(char *line);
+int         read_dimension(int fd, t_game *game, char *map_file);
+int		    check_map(t_map *map);
 
 /* CHECKER_AUX */
-int		check_line_info(char *line, t_game *game);
-int		check_paths(t_game *game);
-void 	check_players(t_game *game);
-int		is_valid_path(char *line, char ***aux);
+int		    check_line_info(char *line, t_game *game);
+int		    check_paths(t_game *game);
+void 	    check_players(t_game *game);
+int		    is_valid_path(char *line, char ***aux);
 
 /* AUXILIAR FUNCTIONS */
-int		arg_counter(char **argv);
+int		    arg_counter(char **argv);
 
 /* MAP STRUCTURE */
-void	save_textures(char *line, t_game *game);
-int		save_rgb(char *line, int *color_array);
-void	save_map(char *line, t_game *game, int *map_row);
+void	    save_textures(char *line, t_game *game);
+int		    save_rgb(char *line, int *color_array);
+void	    save_map(char *line, t_game *game, int *map_row);
 
 /* PRINT */
-void	print_map(t_game    wd);
-void    mlx_draw_texture(mlx_image_t *window_image, mlx_texture_t *texture, int dest_x, int dest_y);
-void    print_border(t_game game, int x);
-void    print_hand(t_game *game);
+void	    print_map(t_game    wd);
+void        mlx_draw_texture(mlx_image_t *window_image, mlx_texture_t *texture, int dest_x, int dest_y);
+void        print_border(t_game game, int x);
+void        print_hand(t_game *game);
 
 /* MOVES */
-void    move_player(t_game *game);
+void        move_player(t_game *game);
 
 /* RAY */
-void	init_ray(t_game *game);
-void	ft_raytracing(t_game *game);
+void	    init_ray(t_game *game);
+void	    ft_raytracing(t_game *game);
 
 /* RAY_AUX */
-void	verLine(int x, t_game *game, int color);
-void	drawBuffer(t_game *game, uint32_t **buff);
+void	    verLine(int x, t_game *game, int color);
+void	    drawBuffer(t_game *game, uint32_t **buff);
 
 /* TEXTURES */
-void	render(t_game *game, int side, int i);
-void    fill_color(mlx_image_t *img, uint32_t color);
-int		check_textures(t_textures *txts);
-uint32_t get_rgba(int r, int g, int b, int a);
+void	    render(t_game *game, int side, int i);
+void        fill_color(mlx_image_t *img, uint32_t color);
+int         check_textures(t_textures *txts);
+uint32_t    get_rgba(int r, int g, int b, int a);
 
 #endif
