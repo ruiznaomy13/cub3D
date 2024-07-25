@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/23 14:11:56 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:38:38 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,14 +136,11 @@ typedef struct s_game
 	int				key;
 	mlx_t			*mlx;
 	mlx_image_t		*mlx_win;
-	mlx_image_t		*ceiling;
-	mlx_image_t		*floor;
 	int				checker;
 	int				end;
 	uint32_t		**buffer;
 	int				moves;
 	int				spr;
-	// int			error;
 }				t_game;
 
 #endif

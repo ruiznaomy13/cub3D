@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 22:47:28 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/25 11:25:39 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:39:14 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ void	key_event(mlx_key_data_t key, void *param)
 		}
 		game->key = key.key;
 		if ((key.key == RIGHT || key.key == RIGHT_D || key.key == LEFT \
-		|| key.key == LEFT_A || key.key == DOWN || key.key == DOWN_S \
-		|| key.key == UP || key.key == UP_W))
+		|| key.key == LEFT_A || key.key == DOWN_S \
+		|| key.key == UP_W))
 		{
 			move_player(game);
 			game->moves++;
