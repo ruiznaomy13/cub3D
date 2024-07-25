@@ -1,0 +1,7 @@
+/sgoinfre/students/ncastell/cub3D/inc/mlx42/build/CMakeFiles/mlx42.dir
+/sgoinfre/students/ncastell/cub3D/inc/mlx42/build/CMakeFiles/edit_cache.dir
+/sgoinfre/students/ncastell/cub3D/inc/mlx42/build/CMakeFiles/rebuild_cache.dir
+/sgoinfre/students/ncastell/cub3D/inc/mlx42/build/CMakeFiles/list_install_components.dir
+/sgoinfre/students/ncastell/cub3D/inc/mlx42/build/CMakeFiles/install.dir
+/sgoinfre/students/ncastell/cub3D/inc/mlx42/build/CMakeFiles/install/local.dir
+/sgoinfre/students/ncastell/cub3D/inc/mlx42/build/CMakeFiles/install/strip.dir
