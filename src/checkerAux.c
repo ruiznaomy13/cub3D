@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 22:26:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/07/25 12:41:51 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:03:36 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	is_valid_color(char *line, char ***arr)
 	int		len;
 	char	*color;
 
-	color = ft_substr(line, 0, ft_strlen(line) - 1);
+	color = ft_substr(line, 0, ft_strlen(line));
 	i = 0;
 	aux = ft_split(color, ',');
 	if (!aux)

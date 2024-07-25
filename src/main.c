@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/25 13:12:57 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:02:19 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,6 @@ int	init_game(char *map_file, t_game *game)
 	game->map = (t_map *)ft_calloc(1, sizeof(t_map));
 	if (!game->map)
 		return (EXIT_FAILURE);
-	game->n_players = 0;
-	game->moves = 0;
-	game->spr = 0;
 	game->buffer = (uint32_t **)ft_calloc(SCR_H, sizeof(uint32_t *));
 	if (!game->buffer)
 		return (EXIT_FAILURE);
