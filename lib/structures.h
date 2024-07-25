@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/25 13:38:38 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:08:14 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,23 @@
 #define TEX_W 64
 #define TEX_H 64
 
-/* MAP PX TYPE */
-
 typedef struct s_point
 {
     int x;
     int y;
 } 		t_point;
+
+
+typedef struct s_render
+{
+	double		wallX;
+	int			texX;
+	int			texY;
+	double		texPos;
+	double		step;
+	uint32_t	color;
+}				t_render;
+
 
 typedef struct	s_textures
 {
@@ -132,6 +142,7 @@ typedef struct s_game
 	t_player		*player;
 	t_ray			*ray_cast;
 	t_textures		*texts;
+	t_render		*rd;
 	int				n_players;
 	int				key;
 	mlx_t			*mlx;

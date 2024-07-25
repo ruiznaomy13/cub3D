@@ -6,74 +6,62 @@
 /*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 22:50:02 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/07/25 14:23:55 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:07:13 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	render(t_game *game, int side, int i)
+void	init_render(t_game *game, t_render **rd, int side, mlx_image_t **textr)
 {
-	double		wallX;
-	int			texX;
-	int			texY;
-	double		step;
-	double		texPos;
-	mlx_image_t	*textr;
-
 	if (side == 0)
 	{
-		wallX = game->player->pos_y + game->ray_cast->perpWallDist * game->ray_cast->rayDirY;
+		(*rd)->wallX = game->player->pos_y + game->ray_cast->perpWallDist * game->ray_cast->rayDirY;
 		if (game->ray_cast->stepX == 1)
-			textr = game->texts->texture_e;
+			(*textr) = game->texts->texture_e;
 		else
-			textr = game->texts->texture_w;
+			(*textr) = game->texts->texture_w;
 	}
 	else
 	{
-		wallX = game->player->pos_x + game->ray_cast->perpWallDist * game->ray_cast->rayDirX;
+		(*rd)->wallX = game->player->pos_x + game->ray_cast->perpWallDist * game->ray_cast->rayDirX;
 		if (game->ray_cast->stepY == 1)
-			textr = game->texts->texture_n;
+			(*textr) = game->texts->texture_n;
 		else
-			textr = game->texts->texture_s;
+			(*textr) = game->texts->texture_s;
 	}
-	wallX -= floor((wallX));
-	texX = (int)(wallX * (double)TEX_W);
-	if(side == 0 && game->ray_cast->rayDirX > 0)
-		texX = TEX_W - texX - 1;
-	if(side == 1 && game->ray_cast->rayDirY < 0)
-		texX = TEX_W - texX - 1;
-	step = 1.0 * TEX_H / game->ray_cast->lineHeight;
-	texPos = (game->ray_cast->drawStart - SCR_H / 2 + game->ray_cast->lineHeight / 2) * step;
-	for(int y = game->ray_cast->drawStart; y < game->ray_cast->drawEnd; y++)
-	{
-		texY = ((int)texPos) & (TEX_H - 1);
-		texPos += step;
-		unsigned int color_offset = texY * TEX_W * 4 + texX * 4;
-		uint32_t color = (textr->pixels[color_offset + 3] & 0xFF)       | // Blue
-						((textr->pixels[color_offset + 2] & 0xFF) << 8) | // Green
-						((textr->pixels[color_offset + 1] & 0xFF) << 16) | // Red
-						((textr->pixels[color_offset + 0] & 0xFF) << 24); // Alpha
-		game->buffer[y][i] = color;
-	}
+	(*rd)->wallX -= floor(((*rd)->wallX));
+	(*rd)->texX = (int)((*rd)->wallX * (double)TEX_W);
+	if (side == 0 && game->ray_cast->rayDirX > 0)
+		(*rd)->texX = TEX_W - (*rd)->texX - 1;
+	if (side == 1 && game->ray_cast->rayDirY < 0)
+		(*rd)->texX = TEX_W - (*rd)->texX - 1;
+	(*rd)->step = 1.0 * TEX_H / game->ray_cast->lineHeight;
+	(*rd)->texPos = (game->ray_cast->drawStart - SCR_H / 2 + game->ray_cast->lineHeight / 2) * (*rd)->step;
 }
 
-void	fill_color(mlx_image_t *img, uint32_t color)
+void	render(t_game *game, int side, int i)
 {
-	uint32_t		i;
-	uint32_t		j;
+	mlx_image_t		*textr;
+	unsigned int	color_offset;
+	int				j;
 
-	i = 0;
-	while (i < img->height)
+	textr = NULL;
+	if (game->rd)
+		free(game->rd);
+	game->rd = (t_render *)ft_calloc(1, sizeof(t_render));
+	init_render(game, &game->rd, side, &textr);
+	j = game->ray_cast->drawStart - 1;
+	while (++j < game->ray_cast->drawEnd)
 	{
-		j = 0;
-		while (j < img->width)
-		{
-
-			mlx_put_pixel(img, j, i, color);
-			j++;
-		}
-		i++;
+		game->rd->texY = ((int)game->rd->texPos) & (TEX_H - 1);
+		game->rd->texPos += game->rd->step;
+		color_offset = game->rd->texY * TEX_W * 4 + game->rd->texX * 4;
+		game->rd->color = (textr->pixels[color_offset + 3] & 0xFF) | \
+		((textr->pixels[color_offset + 2] & 0xFF) << 8) | \
+		((textr->pixels[color_offset + 1] & 0xFF) << 16) | \
+		((textr->pixels[color_offset + 0] & 0xFF) << 24);
+		game->buffer[j][i] = game->rd->color;
 	}
 }
 
@@ -97,7 +85,7 @@ int	check_textures(t_textures *txts)
 	return (1);
 }
 
-uint32_t get_rgba(int r, int g, int b, int a)
+uint32_t	get_rgba(int r, int g, int b, int a)
 {
-    return ((r << 24) | (g << 16) | (b << 8) | a);
+	return ((r << 24) | (g << 16) | (b << 8) | a);
 }

@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/07/25 14:37:30 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/25 15:07:04 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ void	    verLine(int x, t_game *game, int color);
 void	    drawBuffer(t_game *game, uint32_t **buff);
 
 /* TEXTURES */
+void    	init_render(t_game *game, t_render **rd, int side, mlx_image_t **textr);
 void	    render(t_game *game, int side, int i);
-void        fill_color(mlx_image_t *img, uint32_t color);
 int         check_textures(t_textures *txts);
 uint32_t    get_rgba(int r, int g, int b, int a);
 
