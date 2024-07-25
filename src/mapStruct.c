@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapStruct.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 23:00:32 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/06 16:43:50 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:33:27 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	save_rgb(char *line, int *color_array)
 		return (1);
 	while (aux[++i])
 		color_array[i] = ft_atoi(aux[i]);
-	free_char_array(aux);
+	free_charray(aux);
 	return (0);
 }
 

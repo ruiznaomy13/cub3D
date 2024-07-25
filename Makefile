@@ -24,8 +24,8 @@ OBJ_DIR		= ./obj
 
 SILENCE =  --no-print-directory
 
-SRCS		= main.c checker.c checkerAux.c auxiliarFunctions.c \
-			utils.c mapStruct.c utils_2.c ray.c print.c ft_free_game.c \
+SRCS		= main.c checker.c checker_1.c checker_2.c \
+			utils.c utils_1.c utils_2.c mapStruct.c ray.c print.c ft_free_game.c \
 			moves.c ray_aux.c textures.c
 
 OBJ			= $(addprefix ${OBJ_DIR}/,  ${SRCS:.c=.o})
