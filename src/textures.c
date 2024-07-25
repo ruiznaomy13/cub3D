@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 22:50:02 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/07/25 13:09:11 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:23:55 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,17 +79,20 @@ void	fill_color(mlx_image_t *img, uint32_t color)
 
 int	check_textures(t_textures *txts)
 {
-	if (!txts->walle)
-		return (0);
-	if (!txts->walln)
-		return (0);
-	if (!txts->walls)
-		return (0);
-	if (!txts->wallw)
+	if (!txts->walle || !txts->walln || !txts->walls || !txts->wallw)
 		return (0);
 	if (!txts->black)
 		return (0);
 	if (!txts->hand)
+		return (0);
+	if (!txts->wall)
+		return (0);
+	if (!txts->player)
+		return (0);
+	if (!txts->walln)
+		return (0);
+	if (!txts->texture_n || !txts->texture_s || !txts->texture_w \
+	|| !txts->texture_e || !txts->txt_black || !txts->txt_hand)
 		return (0);
 	return (1);
 }

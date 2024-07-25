@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:53:57 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/07/16 12:33:40 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:24:39 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static void	init_ray_aux(t_game *game)
 void	init_ray(t_game *game)
 {
 	game->ray_cast = ft_calloc(1, sizeof(t_ray));
+	if (!game->ray_cast)
+		ft_error(game, EXIT_FAILURE);
 	game->ray_cast->moveSpeed = 0.15;
 	game->ray_cast->rotSpeed = 0.15;
 	if (game->player->card_p == 'N')
