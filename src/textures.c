@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 22:50:02 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/07/23 14:14:16 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:09:11 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	fill_color(mlx_image_t *img, uint32_t color)
 		j = 0;
 		while (j < img->width)
 		{
+
 			mlx_put_pixel(img, j, i, color);
 			j++;
 		}
@@ -93,7 +94,7 @@ int	check_textures(t_textures *txts)
 	return (1);
 }
 
-int32_t get_rgba(int32_t r, int32_t g, int32_t b, int32_t a)
+uint32_t get_rgba(int r, int g, int b, int a)
 {
-    return (r << 24 | g << 16 | b << 8 | a);
+    return ((r << 24) | (g << 16) | (b << 8) | a);
 }

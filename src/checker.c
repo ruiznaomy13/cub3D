@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:44 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/06 16:41:29 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/25 12:45:22 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,10 @@ void	check_input_map(char *map_file, t_game *game)
 			else if (game->checker == 2)
 				save_map(game->map->line, game, &map_row);
 			else if (game->checker != 2)
+			{
+				printf("Hola\n");
 				ft_error(game, EXIT_FAILURE);
+			}
 				
 		}
 		free(game->map->line);

@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/23 14:18:12 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/25 13:12:57 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,17 +63,8 @@ void	init_textures(t_game *game)
 	game->texts->texture_e = mlx_texture_to_image(game->mlx, game->texts->walle);
 	game->texts->txt_black = mlx_texture_to_image(game->mlx, game->texts->black);
 	game->texts->txt_hand = mlx_texture_to_image(game->mlx, game->texts->hand);
-	game->texts->floor = get_rgba(game->map->floor_c[0] & 0xff, game->map->floor_c[1] & 0xff, game->map->floor_c[0] & 0xff, 0);
-	//game->texts->ceiling = (0xFF << 24) | ((game->map->ceiling_c[0] & 0xff) << 16) | ((game->map->ceiling_c[1] & 0xff) << 8) | ((game->map->ceiling_c[2] & 0xff));
-	game->texts->ceiling = get_rgba(game->map->ceiling_c[0], game->map->ceiling_c[1], game->map->ceiling_c[0], 0);
-	printf("Color: 0x%X\n", game->texts->floor);
-	//printf("Color R: %d G: %d B: %d\n", game->map->ceiling_c[0], game->map->ceiling_c[1], game->map->ceiling_c[2]);
-	//fill_color(game->floor, game->texts->floor);
-	//fill_color(game->ceiling, game->texts->ceiling);
-	//memset(game->floor->pixels, game->texts->floor, game->floor->width * game->floor->height * sizeof(int32_t));
-	//memset(game->ceiling->pixels, game->texts->ceiling, game->ceiling->width * game->ceiling->height * sizeof(int32_t));
-	//mlx_image_to_window(game->mlx, game->ceiling, 0, 0);
-	//mlx_image_to_window(game->mlx, game->floor, 0, SCR_H / 2);
+	game->texts->floor = get_rgba(game->map->floor_c[0], game->map->floor_c[1], game->map->floor_c[2], 0xFF);
+	game->texts->ceiling = get_rgba(game->map->ceiling_c[0], game->map->ceiling_c[1], game->map->ceiling_c[2], 0xFF);
 }
 
 
@@ -88,8 +79,6 @@ int	init_game(char *map_file, t_game *game)
 	game->mlx_win = mlx_new_image(game->mlx, SCR_W, SCR_H);
 	if (!game->mlx_win)
 		return (EXIT_FAILURE);
-	game->ceiling = mlx_new_image(game->mlx,SCR_W, SCR_H / 2);
-	game->floor = mlx_new_image(game->mlx,SCR_W, SCR_H / 2);
 	game->map = (t_map *)ft_calloc(1, sizeof(t_map));
 	if (!game->map)
 		return (EXIT_FAILURE);

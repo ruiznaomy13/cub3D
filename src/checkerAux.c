@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 22:26:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/07/06 16:41:39 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/25 12:41:51 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	is_valid_color(char *line, char ***arr)
 		return (free(color), free_char_array(aux), free_char_array(*arr), 1);
 	while (i < 3)
 	{
-		if ((int)ft_atoi(aux[i]) < 0)
+		if (ft_atoi(aux[i]) < 0)
 		{
 			return (free(color), free_char_array(aux), free_char_array(*arr), 1);
 		}
