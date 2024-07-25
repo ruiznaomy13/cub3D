@@ -24,7 +24,7 @@ OBJ_DIR		= ./obj
 
 SILENCE =  --no-print-directory
 
-SRCS		= main.c checker.c checkerAux.c auxiliarFunctions.c \
+SRCS		= main.c checker.c checker_1.c checker_2.c \
 			utils.c mapStruct.c utils_2.c ray.c print.c ft_free_game.c \
 			moves.c ray_aux.c textures.c
 

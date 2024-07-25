@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 20:58:03 by ncastell          #+#    #+#             */
-/*   Updated: 2024/05/17 00:50:33 by elias            ###   ########.fr       */
+/*   Updated: 2024/07/25 14:22:14 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,4 +83,14 @@ char	**ft_split_cub(char const *s)
 	return (str);
 }
 
+int	arg_counter(char **argv)
+{
+	int	i;
 
+	i = 0;
+	if (!argv[0])
+		return (0);
+	while (argv[i])
+		i++;
+	return (i);
+}

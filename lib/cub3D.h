@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/07/25 13:09:24 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/25 14:43:06 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,36 @@
 
 int		main(int ac, char *av[]);
 
+/* FT_FREE_GAME */
+void	clean_memmory(t_game *game);
+void    close_button(void *wd);
+
 /* MAIN */
 void	ft_error(t_game *game, int error);
 void	init_textures(t_game *game);
 int     init_game(char *map_file, t_game *game);
 
-/* FT_FREE_GAME */
-void	clean_memmory(t_game *game);
-void    close_button(void *wd);
+/* ---------------------------- CHECKER --------------------------------*/
+void	check_input_map(char *map_file, t_game *game);
+int	    check_line_info(char *line, t_game *game);
+int     check_map(t_map *map);
+void	check_players(t_game *game);
+
+// CHECKER_1
+int	    check_map_name(char *map_file);
+int	    check_paths(t_game *game);
+int	    is_valid_color(char *line, char ***arr);
+int	    read_dimension(int fd, t_game *game, char *map_file);
+void	check_square(t_map *map, t_point iter, int *check);
+
+// CHECKER2_2
+int 	line_length(char *line);
+int	    skip_empty_line(char *str);
+int     inside_map_item(int item);
+int	    is_valid_path(char *line, char ***aux);
 
 /* UTILS */
-void	free_char_array(char **str);
+void	free_charray(char **str);
 char	get_first_char(char *line);
 int		first_char_pos(char *line);
 void    key_event(mlx_key_data_t key, void *game);
@@ -44,22 +63,8 @@ void    game_update(void *wd);
 
 /* UTILS 2 */
 char	**ft_split_cub(const char *str);
-
-/* CHECKER */
-void	check_input_map(char *map_file, t_game *game);
-int		check_map_name(char *map_file);
-char	get_first_char(char *line);
-int     read_dimension(int fd, t_game *game, char *map_file);
-int		check_map(t_map *map);
-
-/* CHECKER_AUX */
-int		check_line_info(char *line, t_game *game);
-int		check_paths(t_game *game);
-void 	check_players(t_game *game);
-int		is_valid_path(char *line, char ***aux);
-
-/* AUXILIAR FUNCTIONS */
 int		arg_counter(char **argv);
+
 
 /* MAP STRUCTURE */
 void	save_textures(char *line, t_game *game);
