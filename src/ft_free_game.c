@@ -6,7 +6,7 @@
 /*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 19:16:27 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/27 19:36:56 by elias            ###   ########.fr       */
+/*   Updated: 2024/07/28 00:06:46 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,15 +51,37 @@ static void	clean_map(t_map *map)
 	}
 }
 
+static void	free_textures(t_textures *txts, mlx_t *mlx)
+{
+	mlx_delete_texture(txts->wall);
+	mlx_delete_texture(txts->player);
+	mlx_delete_texture(txts->walln);
+	mlx_delete_texture(txts->walls);
+	mlx_delete_texture(txts->wallw);
+	mlx_delete_texture(txts->walle);
+	mlx_delete_texture(txts->black);
+	mlx_delete_texture(txts->hand);
+	mlx_delete_image(mlx, txts->texture_n);
+	mlx_delete_image(mlx, txts->texture_s);
+	mlx_delete_image(mlx, txts->texture_e);
+	mlx_delete_image(mlx, txts->texture_w);
+	mlx_delete_image(mlx, txts->txt_black);
+	mlx_delete_image(mlx, txts->txt_hand);
+}
+
 void	clean_memmory(t_game *game)
 {
 	if (game)
 	{
+		if (game->map->line)
+			free(game->map->line);
 		if (game->map)
 			clean_map(game->map);
 		if (game->player)
 		{
 			free(game->player);
 		}
+		if (game->texts)
+			free_textures(game->texts, game->mlx);
 	}
 }

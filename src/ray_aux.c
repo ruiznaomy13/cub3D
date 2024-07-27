@@ -3,40 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ray_aux.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 20:09:24 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/07/25 12:54:23 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/27 22:45:57 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	verLine(int x, t_game *game, int color)
-{
-	int	i;
-	int	j;
-
-	i = game->ray_cast->drawEnd;
-	j = SCR_H;
-	while (j > game->ray_cast->drawStart)
-	{
-		mlx_put_pixel(game->mlx_win, x, j, 0xBB0DF3);
-		j--;
-	}
-	while (i >= game->ray_cast->drawStart)
-	{
-		mlx_put_pixel(game->mlx_win, x, i, color);
-		i--;
-	}	
-}
-
-void	drawBuffer(t_game *game, uint32_t **buff)
+void	draw_buffer(t_game *game, uint32_t **buff)
 {
 	int			x;
 	int			y;
 	uint32_t	color;
-	
+
 	x = -1;
 	y = -1;
 	while (++y < SCR_H)
@@ -57,11 +38,13 @@ void	drawBuffer(t_game *game, uint32_t **buff)
 	}
 }
 
-int FixAng(int a)
-{ 
-	if(a>359)
-		a-=360;
-	if(a<0)
-		a+=360;
-	return (a);
+void	get_raycast(t_ray **rcast, int i, t_player *player)
+{
+	(*rcast)->camera_x = 2 * i / (double)SCR_W - 1;
+	(*rcast)->r_dirx = (*rcast)->dir_x + (*rcast)->plane_x * (*rcast)->camera_x;
+	(*rcast)->r_diry = (*rcast)->dir_y + (*rcast)->plane_y * (*rcast)->camera_x;
+	(*rcast)->boxmap_x = (int)player->pos_x;
+	(*rcast)->boxmap_y = (int)player->pos_y;
+	(*rcast)->deltadist_x = fabs(1 / (*rcast)->r_dirx);
+	(*rcast)->deltadist_y = fabs(1 / (*rcast)->r_diry);
 }

@@ -3,74 +3,72 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/25 15:08:14 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/27 23:37:50 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef	STRUCTURES_H
-# define	STRUCTURES_H
+#ifndef STRUCTURES_H
+# define STRUCTURES_H
 
-#include "../inc/mlx42/include/MLX42/MLX42.h"
+# include "../inc/mlx42/include/MLX42/MLX42.h"
 
-#define MAGENTA	"\033[95m"
-#define GREEN	"\x1b[32m"
-#define WHITE	"\e[1;37m"
+# define MAGENTA	"\033[95m"
+# define GREEN	"\x1b[32m"
+# define WHITE	"\e[1;37m"
 
-#define SQSZ	20
-#define MPSZ	5
+# define SQSZ	20
+# define MPSZ	5
 
 # define MAGENTA	"\033[95m"
 # define GREEN		"\x1b[32m"
 # define WHITE		"\e[1;37m"
 
-#define WALL	1
-#define SPACE	0
-#define PLAYER	2
-#define P_N		21
-#define P_S		22
-#define P_E		23
-#define P_W		24
-#define	OUT_MAP	-1
-#define RIGHT 262
-#define RIGHT_D 68
-#define LEFT 263
-#define LEFT_A 65
-#define DOWN 264
-#define DOWN_S 83
-#define UP 265
-#define UP_W 87
-#define NUM_TXT 2
+# define WALL	1
+# define SPACE	0
+# define PLAYER	2
+# define P_N		21
+# define P_S		22
+# define P_E		23
+# define P_W		24
+# define OUT_MAP	-1
+# define RIGHT 262
+# define RIGHT_D 68
+# define LEFT 263
+# define LEFT_A 65
+# define DOWN 264
+# define DOWN_S 83
+# define UP 265
+# define UP_W 87
+# define NUM_TXT 2
 
 /* ERROR TYPE*/
-#define E_SYNTAX 2
+# define E_SYNTAX 2
 
-#define SCR_W 1280
-#define SCR_H 720
-#define TEX_W 64
-#define TEX_H 64
+# define SCR_W 1280
+# define SCR_H 720
+# define TEX_W 64
+# define TEX_H 64
 
 typedef struct s_point
 {
-    int x;
-    int y;
-} 		t_point;
-
+	int	x;
+	int	y;
+}				t_point;
 
 typedef struct s_render
 {
-	double		wallX;
-	int			texX;
-	int			texY;
-	double		texPos;
+	double		wall_x;
+	int			tex_x;
+	int			tex_y;
+	double		tex_pos;
 	double		step;
 	uint32_t	color;
 }				t_render;
 
-
-typedef struct	s_textures
+typedef struct s_textures
 {
 	mlx_texture_t	*wall;
 	mlx_texture_t	*player;
@@ -113,27 +111,27 @@ typedef struct s_map
 
 typedef struct s_ray
 {
-	double	rayDirX;
-	double	rayDirY;
-	double	dirX;
-	double	dirY;
-	double	cameraX;
-	double	planeX;
-	double	planeY;
-	int		boxMapX;
-	int		boxMapY;
-	double	sideDistX;
-	double	sideDistY;
-	double	deltaDistX;
-	double	deltaDistY;
-	double	perpWallDist;
-	int		stepX;
-	int		stepY;
-	int		lineHeight;
-	int		drawStart;
-	int		drawEnd;
-	double	moveSpeed;
-	double	rotSpeed;
+	double	r_dirx;
+	double	r_diry;
+	double	dir_x;
+	double	dir_y;
+	double	camera_x;
+	double	plane_x;
+	double	plane_y;
+	int		boxmap_x;
+	int		boxmap_y;
+	double	sidedist_x;
+	double	sidedist_y;
+	double	deltadist_x;
+	double	deltadist_y;
+	double	walldist;
+	int		step_x;
+	int		step_y;
+	int		line_h;
+	int		draw_start;
+	int		draw_end;
+	double	mv_speed;
+	double	rot_speed;
 }			t_ray;
 
 typedef struct s_game

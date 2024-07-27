@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:53:57 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/07/25 14:24:39 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/27 22:45:57 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,19 @@
 
 static void	init_ray_aux(t_game *game)
 {
-	
 	if (game->player->card_p == 'W')
 	{
-		game->ray_cast->dirX = -1.0;
-		game->ray_cast->dirY = 0.0;
-		game->ray_cast->planeX = 0;
-		game->ray_cast->planeY = -0.66;
+		game->ray_cast->dir_x = -1.0;
+		game->ray_cast->dir_y = 0.0;
+		game->ray_cast->plane_x = 0;
+		game->ray_cast->plane_y = -0.66;
 	}
 	if (game->player->card_p == 'E')
 	{
-		game->ray_cast->dirX = 1.0;
-		game->ray_cast->dirY = 0.0;
-		game->ray_cast->planeX = 0;
-		game->ray_cast->planeY = 0.66;
+		game->ray_cast->dir_x = 1.0;
+		game->ray_cast->dir_y = 0.0;
+		game->ray_cast->plane_x = 0;
+		game->ray_cast->plane_y = 0.66;
 	}
 }
 
@@ -36,106 +35,104 @@ void	init_ray(t_game *game)
 	game->ray_cast = ft_calloc(1, sizeof(t_ray));
 	if (!game->ray_cast)
 		ft_error(game, EXIT_FAILURE);
-	game->ray_cast->moveSpeed = 0.15;
-	game->ray_cast->rotSpeed = 0.15;
+	game->ray_cast->mv_speed = 0.15;
+	game->ray_cast->rot_speed = 0.15;
 	if (game->player->card_p == 'N')
 	{
-		game->ray_cast->dirX = 0.0;
-		game->ray_cast->dirY = -1.0;
-		game->ray_cast->planeX = 0.66;
-		game->ray_cast->planeY = 0;
+		game->ray_cast->dir_x = 0.0;
+		game->ray_cast->dir_y = -1.0;
+		game->ray_cast->plane_x = 0.66;
+		game->ray_cast->plane_y = 0;
 	}
 	if (game->player->card_p == 'S')
 	{
-		game->ray_cast->dirX = 0.0;
-		game->ray_cast->dirY = 1.0;
-		game->ray_cast->planeX = -0.66;
-		game->ray_cast->planeY = 0;
+		game->ray_cast->dir_x = 0.0;
+		game->ray_cast->dir_y = 1.0;
+		game->ray_cast->plane_x = -0.66;
+		game->ray_cast->plane_y = 0;
 	}
 	init_ray_aux(game);
 }
 
-static void	getDirection(t_game *game)
+static void	get_direction(t_game *game)
 {
-	if(game->ray_cast->rayDirX < 0)
+	if (game->ray_cast->r_dirx < 0)
 	{
-		game->ray_cast->stepX = -1;
-		game->ray_cast->sideDistX = (game->player->pos_x - game->ray_cast->boxMapX) * game->ray_cast->deltaDistX;
+		game->ray_cast->step_x = -1;
+		game->ray_cast->sidedist_x = (game->player->pos_x - \
+		game->ray_cast->boxmap_x) * game->ray_cast->deltadist_x;
 	}
 	else
 	{
-		game->ray_cast->stepX = 1;
-		game->ray_cast->sideDistX = ((double)game->ray_cast->boxMapX + 1.0 - game->player->pos_x) * game->ray_cast->deltaDistX;
+		game->ray_cast->step_x = 1;
+		game->ray_cast->sidedist_x = ((double)game->ray_cast->boxmap_x + 1.0 - \
+		game->player->pos_x) * game->ray_cast->deltadist_x;
 	}
-	if(game->ray_cast->rayDirY < 0)
+	if (game->ray_cast->r_diry < 0)
 	{
-		game->ray_cast->stepY = -1;
-		game->ray_cast->sideDistY = (game->player->pos_y - game->ray_cast->boxMapY) * game->ray_cast->deltaDistY;
+		game->ray_cast->step_y = -1;
+		game->ray_cast->sidedist_y = (game->player->pos_y - \
+		game->ray_cast->boxmap_y) * game->ray_cast->deltadist_y;
 	}
 	else
 	{
-		game->ray_cast->stepY = 1;
-		game->ray_cast->sideDistY = ((double)game->ray_cast->boxMapY + 1.0 - game->player->pos_y) * game->ray_cast->deltaDistY;
+		game->ray_cast->step_y = 1;
+		game->ray_cast->sidedist_y = ((double)game->ray_cast->boxmap_y + 1.0 - \
+		game->player->pos_y) * game->ray_cast->deltadist_y;
 	}
 }
 
-static void	perfDDA(t_game *game, int *hit, int *side)
+static void	perf_dda(t_game *game, int *hit, int *side)
 {
 	*hit = 0;
-	while(*hit == 0)
+	while (*hit == 0)
 	{
-		if(game->ray_cast->sideDistX < game->ray_cast->sideDistY)
+		if (game->ray_cast->sidedist_x < game->ray_cast->sidedist_y)
 		{
-			game->ray_cast->sideDistX += game->ray_cast->deltaDistX;
-			game->ray_cast->boxMapX += game->ray_cast->stepX;
+			game->ray_cast->sidedist_x += game->ray_cast->deltadist_x;
+			game->ray_cast->boxmap_x += game->ray_cast->step_x;
 			*side = 0;
 		}
 		else
 		{
-			game->ray_cast->sideDistY += game->ray_cast->deltaDistY;
-			game->ray_cast->boxMapY += game->ray_cast->stepY;
+			game->ray_cast->sidedist_y += game->ray_cast->deltadist_y;
+			game->ray_cast->boxmap_y += game->ray_cast->step_y;
 			*side = 1;
 		}
-		if (game->ray_cast->boxMapY < 0 || game->ray_cast->boxMapX < 0
-			|| game->ray_cast->boxMapY > SCR_W || game->ray_cast->boxMapX > SCR_H)
+		if (game->ray_cast->boxmap_y < 0 || game->ray_cast->boxmap_x < 0 || \
+		game->ray_cast->boxmap_y > SCR_W || game->ray_cast->boxmap_x > SCR_H)
 			break ;
-		if (game->map->map_array[game->ray_cast->boxMapX][game->ray_cast->boxMapY] == 1)
+		if (game->map->map_array[game->ray_cast->boxmap_x] \
+		[game->ray_cast->boxmap_y] == 1)
 			*hit = 1;
 	}
 }
 
-void	ft_raytracing(t_game *game)
+void	ft_raycasting(t_game *game, t_ray **rcst)
 {
 	int	i;
 	int	hit;
 	int	side;
 
 	if (game->moves != 0)
-		drawBuffer(game, game->buffer);
-	i = 0;
-	while (i < SCR_W)
+		draw_buffer(game, game->buffer);
+	i = -1;
+	while (++i < SCR_W)
 	{
-		game->ray_cast->cameraX = 2 * i / (double)SCR_W - 1;
-		game->ray_cast->rayDirX = game->ray_cast->dirX + game->ray_cast->planeX * game->ray_cast->cameraX;
-		game->ray_cast->rayDirY = game->ray_cast->dirY + game->ray_cast->planeY * game->ray_cast->cameraX;
-		game->ray_cast->boxMapX = (int)game->player->pos_x;
-		game->ray_cast->boxMapY = (int)game->player->pos_y;
-		game->ray_cast->deltaDistX = fabs(1 / game->ray_cast->rayDirX);
-		game->ray_cast->deltaDistY = fabs(1 / game->ray_cast->rayDirY);
-		getDirection(game);
-		perfDDA(game, &hit, &side);
+		get_raycast(&game->ray_cast, i, game->player);
+		get_direction(game);
+		perf_dda(game, &hit, &side);
 		if (side == 0)
-			game->ray_cast->perpWallDist = game->ray_cast->sideDistX - game->ray_cast->deltaDistX;
+			(*rcst)->walldist = (*rcst)->sidedist_x - (*rcst)->deltadist_x;
 		else
-			game->ray_cast->perpWallDist = game->ray_cast->sideDistY - game->ray_cast->deltaDistY;
-		game->ray_cast->lineHeight = (int)(SCR_H / game->ray_cast->perpWallDist);
-		game->ray_cast->drawStart = -game->ray_cast->lineHeight / 2 + SCR_H / 2;
-		if (game->ray_cast->drawStart < 0)
-			game->ray_cast->drawStart = 0;
-		game->ray_cast->drawEnd = game->ray_cast->drawStart + game->ray_cast->lineHeight;
-		if (game->ray_cast->drawEnd >= SCR_H)
-			game->ray_cast->drawEnd = SCR_H - 1;
+			(*rcst)->walldist = (*rcst)->sidedist_y - (*rcst)->deltadist_y;
+		(*rcst)->line_h = (int)(SCR_H / (*rcst)->walldist);
+		(*rcst)->draw_start = -(*rcst)->line_h / 2 + SCR_H / 2;
+		if ((*rcst)->draw_start < 0)
+			(*rcst)->draw_start = 0;
+		(*rcst)->draw_end = (*rcst)->draw_start + (*rcst)->line_h;
+		if ((*rcst)->draw_end >= SCR_H)
+			(*rcst)->draw_end = SCR_H - 1;
 		render(game, side, i);
-		i++;
-    }
+	}
 }

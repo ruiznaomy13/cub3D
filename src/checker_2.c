@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 14:17:25 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/25 14:41:49 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/07/27 23:51:41 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	is_valid_path(char *line, char ***aux)
 		return (free_charray(*aux), 1);
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		return (free_charray(*aux), 1);
+		return (free_charray(*aux), free(file), 1);
 	close(fd);
 	free(file);
 	return (free_charray(*aux), 0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 22:47:28 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/25 15:07:19 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/07/27 23:21:04 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,15 @@ void	reset_buffer(t_game *game)
 	}
 }
 
+static void	print_all(t_game *game)
+{
+	print_border(game->mlx_win, game->texts, MPSZ);
+	print_map(game->mlx_win, game->player, game->map, game->texts);
+	print_hand(game);
+	mlx_draw_texture(game->mlx_win, game->texts->player, \
+	SCR_W - (SCR_W / 6), (SCR_H / 5));
+}
+
 void	game_update(void *param)
 {
 	t_game	*game;
@@ -66,11 +75,10 @@ void	game_update(void *param)
 		mlx_delete_image(game->mlx, game->mlx_win);
 		game->mlx_win = mlx_new_image(game->mlx, SCR_W, SCR_H);
 	}
-	ft_raytracing(game);
-	drawBuffer(game, game->buffer);
+	ft_raycasting(game, &game->ray_cast);
+	draw_buffer(game, game->buffer);
 	mlx_image_to_window(game->mlx, game->mlx_win, 0, 0);
 	mlx_set_instance_depth(game->mlx_win->instances, 3);
 	reset_buffer(game);
-	print_map(*game);
-	print_hand(game);
+	print_all(game);
 }
