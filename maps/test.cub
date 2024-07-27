@@ -3,7 +3,7 @@ C     255,0,0
 WE textures/map/WE.png
 EA textures/map/EA.png
 
-F 120,0,120  
+F 255,120,120  
 
 
       	NO textures/map/NO.png

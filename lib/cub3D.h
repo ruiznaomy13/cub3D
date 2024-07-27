@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/07/25 15:09:27 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/27 20:01:57 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,40 +36,48 @@ int         init_textures(t_textures **texts, t_map map, mlx_t *mlx);
 int         init_game(char *map_file, t_game *game);
 
 /* ---------------------------- CHECKER --------------------------------*/
-void	check_input_map(char *map_file, t_game *game);
-int	    check_line_info(char *line, t_game *game);
-int     check_map(t_map *map);
-void	check_players(t_game *game);
+void	    check_input_map(char *map_file, t_game *game);
+int	        check_line_info(char *line, t_game *game);
+int         check_map(t_map *map);
+void	    check_players(t_game *game);
 
 // CHECKER_1
-int	    check_map_name(char *map_file);
-int	    check_paths(t_game *game);
-int	    is_valid_color(char *line, char ***arr);
-int	    read_dimension(int fd, t_game *game, char *map_file);
-void	check_square(t_map *map, t_point iter, int *check);
+int	        check_map_name(char *map_file);
+int	        check_paths(t_game *game);
+int	        is_valid_color(char *line, char ***arr);
+int	        read_dimension(int fd, t_game *game, char *map_file);
+void	    check_square(t_map *map, t_point iter, int *check);
 
 // CHECKER2_2
-int 	line_length(char *line);
-int	    skip_empty_line(char *str);
-int     inside_map_item(int item);
-int	    is_valid_path(char *line, char ***aux);
+int 	    line_length(char *line);
+int	        skip_empty_line(char *str);
+int         inside_map_item(int item);
+int	        is_valid_path(char *line, char ***aux);
+
+/* -------------------------- MAP CONFIG ------------------------------*/
+/* MAP STRUCTURE 1*/
+void	    save_map(char *line, t_game *game, int *map_row);
+int         is_map_texture(char *line, int *i, int *aux);
+int         is_valid_line(char *line);
+void    	save_player(t_game *game, int p_orientation, int *map_row, int *i);
+void    	save_in_array(t_game *game, char *line, int *i, int *map_row);
+
+/* MAP STRUCTURE 2*/
+int		    save_rgb(char *line, int *color_array);
+void	    save_textures(char *line, t_game *game);
 
 /* UTILS */
-void	free_charray(char **str);
-char	get_first_char(char *line);
-int		first_char_pos(char *line);
-void    key_event(mlx_key_data_t key, void *game);
-void    game_update(void *wd);
+void	    free_charray(char **str);
+char	    get_first_char(char *line);
+int		    first_char_pos(char *line);
+void        key_event(mlx_key_data_t key, void *game);
+void        game_update(void *wd);
 
 /* UTILS 2 */
-char	**ft_split_cub(const char *str);
-int		arg_counter(char **argv);
+char	    **ft_split_cub(const char *str);
+int		    arg_counter(char **argv);
 
 
-/* MAP STRUCTURE */
-void	    save_textures(char *line, t_game *game);
-int		    save_rgb(char *line, int *color_array);
-void	    save_map(char *line, t_game *game, int *map_row);
 
 /* PRINT */
 void	    print_map(t_game    wd);

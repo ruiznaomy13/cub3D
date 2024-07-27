@@ -3,29 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   mapStruct.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 23:00:32 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/25 14:33:27 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/07/27 20:00:10 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-int	save_rgb(char *line, int *color_array)
-{
-	char	**aux;
-	int		i;
-
-	i = -1;
-	aux = ft_split(&line[first_char_pos(line)], ',');
-	if (!aux)
-		return (1);
-	while (aux[++i])
-		color_array[i] = ft_atoi(aux[i]);
-	free_charray(aux);
-	return (0);
-}
 
 int	is_map_texture(char *line, int *i, int *aux)
 {
@@ -41,9 +26,9 @@ int	is_map_texture(char *line, int *i, int *aux)
 		ret_value = 3;
 	else if (!ft_strncmp (&line[*i], "EA", 2))
 		ret_value = 4;
-	else if (!ft_strncmp (&line[*i], "F",1))
+	else if (!ft_strncmp (&line[*i], "F", 1))
 		ret_value = 5;
-	else if (!ft_strncmp (&line[*i], "C",1))
+	else if (!ft_strncmp (&line[*i], "C", 1))
 		ret_value = 6;
 	if (ret_value != 0)
 	{
@@ -55,34 +40,7 @@ int	is_map_texture(char *line, int *i, int *aux)
 	return (ret_value);
 }
 
-/* se ha modificado*/
-void	save_textures(char *line, t_game *game)
-{
-	int	i;
-	int	aux;
-
-	aux = 0;
-	if (is_map_texture(line, &i, &aux) == 1 && !game->map->texture_no)
-		game->map->texture_no = ft_substr(&line[i], aux, \
-		ft_strlen(&line[aux + i]) - 1);
-	else if (is_map_texture(line, &i, &aux) == 2 && !game->map->texture_so)
-		game->map->texture_so = ft_substr(&line[i], aux, \
-		ft_strlen(&line[aux + i]) - 1);
-	else if (is_map_texture(line, &i, &aux) == 3 && !game->map->texture_we)
-		game->map->texture_we = ft_substr(&line[i], aux, \
-		ft_strlen(&line[aux + i]) - 1);
-	else if (is_map_texture(line, &i, &aux) == 4 && !game->map->texture_ea)
-		game->map->texture_ea = ft_substr(&line[i], aux, \
-		ft_strlen(&line[aux + i]) - 1);
-	else if (is_map_texture(line, &i, &aux) == 5)
-		save_rgb(&line[first_char_pos(&line[i])], game->map->floor_c);
-	else if (is_map_texture(line, &i, &aux) == 6)
-		save_rgb(&line[first_char_pos(&line[i++])], game->map->ceiling_c);
-	else
-		ft_error(game, EXIT_FAILURE);
-}
-
-static int	is_valid_line(char *line)
+int	is_valid_line(char *line)
 {
 	int	i;
 
@@ -122,26 +80,26 @@ void	save_player(t_game *game, int p_orientation, int *map_row, int *i)
 
 void	save_in_array(t_game *game, char *line, int *i, int *map_row)
 {
-		if (line[*i] == '\n' || !line[*i])
-		{
-			while (*i < game->map->cols)
-				game->map->map_array[*map_row][(*i)++] = OUT_MAP;
-			(*i)--;
-		}
-		else if (line[*i] == '0')
-			game->map->map_array[*map_row][*i] = SPACE;
-		else if (line[*i] == '1')
-			game->map->map_array[*map_row][*i] = WALL;
-		else if (line[*i] == 'N')
-			save_player(game, P_N, map_row, i);
-		else if (line[*i] == 'S')
-			save_player(game, P_S, map_row, i);
-		else if (line[*i] == 'E')
-			save_player(game, P_E, map_row, i);
-		else if (line[*i] == 'W')
-			save_player(game, P_W, map_row, i);
-		else if (line[*i] == ' ' || line[*i] == '\t')
-			game->map->map_array[*map_row][*i] = OUT_MAP;
+	if (line[*i] == '\n' || !line[*i])
+	{
+		while (*i < game->map->cols)
+			game->map->map_array[*map_row][(*i)++] = OUT_MAP;
+		(*i)--;
+	}
+	else if (line[*i] == '0')
+		game->map->map_array[*map_row][*i] = SPACE;
+	else if (line[*i] == '1')
+		game->map->map_array[*map_row][*i] = WALL;
+	else if (line[*i] == 'N')
+		save_player(game, P_N, map_row, i);
+	else if (line[*i] == 'S')
+		save_player(game, P_S, map_row, i);
+	else if (line[*i] == 'E')
+		save_player(game, P_E, map_row, i);
+	else if (line[*i] == 'W')
+		save_player(game, P_W, map_row, i);
+	else if (line[*i] == ' ' || line[*i] == '\t')
+		game->map->map_array[*map_row][*i] = OUT_MAP;
 }
 
 void	save_map(char *line, t_game *game, int *map_row)
@@ -153,7 +111,8 @@ void	save_map(char *line, t_game *game, int *map_row)
 		return (ft_error(game, EXIT_FAILURE));
 	if (*map_row <= game->map->rows)
 	{
-		game->map->map_array[*map_row] = (int *)ft_calloc(sizeof(int), game->map->cols);
+		game->map->map_array[*map_row] = \
+		(int *)ft_calloc(sizeof(int), game->map->cols);
 		if (!game->map->map_array[*map_row])
 			return (ft_error(game, 0));
 		while (++i < game->map->cols)

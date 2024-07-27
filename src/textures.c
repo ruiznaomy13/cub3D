@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 22:50:02 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/07/25 15:07:13 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/27 19:46:29 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	init_render(t_game *game, t_render **rd, int side, mlx_image_t **textr)
 {
 	if (side == 0)
 	{
-		(*rd)->wallX = game->player->pos_y + game->ray_cast->perpWallDist * game->ray_cast->rayDirY;
+		(*rd)->wallX = game->player->pos_y + \
+		game->ray_cast->perpWallDist * game->ray_cast->rayDirY;
 		if (game->ray_cast->stepX == 1)
 			(*textr) = game->texts->texture_e;
 		else
@@ -24,7 +25,8 @@ void	init_render(t_game *game, t_render **rd, int side, mlx_image_t **textr)
 	}
 	else
 	{
-		(*rd)->wallX = game->player->pos_x + game->ray_cast->perpWallDist * game->ray_cast->rayDirX;
+		(*rd)->wallX = game->player->pos_x + \
+		game->ray_cast->perpWallDist * game->ray_cast->rayDirX;
 		if (game->ray_cast->stepY == 1)
 			(*textr) = game->texts->texture_n;
 		else
@@ -36,8 +38,6 @@ void	init_render(t_game *game, t_render **rd, int side, mlx_image_t **textr)
 		(*rd)->texX = TEX_W - (*rd)->texX - 1;
 	if (side == 1 && game->ray_cast->rayDirY < 0)
 		(*rd)->texX = TEX_W - (*rd)->texX - 1;
-	(*rd)->step = 1.0 * TEX_H / game->ray_cast->lineHeight;
-	(*rd)->texPos = (game->ray_cast->drawStart - SCR_H / 2 + game->ray_cast->lineHeight / 2) * (*rd)->step;
 }
 
 void	render(t_game *game, int side, int i)
@@ -51,6 +51,9 @@ void	render(t_game *game, int side, int i)
 		free(game->rd);
 	game->rd = (t_render *)ft_calloc(1, sizeof(t_render));
 	init_render(game, &game->rd, side, &textr);
+	game->rd->step = 1.0 * TEX_H / game->ray_cast->lineHeight;
+	game->rd->texPos = (game->ray_cast->drawStart - \
+	SCR_H / 2 + game->ray_cast->lineHeight / 2) * game->rd->step;
 	j = game->ray_cast->drawStart - 1;
 	while (++j < game->ray_cast->drawEnd)
 	{

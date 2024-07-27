@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_game.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 19:16:27 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/06 16:42:02 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/27 19:36:56 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	close_button(void *param)
 
 	game = param;
 	mlx_close_window(game->mlx);
-	//mlx_terminate(game->mlx);
 	clean_memmory(game);
 	printf("\nGood bye!\n");
 	exit(EXIT_SUCCESS);
@@ -27,7 +26,7 @@ void	close_button(void *param)
 static void	clean_map(t_map *map)
 {
 	int	i;
-	
+
 	i = -1;
 	if (map)
 	{
