@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 00:48:14 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/27 23:37:50 by elias            ###   ########.fr       */
+/*   Updated: 2024/07/29 13:25:39 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,41 +16,46 @@
 # include "../inc/mlx42/include/MLX42/MLX42.h"
 
 # define MAGENTA	"\033[95m"
-# define GREEN	"\x1b[32m"
-# define WHITE	"\e[1;37m"
+# define GREEN		"\x1b[32m"
+# define WHITE		"\e[1;37m"
 
-# define SQSZ	20
-# define MPSZ	5
+# define SQSZ		20
+# define MPSZ		5
 
 # define MAGENTA	"\033[95m"
 # define GREEN		"\x1b[32m"
 # define WHITE		"\e[1;37m"
 
-# define WALL	1
-# define SPACE	0
-# define PLAYER	2
+# define WALL		1
+# define SPACE		0
+# define PLAYER		2
 # define P_N		21
 # define P_S		22
 # define P_E		23
 # define P_W		24
 # define OUT_MAP	-1
-# define RIGHT 262
-# define RIGHT_D 68
-# define LEFT 263
-# define LEFT_A 65
-# define DOWN 264
-# define DOWN_S 83
-# define UP 265
-# define UP_W 87
-# define NUM_TXT 2
+# define RIGHT		262
+# define RIGHT_D	68
+# define LEFT		263
+# define LEFT_A		65
+# define DOWN		264
+# define DOWN_S		83
+# define UP			265
+# define UP_W		87
+# define NUM_TXT	2
 
 /* ERROR TYPE*/
 # define E_SYNTAX 2
 
-# define SCR_W 1280
-# define SCR_H 720
-# define TEX_W 64
-# define TEX_H 64
+# define MAX_W		3200
+# define MAX_H		1800
+# define MIN_W		800
+# define MIN_H		600
+
+# define SCR_W		1920
+# define SCR_H		1080
+# define TEX_W		64
+# define TEX_H		64
 
 typedef struct s_point
 {

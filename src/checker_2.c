@@ -3,16 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   checker_2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 14:17:25 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/27 23:51:41 by elias            ###   ########.fr       */
+/*   Updated: 2024/07/29 13:26:58 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-/* guarda el tamaño de la linea exacto, es decir el numero de caracteres */
+int	check_resolution(void)
+{
+	if (SCR_H > MAX_H || SCR_W > MAX_W)
+		return (1);
+	else if (SCR_H < MIN_H || SCR_W < MIN_W)
+		return (1);
+	return (0);
+}
+
 int	line_length(char *line)
 {
 	int	i;

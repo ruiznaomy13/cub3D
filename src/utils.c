@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 22:47:28 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/27 23:21:04 by elias            ###   ########.fr       */
+/*   Updated: 2024/07/29 13:18:15 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,8 @@ static void	print_all(t_game *game)
 {
 	print_border(game->mlx_win, game->texts, MPSZ);
 	print_map(game->mlx_win, game->player, game->map, game->texts);
-	print_hand(game);
+	if (SCR_H > 800 && SCR_W > 1000)
+		print_hand(game);
 	mlx_draw_texture(game->mlx_win, game->texts->player, \
 	SCR_W - (SCR_W / 6), (SCR_H / 5));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/07/28 00:04:22 by elias            ###   ########.fr       */
+/*   Updated: 2024/07/29 13:27:29 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int			read_dimension(int fd, t_game *game, char *map_file);
 void		check_square(t_map *map, t_point iter, int *check);
 
 // CHECKER2_2
+int			check_resolution(void);
 int			line_length(char *line);
 int			skip_empty_line(char *str);
 int			inside_map_item(int item);

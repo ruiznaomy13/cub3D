@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/25 14:35:48 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/07/29 13:26:48 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int	main(int ac, char *av[])
 	t_game	game;
 
 	game = (t_game){};
-	if (ac != 2)
+	if (ac != 2 || check_resolution())
 		ft_error(NULL, EXIT_FAILURE);
 	if (init_game(av[1], &game))
 		return (1);
