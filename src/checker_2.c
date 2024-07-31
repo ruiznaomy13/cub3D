@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/25 14:17:25 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/29 13:26:58 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/07/31 13:24:23 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	line_length(char *line)
 	return (i + 1);
 }
 
-int	skip_empty_line(char *str)
+int	skip_empty_line(char *str, int map_region)
 {
 	int	i;
 
@@ -45,6 +45,8 @@ int	skip_empty_line(char *str)
 		if (str[i] != ' ' && str[i] != '\t')
 			return (1);
 	}
+	if (map_region == 2)
+		return (1);
 	return (0);
 }
 

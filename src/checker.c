@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:44 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/29 13:36:52 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/07/31 13:21:57 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,10 @@ void	store_map_info(t_game *game, int map_row, int fd)
 {
 	while (game->map->line)
 	{
-		if (skip_empty_line(game->map->line))
+		if (skip_empty_line(game->map->line, game->checker))
 		{
-			game->checker = check_line_info(game->map->line, game);
+			if (game->checker != 2)
+				game->checker = check_line_info(game->map->line, game);
 			if (game->checker == 0)
 				save_textures(game->map->line, game);
 			else if (game->checker == 2)

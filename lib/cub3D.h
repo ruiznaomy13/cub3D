@@ -6,7 +6,7 @@
 /*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/07/29 13:27:29 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/07/31 13:16:30 by ncastell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void		check_square(t_map *map, t_point iter, int *check);
 // CHECKER2_2
 int			check_resolution(void);
 int			line_length(char *line);
-int			skip_empty_line(char *str);
+int			skip_empty_line(char *str, int map_region);
 int			inside_map_item(int item);
 int			is_valid_path(char *line, char ***aux);
 
