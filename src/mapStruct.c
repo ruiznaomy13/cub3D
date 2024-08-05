@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mapStruct.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 23:00:32 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/31 13:25:55 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/08/05 19:50:59 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,14 @@ void	save_player(t_game *game, int p_orientation, int *map_row, int *i)
 			game->player->card_p = 'W';
 		game->player->pos_x = *map_row;
 		game->player->pos_y = *i;
+		if (game->player->pos_x == 1.0)
+			game->player->pos_x += 0.1;
+		else if (game->player->pos_x == game->map->rows - 2)
+			game->player->pos_x += 0.5;
+		if (game->player->pos_y == 1.0)
+			game->player->pos_y += 0.1;
+		else if (game->player->pos_y == game->map->cols - 2)
+			game->player->pos_y += 0.5;
 	}
 	game->n_players++;
 }

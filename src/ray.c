@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ray.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/05 19:53:57 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/07/27 22:45:57 by elias            ###   ########.fr       */
+/*   Updated: 2024/08/05 19:52:56 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 static void	init_ray_aux(t_game *game)
 {
-	if (game->player->card_p == 'W')
+	if (game->player->card_p == 'N')
 	{
 		game->ray_cast->dir_x = -1.0;
 		game->ray_cast->dir_y = 0.0;
 		game->ray_cast->plane_x = 0;
 		game->ray_cast->plane_y = -0.66;
 	}
-	if (game->player->card_p == 'E')
+	if (game->player->card_p == 'S')
 	{
 		game->ray_cast->dir_x = 1.0;
 		game->ray_cast->dir_y = 0.0;
@@ -37,14 +37,14 @@ void	init_ray(t_game *game)
 		ft_error(game, EXIT_FAILURE);
 	game->ray_cast->mv_speed = 0.15;
 	game->ray_cast->rot_speed = 0.15;
-	if (game->player->card_p == 'N')
+	if (game->player->card_p == 'W')
 	{
 		game->ray_cast->dir_x = 0.0;
 		game->ray_cast->dir_y = -1.0;
 		game->ray_cast->plane_x = 0.66;
 		game->ray_cast->plane_y = 0;
 	}
-	if (game->player->card_p == 'S')
+	if (game->player->card_p == 'E')
 	{
 		game->ray_cast->dir_x = 0.0;
 		game->ray_cast->dir_y = 1.0;
