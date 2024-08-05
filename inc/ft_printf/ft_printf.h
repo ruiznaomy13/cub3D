@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmonpeat <mmonpeat@student.42barcel>       +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 17:46:18 by mmonpeat          #+#    #+#             */
-/*   Updated: 2023/03/11 19:14:45 by mmonpeat         ###   ########.fr       */
+/*   Updated: 2024/08/05 13:14:25 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include<stdlib.h>
-# include<unistd.h>
-# include<stdarg.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <stdarg.h>
 
 int	ft_printf(char const *str, ...);
 int	print_percent(char *str, va_list ptr);

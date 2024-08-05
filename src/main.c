@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:49 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/31 13:46:05 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/08/05 13:18:17 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ void	ft_error(t_game *game, int error)
 		ft_printf(MAGENTA"Bad map structure\n");
 		ft_printf("Try with a different map 😛\n\n"WHITE);
 	}
-	clean_memmory(game);
+	if (game)
+		clean_memmory(game);
 	exit(error);
 }
 

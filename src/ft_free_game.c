@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_free_game.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/28 19:16:27 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/31 13:52:25 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/08/05 13:18:15 by elias            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,18 +71,15 @@ static void	free_textures(t_textures *txts, mlx_t *mlx)
 
 void	clean_memmory(t_game *game)
 {
-	if (game)
+	if (game->map->line)
+		free(game->map->line);
+	if (game->map)
+		clean_map(game->map);
+	if (game->player)
 	{
-		if (game->map->line)
-			free(game->map->line);
-		if (game->map)
-			clean_map(game->map);
-		if (game->player)
-		{
-			free(game->player);
-		}
-		if (game->texts)
-			free_textures(game->texts, game->mlx);
+		free(game->player);
 	}
+	if (game->texts)
+		free_textures(game->texts, game->mlx);
 	mlx_terminate(game->mlx);
 }
