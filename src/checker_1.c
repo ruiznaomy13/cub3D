@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 22:26:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/08/12 16:34:15 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/08/12 20:27:16 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,32 +109,3 @@ int	read_dimension(int fd, t_game *game, char *map_file)
 	fd = open(map_file, O_RDONLY);
 	return (fd);
 }
-
-/*
-int	read_dimension(int fd, t_game *game, char *map_file)
-{
-	char	*line;
-	int		line_ln;
-
-	game->map->rows = 0;
-	game->map->cols = 0;
-	line = get_next_line(fd);
-	while (line)
-	{
-		if (get_first_char(line) == '1')
-		{
-			line_ln = line_length(line);
-			game->map->rows++;
-			if (game->map->cols < line_ln)
-				game->map->cols = line_ln;
-		}
-		free(line);
-		line = get_next_line(fd);
-	}
-	close(fd);
-	game->map->map_array = ft_calloc(game->map->rows, sizeof(int *));
-	if (game->map->map_array == NULL)
-		ft_error(game, EXIT_FAILURE);
-	fd = open(map_file, O_RDONLY);
-	return (fd);
-}*/
