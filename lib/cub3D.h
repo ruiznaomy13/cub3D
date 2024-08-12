@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/07/31 13:16:30 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/08/12 17:56:53 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,15 @@ void		save_textures(char *line, t_game *game);
 
 /* -------------------------- UTILITIES ------------------------------*/
 /* UTILS */
-void		free_charray(char **str);
-char		get_first_char(char *line);
-int			first_char_pos(char *line);
 void		key_event(mlx_key_data_t key, void *game);
 void		game_update(void *wd);
+void		reset_buffer(t_game *game);
+char		*skip_config(char **line, int fd);
+
+/* UTILS 1*/
+char		get_first_char(char *line);
+void		free_charray(char **str);
+int			first_char_pos(char *line);
 
 /* UTILS 2 */
 char		**ft_split_cub(const char *str);
@@ -81,6 +85,10 @@ void		close_button(void *wd);
 /* ------------------------- MOVEMENT FUNCTIONS -----------------------------*/
 /* MOVES */
 void		move_player(t_game *game);
+
+/* MOVES_2 */
+int			check_move(t_player player, t_ray ray, t_map map, int option);
+int			check_move_aux(t_player player, t_ray ray, t_map map, int option);
 
 /* -------------------------- DRAWING FUNCTIONS ------------------------------*/
 /* PRINT */

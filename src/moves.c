@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: elias <elias@student.42.fr>                +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 09:37:43 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/07/27 22:29:17 by elias            ###   ########.fr       */
+/*   Updated: 2024/08/12 17:56:38 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,9 +48,9 @@ static void	mv_straight(t_game *game)
 	if (game->key == DOWN_S)
 	{
 		if (game->map->map_array[(int)(game->player->pos_x - game->ray_cast->\
-		dir_x * game->ray_cast->mv_speed)][(int)game->player->pos_y] != 1 && \
-		(game->map->map_array[(int)game->player->pos_x][(int)(game->player->\
-		pos_y - game->ray_cast->dir_y * game->ray_cast->mv_speed)] != 1))
+		dir_x * game->ray_cast->mv_speed)][(int)(game->player->pos_y - \
+		game->ray_cast->dir_y * game->ray_cast->mv_speed)] != 1 && \
+		check_move(*player, *game->ray_cast, *game->map, 1) == 1)
 		{
 			player->pos_x -= game->ray_cast->dir_x * game->ray_cast->mv_speed;
 			player->pos_y -= game->ray_cast->dir_y * game->ray_cast->mv_speed;
@@ -59,9 +59,9 @@ static void	mv_straight(t_game *game)
 	else if (game->key == UP_W)
 	{
 		if (game->map->map_array[(int)(game->player->pos_x + game->ray_cast->\
-		dir_x * game->ray_cast->mv_speed)][(int)game->player->pos_y] != 1 && \
-		(game->map->map_array[(int)(game->player->pos_x)][(int)(game->player->\
-		pos_y + game->ray_cast->dir_y * game->ray_cast->mv_speed)] != 1))
+		dir_x * game->ray_cast->mv_speed)][(int)(game->player->pos_y + \
+		game->ray_cast->dir_y * game->ray_cast->mv_speed)] != 1 && \
+		check_move(*player, *game->ray_cast, *game->map, 2) == 1)
 		{
 			player->pos_x += game->ray_cast->dir_x * game->ray_cast->mv_speed;
 			player->pos_y += game->ray_cast->dir_y * game->ray_cast->mv_speed;
@@ -77,9 +77,9 @@ static void	mv_side(t_game *game)
 	if (game->key == LEFT_A)
 	{
 		if (game->map->map_array[(int)(game->player->pos_x - game->ray_cast->\
-		plane_x * game->ray_cast->mv_speed)][(int)game->player->pos_y] != 1 \
-		&& (game->map->map_array[(int)game->player->pos_x][(int)(game->player \
-		->pos_y - game->ray_cast->plane_y * game->ray_cast->mv_speed)] != 1))
+		plane_x * game->ray_cast->mv_speed)][(int)(game->player->pos_y - \
+		game->ray_cast->plane_y * game->ray_cast->mv_speed)] != 1 \
+		&& check_move(*player, *game->ray_cast, *game->map, 3) == 1)
 		{
 			player->pos_x -= game->ray_cast->plane_x * game->ray_cast->mv_speed;
 			player->pos_y -= game->ray_cast->plane_y * game->ray_cast->mv_speed;
@@ -88,9 +88,9 @@ static void	mv_side(t_game *game)
 	else if (game->key == RIGHT_D)
 	{
 		if (game->map->map_array[(int)(game->player->pos_x + game->ray_cast->\
-		plane_x * game->ray_cast->mv_speed)][(int)game->player->pos_y] != 1 \
-		&& (game->map->map_array[(int)(game->player->pos_x)][(int)(game->player \
-		->pos_y + game->ray_cast->plane_y * game->ray_cast->mv_speed)] != 1))
+		plane_x * game->ray_cast->mv_speed)][(int)(game->player->pos_y + \
+		game->ray_cast->plane_y * game->ray_cast->mv_speed)] != 1 \
+		&& check_move(*player, *game->ray_cast, *game->map, 4) == 1)
 		{
 			player->pos_x += game->ray_cast->plane_x * game->ray_cast->mv_speed;
 			player->pos_y += game->ray_cast->plane_y * game->ray_cast->mv_speed;

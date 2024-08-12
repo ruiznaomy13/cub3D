@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 22:47:28 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/29 13:18:15 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/08/12 17:55:33 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,15 @@ void	game_update(void *param)
 	mlx_set_instance_depth(game->mlx_win->instances, 3);
 	reset_buffer(game);
 	print_all(game);
+}
+
+char	*skip_config(char **line, int fd)
+{
+	*line = get_next_line(fd);
+	while (*line && get_first_char(*line) != '1')
+	{
+		free(*line);
+		*line = get_next_line(fd);
+	}
+	return (*line);
 }
