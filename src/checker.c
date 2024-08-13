@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ncastell <ncastell@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:44 by ncastell          #+#    #+#             */
-/*   Updated: 2024/07/31 13:21:57 by ncastell         ###   ########.fr       */
+/*   Updated: 2024/08/13 17:54:03 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,13 @@ void	check_players(t_game *game)
 
 void	store_map_info(t_game *game, int map_row, int fd)
 {
+	int	i = 0;
+
+	while (i < 3)
+	{
+		game->map->ceiling_c[i] = -1;
+		game->map->floor_c[i] = -1;
+	}
 	while (game->map->line)
 	{
 		if (skip_empty_line(game->map->line, game->checker))
