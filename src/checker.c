@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:00:44 by ncastell          #+#    #+#             */
-/*   Updated: 2024/08/13 17:54:03 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/08/13 18:06:34 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,12 +71,14 @@ void	check_players(t_game *game)
 
 void	store_map_info(t_game *game, int map_row, int fd)
 {
-	int	i = 0;
+	int	i;
 
+	i = 0;
 	while (i < 3)
 	{
 		game->map->ceiling_c[i] = -1;
 		game->map->floor_c[i] = -1;
+		i++;
 	}
 	while (game->map->line)
 	{

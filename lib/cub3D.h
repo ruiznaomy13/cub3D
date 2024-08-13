@@ -6,7 +6,7 @@
 /*   By: eliagarc <eliagarc@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 20:01:42 by eliagarc          #+#    #+#             */
-/*   Updated: 2024/08/12 17:56:53 by eliagarc         ###   ########.fr       */
+/*   Updated: 2024/08/13 18:05:16 by eliagarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ void		save_in_array(t_game *game, char *line, int *i, int *map_row);
 /* MAP STRUCTURE 2*/
 int			save_rgb(char *line, int *color_array);
 void		save_textures(char *line, t_game *game);
+int			check_cf(int cf[3]);
 
 /* -------------------------- UTILITIES ------------------------------*/
 /* UTILS */
